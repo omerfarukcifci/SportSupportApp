@@ -3,10 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SportSupport.iml" filepath="$PROJECT_DIR$/SportSupport.iml" />
-      <module fileurl="file://C:\Users\Merve\AndroidStudioProjects\SportSupportApp\SportSupport.iml" filepath="C:\Users\Merve\AndroidStudioProjects\SportSupportApp\SportSupport.iml" />
-      <module fileurl="file://C:\Users\Faruk\AndroidStudioProjects\SportSupport\.idea\SportSupportApp.iml" filepath="C:\Users\Faruk\AndroidStudioProjects\SportSupport\.idea\SportSupportApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\Merve\AndroidStudioProjects\SportSupportApp\app\app.iml" filepath="C:\Users\Merve\AndroidStudioProjects\SportSupportApp\app\app.iml" />
     </modules>
   </component>
 </project>
