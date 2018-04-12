@@ -43,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
         PostService postService = retrofit.create(PostService.class);
 
-        //getAllPosts(postService);
 
         Member newMember = new Member();
         newMember.setName("Omer");
@@ -56,8 +55,9 @@ public class MainActivity extends AppCompatActivity {
         newMember.setBranchAuthority(0);
         newMember.setReferenceNumber(0);
 
-        //createPost(postService, newMember);
         getAllPosts(postService);
+        //createPost(postService, newMember);
+
 
 
     }

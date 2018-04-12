@@ -21,6 +21,6 @@ public interface PostService {
     @GET("all/{id}")
     Call<List<Member>> getPostById(@Path("id") int id);
 
-    @POST("all")
+    @POST("add")
     Call<Member> createPost(@Body Member member);
 }
