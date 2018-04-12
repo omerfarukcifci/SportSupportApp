@@ -18,4 +18,34 @@
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
+
+    <!-- INTRODUCTION SCREEN -->
+    <string name="title_activity_welcome">Home Screen</string>
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_title">Welcome!</string>
+    <string name="slide_1_desc">The easiest way to track your training is SportSupport Application.</string>
+
+    <string name="slide_2_title">Membership Types</string>
+    <string name="slide_2_desc">Choose the type of membership that is most appropriate for you. </string>
+
+    <string name="slide_3_title">Courses</string>
+    <string name="slide_3_desc">Choose what you want from our courses to support your training.</string>
+
+    <string name="slide_4_title">World Travel</string>
+    <string name="slide_4_desc">Book tickets of any transportation and travel the world!</string>
+
+    <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
+    <string name="play_again">Play Again</string>
+    <string name="title_activity_menu">MenuActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <!-- INTRODUCTION SCREEN -->
+
+
 </resources>
