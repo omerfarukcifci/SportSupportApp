@@ -32,7 +32,7 @@ public class UpdateProfile extends AppCompatActivity {
         delete =    findViewById(R.id.buttonDelete);
         update =    findViewById(R.id.buttonUpdate);
 
-
+        /**/
 
         final ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         final CrudOPs cr = new CrudOPs();
