@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/name"
+                    android:id="@+id/signup_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Name"
@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/surname"
+                    android:id="@+id/signup_surname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Surname"
@@ -68,7 +68,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/birthDate"
+                    android:id="@+id/signup_birthDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Birth Date"
@@ -82,8 +82,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <AutoCompleteTextView
-                    android:id="@+id/email"
+                <EditText
+                    android:id="@+id/signup_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_email"
@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/userName"
+                    android:id="@+id/signup_userName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Username"
@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/password"
+                    android:id="@+id/signup_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/prompt_password"
@@ -125,7 +125,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
-                android:id="@+id/userName_sign_up_button"
+                android:id="@+id/sign_up_button"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

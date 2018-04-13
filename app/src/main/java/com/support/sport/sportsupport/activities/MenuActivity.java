@@ -79,7 +79,8 @@ public class MenuActivity extends AppCompatActivity
             Intent intent = new Intent(MenuActivity.this,MainActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_courses) {
-
+            Intent intent = new Intent(MenuActivity.this,UpdateProfile.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

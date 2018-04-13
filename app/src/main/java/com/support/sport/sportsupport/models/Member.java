@@ -1,21 +1,32 @@
 package com.support.sport.sportsupport.models;
 
-import java.util.Date;
+import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by Faruk on 12.04.2018.
+ * Created by Merve on 12.04.2018.
  */
 
 public class Member {
 
+    @SerializedName("id")
+    private int id;
+    @SerializedName("name")
     private String name;
+    @SerializedName("surname")
     private String surname;
+    @SerializedName("username")
     private String username;
+    @SerializedName("password")
     private String password;
+    @SerializedName("statue")
     private String statue; //This is for user's statue. It can be banned, owner, active, inactive, non-member.
+    @SerializedName("status")
     private String status; //It can be gold, platinum, standard.
+    @SerializedName("mail")
     private String mail;
+    @SerializedName("referenceNumber")
     private int referenceNumber; //This is for a member's friend count that came with member.
+    @SerializedName("branchAuthority")
     private int branchAuthority; //This count for user's entered another branches except member's registered branch
 
 
@@ -73,9 +84,11 @@ public class Member {
     public void setBranchAuthority(int branchAuthority) {
         this.branchAuthority = branchAuthority;
     }
-
-
-
-
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
 
 }

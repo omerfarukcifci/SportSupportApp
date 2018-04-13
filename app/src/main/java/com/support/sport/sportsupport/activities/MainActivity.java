@@ -5,14 +5,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.support.sport.sportsupport.activities.R;
 import com.support.sport.sportsupport.models.Member;
+import com.support.sport.sportsupport.services.ApiClient;
+import com.support.sport.sportsupport.services.ApiInterface;
+import com.support.sport.sportsupport.services.CrudOPs;
 import com.support.sport.sportsupport.services.PostService;
 
+import java.net.HttpURLConnection;
 import java.util.List;
 
 import retrofit2.Call;
@@ -28,41 +34,67 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvSurname;
     private TextView tvUsername;
     private TextView tvStatus;
+    private ListView listView;
+
+    private List<Member> memberList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initViews();
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://207.154.246.182:8080/support-2.1/member/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        PostService postService = retrofit.create(PostService.class);
+        listView = findViewById(R.id.listview);
 
 
-        Member newMember = new Member();
-        newMember.setName("Omer");
-        newMember.setSurname("Cifci");
-        newMember.setUsername("UserNameOmer");
-        newMember.setPassword("123456");
-        newMember.setMail("omer@gmail.com");
-        newMember.setStatue("active");
-        newMember.setStatus("gold");
-        newMember.setBranchAuthority(0);
-        newMember.setReferenceNumber(0);
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
-        getAllPosts(postService);
+        CrudOPs cr = new CrudOPs();
+
+        //Member[] members = cr.getAll(apiService);
+        //getAllPosts(apiService);
+
+        /*String[] memberStr = new String[5];
+        for(int j=0;j<5;j++){
+            memberStr[j]= new String(memberList.get(j).getName()+" "+memberList.get(j).getSurname()
+                    +" "+memberList.get(j).getUsername()+" "+memberList.get(j).getPassword());
+        }
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, memberList);
+        listView.setAdapter(adapter);*/
+
+
+        //cr.addMember(apiService,0,0,"yeter4","artik","banned","standard","bitsin@gmail.com","nefret","ediyorum");
+        //cr.deleteMember(apiService,"yeter4","artik");
+        //cr.updateMember(apiService,"priasa","username9","username9","password9","bittimi@gmail.com",null,null);
+        //cr.readOne(apiService,"yeter","artik");
+
+        //getAllPosts(postService);
         //createPost(postService, newMember);
 
 
 
     }
+    private void getAllPosts(ApiInterface apiService) {
+        Call<List<Member>> getAllPostsCall = apiService.getAllMembers();
+        getAllPostsCall.enqueue(new Callback<List<Member>>() {
+            @Override
+            public void onResponse(Call<List<Member>> call, Response<List<Member>> response) {
+                //displayPost(response.body().get(0));
+                for(int i=0; i<response.body().size();i++){
+                    memberList.add(response.body().get(i));
+                }
 
-    private void createPost(PostService postService, Member newMember) {
+            }
+
+            @Override
+            public void onFailure(Call<List<Member>> call, Throwable t) {
+                Log.e(TAG, "Error occured while fetching post.");
+            }
+        });
+    }
+
+
+
+    /*private void createPost(PostService postService, Member newMember) {
 
         Call<Member> call = postService.createPost(newMember);
         call.enqueue(new Callback<Member>() {
@@ -108,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
         tvUsername.setText(member.getUsername());
         tvStatus.setText(member.getStatus());
     }
-
+    */
 
 
 }
