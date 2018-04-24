@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvStatus;
     private ListView listView;
 
-    private List<Member> memberList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,16 +49,20 @@ public class MainActivity extends AppCompatActivity {
 
         CrudOPs cr = new CrudOPs();
 
-        //Member[] members = cr.getAll(apiService);
+        Member[] members = cr.getAll(apiService);
         //getAllPosts(apiService);
 
-        /*String[] memberStr = new String[5];
-        for(int j=0;j<5;j++){
-            memberStr[j]= new String(memberList.get(j).getName()+" "+memberList.get(j).getSurname()
-                    +" "+memberList.get(j).getUsername()+" "+memberList.get(j).getPassword());
+        if (members != null){
+            String[] memberStr = new String[5];
+            for(int j=0;j<5;j++){
+                memberStr[j]= new String(members[j].getName()+" "+members[j].getSurname()
+                        +" "+members[j].getUsername()+" "+members[j].getPassword());
+            }
+            ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, members);
+            listView.setAdapter(adapter);
+
         }
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, memberList);
-        listView.setAdapter(adapter);*/
+
 
 
         //cr.addMember(apiService,0,0,"yeter4","artik","banned","standard","bitsin@gmail.com","nefret","ediyorum");
@@ -80,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(Call<List<Member>> call, Response<List<Member>> response) {
                 //displayPost(response.body().get(0));
                 for(int i=0; i<response.body().size();i++){
-                    memberList.add(response.body().get(i));
+                   // memberList.add(response.body().get(i));
                 }
 
             }

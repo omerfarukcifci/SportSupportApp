@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Layout;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -20,6 +22,8 @@ import com.support.sport.sportsupport.activities.R;
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private boolean viewIsAtHome;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +39,8 @@ public class MenuActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        displayView(R.id.nav_my_profile);
     }
 
     @Override
@@ -42,8 +48,11 @@ public class MenuActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        }
+        if (!viewIsAtHome) { //if the current view is not the News fragment
+            displayView(R.id.nav_my_profile); //display the News fragment
         } else {
-            super.onBackPressed();
+            moveTaskToBack(true);  //If view is in News fragment, exit application
         }
     }
 
@@ -73,7 +82,7 @@ public class MenuActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
+        /*int id = item.getItemId();
 
         if (id == R.id.nav_my_profile) {
             Intent intent = new Intent(MenuActivity.this,MainActivity.class);
@@ -85,7 +94,51 @@ public class MenuActivity extends AppCompatActivity
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        drawer.closeDrawer(GravityCompat.START);
+        drawer.closeDrawer(GravityCompat.START);*/
+        displayView(item.getItemId());
         return true;
     }
+
+    //This function controls our buttons in drawer menu. And we are creating new fragment falan filan
+    public void displayView(int viewId) {
+
+        Fragment fragment = null;
+        String title = getString(R.string.app_name);
+
+        switch (viewId) {
+            case R.id.nav_my_profile:
+                fragment = new FragmentMyProfile();
+                title  = "My Profile";
+                viewIsAtHome = true;
+                break;
+            case R.id.nav_courses:
+                fragment = new FragmentMyProfile(); // Gecici olarak böyle..
+                title = "Courses";
+                viewIsAtHome = false;
+                break;
+
+        }
+
+        if (fragment != null) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.content_frame, fragment);
+            ft.commit();
+        }
+
+        // set the toolbar title
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(title);
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+
+    }
+
+
+
+
+
+
+
 }

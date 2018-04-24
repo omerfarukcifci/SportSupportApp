@@ -5,6 +5,9 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +31,8 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -65,6 +70,7 @@ public class SignInActivity extends AppCompatActivity  {
 
     private EditText mUsernameView, mPasswordView;
     private Button signInButton;
+    private CheckBox checkBoxMember,checkBoxManager,checkBoxOwner,checkBoxTrainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,10 +81,11 @@ public class SignInActivity extends AppCompatActivity  {
         mUsernameView= (EditText) findViewById(R.id.login_username);
         mPasswordView = (EditText) findViewById(R.id.login_password);
 
-
+        ControlCheckBoxes();
 
         signInButton = (Button) findViewById(R.id.userName_sign_in_button);
 
+        // WE WILL HANDLE CHECKBOX IN ONCLICKLISTENER AND WE WILL CREATE INTENT ACCORDING TO CHECKBOX.
         signInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,6 +110,95 @@ public class SignInActivity extends AppCompatActivity  {
         });
     }
 
+    private void ControlCheckBoxes(){
+        checkBoxMember = (CheckBox) findViewById(R.id.checkBox_member_login);
+        checkBoxManager = (CheckBox) findViewById(R.id.checkBox_manager_login);
+        checkBoxOwner = (CheckBox) findViewById(R.id.checkBox_owner_login);
+        checkBoxTrainer = (CheckBox) findViewById(R.id.checkBox_trainer_login);
+
+        checkBoxMember.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                if(checkBoxMember.isChecked()){
+                    checkBoxManager.setChecked(false);
+                    checkBoxOwner.setChecked(false);
+                    checkBoxTrainer.setChecked(false);
+
+
+                    checkBoxManager.setEnabled(false);
+                    checkBoxOwner.setEnabled(false);
+                    checkBoxTrainer.setEnabled(false);
+                }
+                else{
+                    checkBoxManager.setEnabled(true);
+                    checkBoxOwner.setEnabled(true);
+                    checkBoxTrainer.setEnabled(true);
+                }
+            }
+        });
+
+        checkBoxManager.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                if(checkBoxManager.isChecked()){
+                    checkBoxMember.setChecked(false);
+                    checkBoxOwner.setChecked(false);
+                    checkBoxTrainer.setChecked(false);
+
+                    checkBoxMember.setEnabled(false);
+                    checkBoxOwner.setEnabled(false);
+                    checkBoxTrainer.setEnabled(false);
+                }else{
+                    checkBoxMember.setEnabled(true);
+                    checkBoxOwner.setEnabled(true);
+                    checkBoxTrainer.setEnabled(true);
+                }
+            }
+        });
+
+        checkBoxOwner.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                if(checkBoxOwner.isChecked()){
+                    checkBoxManager.setChecked(false);
+                    checkBoxMember.setChecked(false);
+                    checkBoxTrainer.setChecked(false);
+
+                    checkBoxManager.setEnabled(false);
+                    checkBoxMember.setEnabled(false);
+                    checkBoxTrainer.setEnabled(false);
+                }else{
+                    checkBoxManager.setEnabled(true);
+                    checkBoxMember.setEnabled(true);
+                    checkBoxTrainer.setEnabled(true);
+                }
+            }
+        });
+
+        checkBoxTrainer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+
+                if(checkBoxTrainer.isChecked()){
+                    checkBoxManager.setChecked(false);
+                    checkBoxOwner.setChecked(false);
+                    checkBoxMember.setChecked(false);
+
+                    checkBoxManager.setEnabled(false);
+                    checkBoxOwner.setEnabled(false);
+                    checkBoxMember.setEnabled(false);
+                }
+                else {
+                    checkBoxManager.setEnabled(true);
+                    checkBoxOwner.setEnabled(true);
+                    checkBoxMember.setEnabled(true);
+                }
+            }
+        });
+    }
 
 
     /*private void getAllPosts(PostService postService, final String username, String password) {
