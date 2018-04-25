@@ -11,7 +11,7 @@
         <item
             android:id="@+id/nav_courses"
             android:icon="@mipmap/ic_sport_support"
-            android:title="Edit Profile" />
+            android:title="Courses" />
     </group>
 
 

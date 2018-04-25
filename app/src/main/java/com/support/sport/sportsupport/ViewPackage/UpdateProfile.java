@@ -1,6 +1,5 @@
-package com.support.sport.sportsupport.activities;
+package com.support.sport.sportsupport.ViewPackage;
 
-import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,9 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.support.sport.sportsupport.services.ApiClient;
-import com.support.sport.sportsupport.services.ApiInterface;
-import com.support.sport.sportsupport.services.CrudOPs;
+import com.support.sport.sportsupport.Controller.ApiClient;
+import com.support.sport.sportsupport.Controller.ApiInterface;
+import com.support.sport.sportsupport.Controller.ProfileController;
 
 public class UpdateProfile extends AppCompatActivity {
 
@@ -35,7 +34,7 @@ public class UpdateProfile extends AppCompatActivity {
         /**/
 
         final ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        final CrudOPs cr = new CrudOPs();
+        final ProfileController cr = new ProfileController();
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +42,7 @@ public class UpdateProfile extends AppCompatActivity {
                 String DelUsernameStr = deleteUsername.getText().toString();
                 String DelPasswordStr = deletePassword.getText().toString();
 
-                cr.deleteMember(apiService,DelUsernameStr,DelPasswordStr);
+                cr.deleteMember(DelUsernameStr,DelPasswordStr);
                 Toast.makeText(UpdateProfile.this,"User Deleted ! ",Toast.LENGTH_LONG).show();
                 finish();
             }
@@ -55,7 +54,7 @@ public class UpdateProfile extends AppCompatActivity {
                 String OldPasswordStr = updateOldPassword.getText().toString();
                 String NewUsernameStr = updateNewUsername.getText().toString();
                 String NewPasswordStr = updateNewPassword.getText().toString();
-                cr.updateMember(apiService,OldUsernameStr,OldPasswordStr,NewUsernameStr,NewPasswordStr,null,null,null);
+                cr.updateMember(OldUsernameStr,OldPasswordStr,NewUsernameStr,NewPasswordStr,null,null,null);
                 Toast.makeText(UpdateProfile.this,"User Updated ! ",Toast.LENGTH_LONG).show();
                 finish();
             }

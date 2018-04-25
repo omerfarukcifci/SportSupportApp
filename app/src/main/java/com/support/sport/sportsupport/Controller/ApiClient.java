@@ -1,8 +1,7 @@
-package com.support.sport.sportsupport.services;
+package com.support.sport.sportsupport.Controller;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import com.support.sport.sportsupport.models.Member;
 
 /**
  * Created by Faruk on 13.04.2018.

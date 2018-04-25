@@ -1,31 +1,21 @@
-package com.support.sport.sportsupport.activities;
+package com.support.sport.sportsupport.ViewPackage;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.support.sport.sportsupport.activities.R;
-import com.support.sport.sportsupport.models.Member;
-import com.support.sport.sportsupport.services.ApiClient;
-import com.support.sport.sportsupport.services.ApiInterface;
-import com.support.sport.sportsupport.services.CrudOPs;
-import com.support.sport.sportsupport.services.PostService;
+import com.support.sport.sportsupport.Model.Member;
+import com.support.sport.sportsupport.Controller.ApiInterface;
+import com.support.sport.sportsupport.Controller.ProfileController;
 
-import java.net.HttpURLConnection;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,12 +34,9 @@ public class MainActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.listview);
 
+        ProfileController cr = new ProfileController();
 
-        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-
-        CrudOPs cr = new CrudOPs();
-
-        Member[] members = cr.getAll(apiService);
+        Member[] members = cr.getAll();
         //getAllPosts(apiService);
 
         if (members != null){

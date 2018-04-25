@@ -1,11 +1,9 @@
-package com.support.sport.sportsupport.services;
+package com.support.sport.sportsupport.Controller;
 
 import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
-import com.support.sport.sportsupport.models.Member;
+import com.support.sport.sportsupport.Model.Member;
 
 import java.util.List;
 

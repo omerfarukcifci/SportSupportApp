@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.support.sport.sportsupport.activities">
+    package="com.support.sport.sportsupport.ViewPackage">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -16,16 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name="com.support.sport.sportsupport.ViewPackage.MainActivity"
             android:label="Main"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".SignInActivity"
+            android:name="com.support.sport.sportsupport.ViewPackage.SignInActivity"
             android:label="@string/title_activity_sign_in" />
         <activity
-            android:name=".SignUpActivity"
+            android:name="com.support.sport.sportsupport.ViewPackage.SignUpActivity"
             android:label="@string/title_activity_sign_up" />
-        <activity android:name=".Welcome">
+        <activity android:name="com.support.sport.sportsupport.ViewPackage.Welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,10 +33,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MenuActivity"
+            android:name="com.support.sport.sportsupport.ViewPackage.MenuActivity"
             android:label="@string/title_activity_menu"
             android:theme="@style/AppTheme" />
-        <activity android:name=".UpdateProfile"></activity>
+        <activity android:name="com.support.sport.sportsupport.ViewPackage.UpdateProfile"></activity>
     </application>
 
 </manifest>

@@ -1,20 +1,18 @@
-package com.support.sport.sportsupport.services;
+package com.support.sport.sportsupport.Controller;
 
-import android.os.AsyncTask;
 import android.util.Log;
 
-import java.io.IOException;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import com.support.sport.sportsupport.models.Member;
+import com.support.sport.sportsupport.Model.Member;
 /**
  * Created by Faruk on 13.04.2018.
  */
 
-public class CrudOPs {
+public class ProfileController extends AppController{
 
 
     Member[] members = null;
@@ -26,7 +24,7 @@ public class CrudOPs {
         return null;
     }
 
-    public Member[] getAll(ApiInterface apiService){
+    public Member[] getAll(){
 
         /****
          * GET ALL
@@ -49,11 +47,11 @@ public class CrudOPs {
         return members;
     }
 
-    public Member readOne(ApiInterface apiService, String username, String password) {
+    public Member readOne(String username, String password) {
         /****
          * READ ONE
          */
-        getAll(apiService);
+        getAll();
         final Member[] m = new Member[1];
         Call<Integer> oneID = apiService.getMember(username, password);
         oneID.enqueue(new Callback<Integer>() {
@@ -72,7 +70,7 @@ public class CrudOPs {
         return m[0];
     }
 
-    public void deleteMember(ApiInterface apiService, String username, String password){
+    public void deleteMember(String username, String password){
         Call<Integer> call2 = apiService.deleteMember(username,password);
         call2.enqueue(new Callback<Integer>() {
             @Override
@@ -88,7 +86,7 @@ public class CrudOPs {
 
     }
 
-    public void updateMember(ApiInterface apiService, String username,String password,
+    public void updateMember(String username,String password,
                              String newusername,String newpassword,
                              String mail,String name,String surname){
         Call<Integer> call3 = apiService.updateMember(username,password,newusername,newpassword,mail,name,surname);
@@ -105,7 +103,7 @@ public class CrudOPs {
         });
     }
 
-    public void addMember(ApiInterface apiService,int referenceNumber,int branchAuthority,
+    public void addMember(int referenceNumber,int branchAuthority,
                           String username,String password,
                           String statue,String status,
                           String mail,String name,String surname){

@@ -1,60 +1,25 @@
-package com.support.sport.sportsupport.activities;
+package com.support.sport.sportsupport.ViewPackage;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.annotation.TargetApi;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.app.LoaderManager.LoaderCallbacks;
 
-import android.content.CursorLoader;
-import android.content.Loader;
-import android.database.Cursor;
-import android.net.Uri;
 import android.os.AsyncTask;
 
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.inputmethod.EditorInfo;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.support.sport.sportsupport.activities.R;
-import com.support.sport.sportsupport.models.Member;
-import com.support.sport.sportsupport.services.ApiClient;
-import com.support.sport.sportsupport.services.ApiInterface;
-import com.support.sport.sportsupport.services.CrudOPs;
-import com.support.sport.sportsupport.services.PostService;
+import com.support.sport.sportsupport.Model.Member;
+import com.support.sport.sportsupport.Controller.ApiClient;
+import com.support.sport.sportsupport.Controller.ApiInterface;
+import com.support.sport.sportsupport.Controller.ProfileController;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
@@ -93,10 +58,10 @@ public class SignInActivity extends AppCompatActivity  {
                 String password = mPasswordView.getText().toString();
 
                 ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-                CrudOPs cr = new CrudOPs();
+                ProfileController cr = new ProfileController();
 
 
-                Member temp = cr.readOne(apiService,userName,password);
+                Member temp = cr.readOne(userName,password);
                 if(temp!=null){
                     Toast.makeText(SignInActivity.this,"Hello "+temp.getName()+" :)",Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(SignInActivity.this,MenuActivity.class);

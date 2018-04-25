@@ -1,4 +1,4 @@
-package com.support.sport.sportsupport.models;
+package com.support.sport.sportsupport.Model;
 
 import com.google.gson.annotations.SerializedName;
 

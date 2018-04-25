@@ -1,4 +1,4 @@
-package com.support.sport.sportsupport.activities;
+package com.support.sport.sportsupport.ViewPackage;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
