@@ -1,5 +1,6 @@
 package com.support.sport.sportsupport.ViewPackage;
 
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +14,7 @@ import com.support.sport.sportsupport.Controller.ProfileController;
 
 import java.util.List;
 
+import okhttp3.internal.Platform;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

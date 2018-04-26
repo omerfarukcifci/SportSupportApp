@@ -9,42 +9,67 @@
         android:layout_height="match_parent">
         <LinearLayout
             android:orientation="vertical"
-            android:layout_weight="2"
+            android:layout_weight="1"
+            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/myprofile_name"
-                android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
                 android:gravity="center"
-                android:textSize="25dp"
+                android:textSize="30dp"
                 android:textStyle="bold"
-                android:textColor="#447cc9"
+                android:textColor="@color/colorPrimaryDark"
                 android:text="WELCOME JOHN DOE!"/>
             <TextView
-                android:layout_weight="2"
+                android:text="Membership Status : Gold"
+                android:gravity="center"
+                android:textSize="15dp"
+                android:textColor="@color/colorPrimaryDark"
                 android:id="@+id/myprofile_status"
                 android:layout_width="match_parent"
-                android:layout_height="0dp" />
+                android:layout_height="wrap_content"/>
         </LinearLayout>
         <LinearLayout
-            android:orientation="horizontal"
-            android:layout_weight="1"
+            android:orientation="vertical"
+
+            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="0dp">
+            android:layout_height="wrap_content">
             <Button
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent" />
+                android:id="@+id/my_schedule_button"
+                android:text="My Schedule"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
             <Button
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent" />
+                android:id="@+id/my_courses_button"
+                android:text="My Courses"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
             <Button
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent" />
+                android:id="@+id/become_upgrade_membership_button"
+                android:text="Become Member / Upgrade Membership"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <Button
+                android:id="@+id/cancel_membership_button"
+                android:text="Cancel Membership"
+                android:padding="10dp"
+                android:layout_margin="10dp"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
         </LinearLayout>
     </LinearLayout>

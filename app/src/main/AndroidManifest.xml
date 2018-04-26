@@ -16,16 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.support.sport.sportsupport.ViewPackage.MainActivity"
+            android:name=".MainActivity"
             android:label="Main"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name="com.support.sport.sportsupport.ViewPackage.SignInActivity"
+            android:name=".SignInActivity"
             android:label="@string/title_activity_sign_in" />
         <activity
-            android:name="com.support.sport.sportsupport.ViewPackage.SignUpActivity"
+            android:name=".SignUpActivity"
             android:label="@string/title_activity_sign_up" />
-        <activity android:name="com.support.sport.sportsupport.ViewPackage.Welcome">
+        <activity android:name=".Welcome">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,10 +33,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.support.sport.sportsupport.ViewPackage.Menu.MenuActivity"
+            android:name=".Menu.MenuActivity"
             android:label="@string/title_activity_menu"
             android:theme="@style/AppTheme" />
-        <activity android:name="com.support.sport.sportsupport.ViewPackage.UpdateProfile"></activity>
+        <activity android:name=".UpdateProfile" />
+        <activity android:name=".Menu.MyScheduleScreen" />
+        <activity android:name=".Menu.MembershipOptionsScreen" />
+        <activity android:name=".Menu.PaymentScreen"></activity>
     </application>
 
 </manifest>
