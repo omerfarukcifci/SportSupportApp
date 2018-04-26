@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.support.sport.sportsupport.ViewPackage.CancelMembershipScreen">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_margin="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="If you are sure to cancel your membership, please confirm it operation by filling the form below."
+            android:textSize="20dp"
+            android:textColor="#000000"
+            android:gravity="center"/>
+        <TextView
+            android:layout_margin="22dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CONFIRM CHANGES"
+            android:textStyle="bold"
+            android:textColor="#000000"
+            android:gravity="center"/>
+
+        <EditText
+            android:id="@+id/editTextUpdate_oldusername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username" />
+
+        <EditText
+            android:id="@+id/editTextUpdate_oldpassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password" />
+
+        <Button
+            android:id="@+id/buttonDelete"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginTop="50dp"
+            android:background="#de7979"
+            android:text="Cancel My Membership" />
+    </LinearLayout>
+</RelativeLayout>

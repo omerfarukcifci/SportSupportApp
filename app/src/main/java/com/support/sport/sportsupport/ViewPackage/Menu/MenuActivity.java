@@ -1,5 +1,8 @@
 package com.support.sport.sportsupport.ViewPackage.Menu;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,9 +14,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.support.sport.sportsupport.ViewPackage.CancelMembershipScreen;
 import com.support.sport.sportsupport.ViewPackage.Menu.FragmentMyProfile;
 import com.support.sport.sportsupport.ViewPackage.R;
+import com.support.sport.sportsupport.ViewPackage.UpdateProfile;
+import com.support.sport.sportsupport.ViewPackage.Welcome;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -61,17 +68,40 @@ public class MenuActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.action_update:
+                Intent intent = new Intent(this, UpdateProfile.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_cancel:
+                Intent intent2 = new Intent(this, CancelMembershipScreen.class);
+                startActivity(intent2);
+                return true;
+            case R.id.action_logout:
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(MenuActivity.this);
+                // Setting Dialog Title
+                alertDialog.setTitle("Confirm Logout");
+                alertDialog.setCancelable(true);
+                // Setting Dialog Message
+                alertDialog.setMessage("Are you sure you want to log out?");
+                // Setting Positive "Yes" Button
+                alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int which) {
+                        Intent intent3 = new Intent(MenuActivity.this,Welcome.class);
+                        startActivity(intent3);
+                    }
+                });
+                alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Write your code here to invoke NO event
+                        dialog.cancel();
+                    }
+                });
+                alertDialog.show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

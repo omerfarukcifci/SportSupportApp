@@ -24,7 +24,51 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="20dp"
-                android:text="UPDATE PASSWORD AND USERNAME" />
+                android:textColor="#000000"
+                android:text="UPDATE PROFILE INFORMATION" />
+
+            <EditText
+                android:id="@+id/editTextUpdate_newusername"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="New Username" />
+
+            <EditText
+                android:id="@+id/editTextUpdate_newpassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="*****"
+                android:hint="New Password" />
+            <EditText
+                android:id="@+id/editTextUpdate_newname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="New Name" />
+
+            <EditText
+                android:id="@+id/editTextUpdate_newsurname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="New Surname" />
+            <EditText
+                android:id="@+id/editTextUpdate_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Birthday" />
+
+            <EditText
+                android:id="@+id/editTextUpdate_mail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="E-mail" />
+
+            <TextView
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="CONFIRM CHANGES"
+                android:textColor="#000000"
+                android:gravity="center"/>
 
             <EditText
                 android:id="@+id/editTextUpdate_oldusername"
@@ -38,61 +82,38 @@
                 android:layout_height="wrap_content"
                 android:hint="Old Password" />
 
-            <EditText
-                android:id="@+id/editTextUpdate_newusername"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="New Username" />
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/buttonUpdate"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@color/colorPrimary"
+                    android:text="Update" />
+                <Button
+                    android:id="@+id/buttonDelete"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="#de7979"
+                    android:text="Delete Account" />
+            </LinearLayout>
 
-            <EditText
-                android:id="@+id/editTextUpdate_newpassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="New Password" />
 
-            <Button
-                android:id="@+id/buttonUpdate"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="30dp"
-                android:text="Update" />
+
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_margin="20dp"
-                android:text="DELETE PROFILE" />
-
-            <EditText
-                android:id="@+id/editTextDelete_username"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Username"/>
-
-            <EditText
-                android:id="@+id/editTextDelete_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:hint="Password"/>
-
-            <Button
-                android:id="@+id/buttonDelete"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Delete"
-                android:layout_margin="30dp"/>
-        </LinearLayout>
 
     </LinearLayout>
 

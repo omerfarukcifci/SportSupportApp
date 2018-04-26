@@ -29,6 +29,15 @@ public class Member {
     @SerializedName("branchAuthority")
     private int branchAuthority; //This count for user's entered another branches except member's registered branch
 
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
+    }
+
+    private String age;
 
     public String getName() {
         return name;

@@ -10,11 +10,12 @@ import android.widget.Toast;
 import com.support.sport.sportsupport.Controller.ApiClient;
 import com.support.sport.sportsupport.Controller.ApiInterface;
 import com.support.sport.sportsupport.Controller.ProfileController;
+import com.support.sport.sportsupport.Model.Member;
 
 public class UpdateProfile extends AppCompatActivity {
 
-    private EditText updateOldUsername,updateOldPassword,updateNewUsername,updateNewPassword;
-    private EditText deleteUsername,deletePassword;
+    private EditText updateOldUsername,updateOldPassword,updateNewUsername,updateNewPassword,
+            updateMail,updateBirthday,updateName,updateSurname;
     private Button delete,update;
 
     @Override
@@ -26,40 +27,48 @@ public class UpdateProfile extends AppCompatActivity {
         updateNewUsername = findViewById(R.id.editTextUpdate_newusername);
         updateOldPassword = findViewById(R.id.editTextUpdate_oldpassword);
         updateNewPassword = findViewById(R.id.editTextUpdate_newpassword);
-        deleteUsername =    findViewById(R.id.editTextDelete_username);
-        deletePassword =    findViewById(R.id.editTextDelete_password);
-        delete =    findViewById(R.id.buttonDelete);
+        updateMail = findViewById(R.id.editTextUpdate_mail);
+        updateBirthday = findViewById(R.id.editTextUpdate_birthday);
+        updateName = findViewById(R.id.editTextUpdate_newname);
+        updateSurname = findViewById(R.id.editTextUpdate_newsurname);
         update =    findViewById(R.id.buttonUpdate);
+        delete = findViewById(R.id.buttonDelete);
+
+        Member m = new Member();
+        m.setAge("24/04/2018");
+        m.setMail("testuser@gmail.com");
+        m.setUsername("testuser");
+        m.setName("Jane");
+        m.setSurname("Doe");
+
+        fillpreform(m);
 
         /**/
 
-        final ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        final ProfileController cr = new ProfileController();
+        /*final ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        final ProfileController cr = new ProfileController();*/
 
         delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String DelUsernameStr = deleteUsername.getText().toString();
-                String DelPasswordStr = deletePassword.getText().toString();
-
-                cr.deleteMember(DelUsernameStr,DelPasswordStr);
-                Toast.makeText(UpdateProfile.this,"User Deleted ! ",Toast.LENGTH_LONG).show();
-                finish();
+               //BURAYI DOLDUR
             }
         });
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String OldUsernameStr = updateOldUsername.getText().toString();
-                String OldPasswordStr = updateOldPassword.getText().toString();
-                String NewUsernameStr = updateNewUsername.getText().toString();
-                String NewPasswordStr = updateNewPassword.getText().toString();
-                cr.updateMember(OldUsernameStr,OldPasswordStr,NewUsernameStr,NewPasswordStr,null,null,null);
-                Toast.makeText(UpdateProfile.this,"User Updated ! ",Toast.LENGTH_LONG).show();
-                finish();
+                // BURAYI DOLDUR
             }
         });
 
+    }
+
+    public void fillpreform(Member m){
+        updateBirthday.setText(m.getAge());
+        updateMail.setText(m.getMail());
+        updateNewUsername.setText(m.getUsername());
+        updateSurname.setText(m.getSurname());
+        updateName.setText(m.getName());
     }
 
 }

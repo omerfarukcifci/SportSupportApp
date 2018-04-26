@@ -43,6 +43,16 @@ public class FragmentMyProfile extends Fragment {
                 startActivity(intent);
             }
         });
+
+        buttonMyCourses = (Button) rootView.findViewById(R.id.my_courses_button);
+        buttonMyCourses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),MyCoursesScreen.class);
+                startActivity(intent);
+            }
+        });
+
         return rootView;
     }
 }
