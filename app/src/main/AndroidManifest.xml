@@ -37,10 +37,10 @@
             android:label="@string/title_activity_menu"
             android:theme="@style/AppTheme" />
         <activity android:name=".UpdateProfile" />
-        <activity android:name=".CancelMembershipScreen" />
         <activity android:name=".Menu.MyScheduleScreen" />
         <activity android:name=".Menu.MembershipOptionsScreen" />
         <activity android:name=".Menu.PaymentScreen" />
+        <activity android:name=".CancelMembershipScreen" />
         <activity android:name=".Menu.MyCoursesScreen"></activity>
     </application>
 

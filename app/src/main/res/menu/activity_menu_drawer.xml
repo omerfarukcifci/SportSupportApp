@@ -12,6 +12,11 @@
             android:id="@+id/nav_courses"
             android:icon="@mipmap/ic_sport_support"
             android:title="Courses" />
+        <item
+            android:id="@+id/nav_special_offer"
+            android:icon="@mipmap/ic_sport_support"
+            android:title="Special Offers" />
+
     </group>
 
 

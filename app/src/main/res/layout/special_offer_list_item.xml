@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:background="@android:drawable/editbox_background">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="5"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/offer_name"
+            android:layout_marginTop="8dp"
+            android:text="GOLD MEMBERSHIP IS 75 ₺ SPECIAL FOR YOU"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/offer_limit"
+            android:text="Attendance Limit: 45"
+            android:layout_marginTop="3dp"
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/offer_start_date"
+            android:text="Starts at: 24/05/2018"
+            android:layout_marginTop="3dp"
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/offer_end_date"
+            android:text="Ends at: 23/06/2018"
+            android:layout_marginTop="3dp"
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Apply"
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimary"/>
+
+
+
+</LinearLayout>

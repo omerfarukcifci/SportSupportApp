@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:layout_marginTop="50dp"
-            android:background="#de7979"
+            android:background="@color/colorSecondary"
             android:text="Cancel My Membership" />
     </LinearLayout>
 </RelativeLayout>

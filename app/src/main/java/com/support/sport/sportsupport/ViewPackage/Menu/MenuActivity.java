@@ -142,6 +142,11 @@ public class MenuActivity extends AppCompatActivity
                 title = "Courses";
                 viewIsAtHome = false;
                 break;
+            case R.id.nav_special_offer:
+                fragment = new FragmentSpecialOffer();
+                title = "Special Offers";
+                viewIsAtHome = false;
+                break;
 
         }
 
