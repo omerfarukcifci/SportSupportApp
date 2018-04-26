@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <ImageView
+        android:layout_weight="2"
+        android:src="@drawable/ic_image_black_24dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/course_list_name"
+            android:layout_marginTop="8dp"
+            android:text="ZUMBA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#103cdc"
+            android:textSize="18sp"/>
+        <TextView
+            android:id="@+id/course_list_next_lec"
+            android:layout_marginTop="3dp"
+            android:textSize="18sp"
+            android:text="Every Sunday!"
+            android:textColor="#000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/course_list_quota"
+            android:text="QUTA: 40/50"
+            android:layout_marginTop="3dp"
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/course_list_end_date"
+            android:text="Ends at: 24/05/2018"
+            android:layout_marginTop="3dp"
+            android:textSize="15sp"
+            android:textColor="#000000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <ImageView
+        android:src="@drawable/ic_keyboard_arrow_right_black_24dp"
+        android:layout_weight="0.8"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+</LinearLayout>
