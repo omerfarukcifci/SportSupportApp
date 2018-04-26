@@ -1,4 +1,4 @@
-package com.support.sport.sportsupport.ViewPackage;
+package com.support.sport.sportsupport.ViewPackage.Menu;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,6 +11,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import com.support.sport.sportsupport.ViewPackage.Menu.FragmentMyProfile;
+import com.support.sport.sportsupport.ViewPackage.R;
 
 public class MenuActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -105,7 +108,7 @@ public class MenuActivity extends AppCompatActivity
                 viewIsAtHome = true;
                 break;
             case R.id.nav_courses:
-                fragment = new FragmentMyProfile(); // Gecici olarak böyle..
+                fragment = new FragmentAllCourses();
                 title = "Courses";
                 viewIsAtHome = false;
                 break;

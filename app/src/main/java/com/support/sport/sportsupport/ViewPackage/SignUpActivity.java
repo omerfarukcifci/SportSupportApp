@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.support.sport.sportsupport.Controller.ApiClient;
 import com.support.sport.sportsupport.Controller.ApiInterface;
 import com.support.sport.sportsupport.Controller.ProfileController;
+import com.support.sport.sportsupport.ViewPackage.Menu.MenuActivity;
 
 /**
  * A login screen that offers login via email/password.
