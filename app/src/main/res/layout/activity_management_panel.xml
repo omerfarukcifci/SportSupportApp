@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.support.sport.sportsupport.ViewPackage.Management.FragmentManagementPanel">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/manager_management_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Manager Management"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/user_management_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="User Management"
+            android:backgroundTint="@color/colorSecondary"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/trainee_management_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Trainee Management"
+            android:backgroundTint="@color/bg_screen3"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/trainer_management_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Trainer Management"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/courses_management_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Courses Management"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_weight="1"/>
+        <Button
+            android:id="@+id/offers_management_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Special Offers Management"
+            android:backgroundTint="@color/colorSecondary"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/branch_management_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Branch Management"
+            android:backgroundTint="@color/colorAccent"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
+
+
+
+</android.support.constraint.ConstraintLayout>

@@ -18,6 +18,8 @@ import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.Controller.ApiClient;
 import com.support.sport.sportsupport.Controller.ApiInterface;
 import com.support.sport.sportsupport.Controller.ProfileController;
+import com.support.sport.sportsupport.ViewPackage.Management.FragmentManagementPanel;
+import com.support.sport.sportsupport.ViewPackage.Menu.CustomerNavigationMenu;
 import com.support.sport.sportsupport.ViewPackage.Menu.CustomerNavigationMenu;
 
 import java.util.List;
@@ -58,18 +60,32 @@ public class SignInScreen extends AppCompatActivity  {
                 String userName = mUsernameView.getText().toString();
                 String password = mPasswordView.getText().toString();
 
-                ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+                if(checkBoxManager.isChecked() || checkBoxTrainer.isChecked() || checkBoxOwner.isChecked()){
+                    Intent intent = new Intent(SignInScreen.this,FragmentManagementPanel.class);
+                    intent.putExtra("checkboxManager",checkBoxManager.isChecked());
+                    intent.putExtra("checkboxTrainer",checkBoxTrainer.isChecked());
+                    intent.putExtra("checkboxOwner",checkBoxOwner.isChecked());
+                    startActivity(intent);
+                }
+                else if(checkBoxMember.isChecked()){
+                    Intent intent2 = new Intent(SignInScreen.this,CustomerNavigationMenu.class);
+                    startActivity(intent2);
+                }else{
+                    // Handle checkbox selections.
+                }
+
+                /*ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
                 ProfileController cr = new ProfileController();
 
 
                 Member temp = cr.readOne(userName,password);
                 if(temp!=null){
-                    Toast.makeText(SignInScreen.this,"Hello "+temp.getName()+" :)",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(SignInScreen.this,CustomerNavigationMenu.class);
+                    Toast.makeText(SignInActivity.this,"Hello "+temp.getName()+" :)",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(SignInActivity.this,MenuActivity.class);
                     startActivity(intent);
                 }else{
-                    Toast.makeText(SignInScreen.this,"Password or Username invalid!",Toast.LENGTH_LONG).show();
-                }
+                    Toast.makeText(SignInActivity.this,"Password or Username invalid!",Toast.LENGTH_LONG).show();
+                }*/
 
 
             }

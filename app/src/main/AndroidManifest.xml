@@ -37,12 +37,19 @@
             android:label="@string/title_activity_menu"
             android:theme="@style/AppTheme" />
         <activity android:name=".Menu.UpdateProfileScreen" />
-        <activity android:name=".Menu.CancelMembershipScreen" />
         <activity android:name=".Menu.MyScheduleScreen" />
         <activity android:name=".Menu.MembershipOptionsScreen" />
         <activity android:name=".Menu.PaymentScreen" />
+        <activity android:name=".Menu.CancelMembershipScreen" />
         <activity android:name=".Menu.MyCoursesScreen" />
-        <activity android:name=".Menu.FragmentCourse"/>
+        <activity android:name=".Management.FragmentManagementPanel" />
+        <activity android:name=".Management.ManagerManagementScreen" />
+        <activity android:name=".Management.UserManagementScreen" />
+        <activity android:name=".Management.TrainerManagementScreen" />
+        <activity android:name=".Management.TraineeManagementScreen" />
+        <activity android:name=".Management.CourseManagementScreen" />
+        <activity android:name=".Management.BranchManagementScreen" />
+        <activity android:name=".Management.SpecialOfferManagementScreen"></activity>
     </application>
 
 </manifest>
