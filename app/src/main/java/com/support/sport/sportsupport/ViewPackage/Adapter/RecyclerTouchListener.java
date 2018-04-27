@@ -1,4 +1,4 @@
-package com.support.sport.sportsupport.ViewPackage.Menu;
+package com.support.sport.sportsupport.ViewPackage.Adapter;
 
 /**
  * Created by Merve on 25.04.2018.

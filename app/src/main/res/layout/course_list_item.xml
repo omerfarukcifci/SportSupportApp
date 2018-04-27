@@ -6,9 +6,11 @@
 
     <ImageView
         android:layout_weight="2"
-        android:src="@drawable/ic_image_black_24dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/class_small"
+        android:padding="5dp"
         android:layout_width="0dp"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 
     <LinearLayout
         android:orientation="vertical"

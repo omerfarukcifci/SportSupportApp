@@ -1,5 +1,6 @@
 package com.support.sport.sportsupport.Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,8 +8,8 @@ import java.util.Date;
  */
 
 
-
-public class Course {
+@SuppressWarnings("serial")
+public class Course implements Serializable{
 
     private String name;
     private int quota;
@@ -40,6 +41,16 @@ public class Course {
     }
 
     private String deleteDay;
+
+    public String getDeleteTrainer() {
+        return deleteTrainer;
+    }
+
+    public void setDeleteTrainer(String deleteTrainer) {
+        this.deleteTrainer = deleteTrainer;
+    }
+
+    private String deleteTrainer;
 
     public String getName() {
         return name;
@@ -102,12 +113,14 @@ public class Course {
         this.availableQuota = availableQuota;
     }
 
-    public Course(String name, int quota, int availableQuota, String day, String end){
+    public Course(String name, int quota, int availableQuota, String day, String end, String trainer, String text){
         this.name = name;
         this.availableQuota = availableQuota;
         this.deleteDay = day;
         this.deleteDate = end;
         this.quota = quota;
+        this.deleteTrainer = trainer;
+        this.description=text;
     }
 
     public Course(String name, int quota, int branchId, Date startDate, Date endDate, int trainerId, String species, Date currentDate, String description, int availableQuota){

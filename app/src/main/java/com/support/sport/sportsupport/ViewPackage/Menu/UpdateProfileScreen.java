@@ -1,4 +1,4 @@
-package com.support.sport.sportsupport.ViewPackage;
+package com.support.sport.sportsupport.ViewPackage.Menu;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,8 +11,9 @@ import com.support.sport.sportsupport.Controller.ApiClient;
 import com.support.sport.sportsupport.Controller.ApiInterface;
 import com.support.sport.sportsupport.Controller.ProfileController;
 import com.support.sport.sportsupport.Model.Member;
+import com.support.sport.sportsupport.ViewPackage.R;
 
-public class UpdateProfile extends AppCompatActivity {
+public class UpdateProfileScreen extends AppCompatActivity {
 
     private EditText updateOldUsername,updateOldPassword,updateNewUsername,updateNewPassword,
             updateMail,updateBirthday,updateName,updateSurname;

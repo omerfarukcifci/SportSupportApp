@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.support.sport.sportsupport.ViewPackage.Menu.FragmentCourse">
+
+    <ImageView
+        android:src="@drawable/class_big"
+        android:scaleType="fitXY"
+        android:layout_weight="1.5"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+    <ScrollView
+        android:layout_weight="3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/spec_course_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="COURSE NAME"
+                android:textSize="32dp"
+                android:layout_margin="30dp"
+                android:textColor="@color/colorPrimary" />
+            <TextView
+                android:id="@+id/spec_course_trainer"
+                android:gravity="left"
+                android:layout_marginBottom="3dp"
+                android:paddingLeft="25dp"
+                android:text="Trainer"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/spec_course_freq"
+                android:gravity="left"
+                android:layout_marginBottom="3dp"
+                android:paddingLeft="25dp"
+                android:text="Frequency"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/spec_course_enddate"
+                android:gravity="left"
+                android:layout_marginBottom="3dp"
+                android:paddingLeft="25dp"
+                android:text="End Date"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/spec_course_quota"
+                android:gravity="left"
+                android:layout_marginBottom="3dp"
+                android:paddingLeft="25dp"
+                android:text="Avaliable Quota"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/spec_course_text"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:paddingLeft="25dp"
+                android:paddingRight="25dp"
+                android:text="Text"
+                android:textSize="20dp"
+                android:textColor="#000000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <Button
+            android:id="@+id/spec_course_drop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/colorPrimary"
+            android:text="DROP"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

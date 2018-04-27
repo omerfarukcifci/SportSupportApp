@@ -18,7 +18,7 @@ import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.Controller.ApiClient;
 import com.support.sport.sportsupport.Controller.ApiInterface;
 import com.support.sport.sportsupport.Controller.ProfileController;
-import com.support.sport.sportsupport.ViewPackage.Menu.MenuActivity;
+import com.support.sport.sportsupport.ViewPackage.Menu.CustomerNavigationMenu;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ import java.util.List;
  * A login screen that offers login via email/password.
  */
 
-public class SignInActivity extends AppCompatActivity  {
+public class SignInScreen extends AppCompatActivity  {
 
     private final String TAG = this.getClass().getSimpleName();
     private UserLoginTask mAuthTask = null;
@@ -64,11 +64,11 @@ public class SignInActivity extends AppCompatActivity  {
 
                 Member temp = cr.readOne(userName,password);
                 if(temp!=null){
-                    Toast.makeText(SignInActivity.this,"Hello "+temp.getName()+" :)",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(SignInActivity.this,MenuActivity.class);
+                    Toast.makeText(SignInScreen.this,"Hello "+temp.getName()+" :)",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(SignInScreen.this,CustomerNavigationMenu.class);
                     startActivity(intent);
                 }else{
-                    Toast.makeText(SignInActivity.this,"Password or Username invalid!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(SignInScreen.this,"Password or Username invalid!",Toast.LENGTH_LONG).show();
                 }
 
 

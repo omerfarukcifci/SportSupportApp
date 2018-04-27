@@ -19,7 +19,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class Welcome extends AppCompatActivity {
+public class WelcomeScreen extends AppCompatActivity {
 
     private ViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
@@ -78,14 +78,14 @@ public class Welcome extends AppCompatActivity {
         signIn_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentSignIn = new Intent(Welcome.this , SignInActivity.class);
+                Intent intentSignIn = new Intent(WelcomeScreen.this , SignInScreen.class);
                 startActivity(intentSignIn);
             }
         });
         signUp_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentSignUp = new Intent(Welcome.this , SignUpActivity.class);
+                Intent intentSignUp = new Intent(WelcomeScreen.this , SignUpScreen.class);
                 startActivity(intentSignUp);
             }
         });
@@ -138,7 +138,7 @@ public class Welcome extends AppCompatActivity {
 
     private void launchHomeScreen() {
         prefManager.setFirstTimeLaunch(true);
-        startActivity(new Intent(Welcome.this, MainActivity.class));
+        startActivity(new Intent(WelcomeScreen.this, MainActivity.class));
         finish();
     }
 

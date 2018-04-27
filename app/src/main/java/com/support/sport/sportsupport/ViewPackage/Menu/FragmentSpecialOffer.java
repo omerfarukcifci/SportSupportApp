@@ -2,7 +2,6 @@ package com.support.sport.sportsupport.ViewPackage.Menu;
 
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.support.sport.sportsupport.Model.SpecialOffer;
+import com.support.sport.sportsupport.ViewPackage.Adapter.SpecialOfferAdapter;
 import com.support.sport.sportsupport.ViewPackage.R;
 
 import java.text.ParseException;

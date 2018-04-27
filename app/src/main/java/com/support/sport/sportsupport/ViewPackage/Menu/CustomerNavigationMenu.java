@@ -14,15 +14,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.support.sport.sportsupport.ViewPackage.CancelMembershipScreen;
-import com.support.sport.sportsupport.ViewPackage.Menu.FragmentMyProfile;
 import com.support.sport.sportsupport.ViewPackage.R;
-import com.support.sport.sportsupport.ViewPackage.UpdateProfile;
-import com.support.sport.sportsupport.ViewPackage.Welcome;
+import com.support.sport.sportsupport.ViewPackage.WelcomeScreen;
 
-public class MenuActivity extends AppCompatActivity
+public class CustomerNavigationMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private boolean viewIsAtHome;
@@ -70,7 +66,7 @@ public class MenuActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_update:
-                Intent intent = new Intent(this, UpdateProfile.class);
+                Intent intent = new Intent(this, UpdateProfileScreen.class);
                 startActivity(intent);
                 return true;
             case R.id.action_cancel:
@@ -78,7 +74,7 @@ public class MenuActivity extends AppCompatActivity
                 startActivity(intent2);
                 return true;
             case R.id.action_logout:
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(MenuActivity.this);
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(CustomerNavigationMenu.this);
                 // Setting Dialog Title
                 alertDialog.setTitle("Confirm Logout");
                 alertDialog.setCancelable(true);
@@ -87,7 +83,7 @@ public class MenuActivity extends AppCompatActivity
                 // Setting Positive "Yes" Button
                 alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int which) {
-                        Intent intent3 = new Intent(MenuActivity.this,Welcome.class);
+                        Intent intent3 = new Intent(CustomerNavigationMenu.this,WelcomeScreen.class);
                         startActivity(intent3);
                     }
                 });
@@ -111,10 +107,10 @@ public class MenuActivity extends AppCompatActivity
         /*int id = item.getItemId();
 
         if (id == R.id.nav_my_profile) {
-            Intent intent = new Intent(MenuActivity.this,MainActivity.class);
+            Intent intent = new Intent(CustomerNavigationMenu.this,MainActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_courses) {
-            Intent intent = new Intent(MenuActivity.this,UpdateProfile.class);
+            Intent intent = new Intent(CustomerNavigationMenu.this,UpdateProfileScreen.class);
             startActivity(intent);
         }
 

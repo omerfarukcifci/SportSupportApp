@@ -9,9 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.ViewPackage.R;
-import com.support.sport.sportsupport.ViewPackage.UpdateProfile;
 
 /**
  * Created by Faruk on 23.04.2018.

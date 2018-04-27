@@ -15,12 +15,12 @@ import android.widget.Toast;
 import com.support.sport.sportsupport.Controller.ApiClient;
 import com.support.sport.sportsupport.Controller.ApiInterface;
 import com.support.sport.sportsupport.Controller.ProfileController;
-import com.support.sport.sportsupport.ViewPackage.Menu.MenuActivity;
+import com.support.sport.sportsupport.ViewPackage.Menu.CustomerNavigationMenu;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpScreen extends AppCompatActivity {
 
 
     private UserLoginTask mAuthTask = null;
@@ -59,22 +59,16 @@ public class SignUpActivity extends AppCompatActivity {
                 ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
                 ProfileController cr = new ProfileController();
                 cr.addMember(0,0,usernameStr,passwordStr,"active","standard",mailStr,nameStr,surnameStr);
-                Toast.makeText(SignUpActivity.this,"Member Created",Toast.LENGTH_LONG).show();
+                Toast.makeText(SignUpScreen.this,"Registration Completed!",Toast.LENGTH_LONG).show();
 
-                Intent intent = new Intent(SignUpActivity.this,MenuActivity.class);
+                Intent intent = new Intent(SignUpScreen.this,CustomerNavigationMenu.class);
                 startActivity(intent);
             }
         });
-
-
-
-
     }
 
 
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-
-
         @Override
         protected Boolean doInBackground(Void... voids) {
             return null;

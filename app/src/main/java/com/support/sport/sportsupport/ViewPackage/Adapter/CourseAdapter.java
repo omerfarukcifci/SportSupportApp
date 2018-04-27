@@ -1,4 +1,4 @@
-package com.support.sport.sportsupport.ViewPackage.Menu;
+package com.support.sport.sportsupport.ViewPackage.Adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

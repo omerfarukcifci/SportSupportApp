@@ -20,12 +20,12 @@
             android:label="Main"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".SignInScreen"
             android:label="@string/title_activity_sign_in" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".SignUpScreen"
             android:label="@string/title_activity_sign_up" />
-        <activity android:name=".Welcome">
+        <activity android:name=".WelcomeScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,15 +33,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Menu.MenuActivity"
+            android:name=".Menu.CustomerNavigationMenu"
             android:label="@string/title_activity_menu"
             android:theme="@style/AppTheme" />
-        <activity android:name=".UpdateProfile" />
+        <activity android:name=".Menu.UpdateProfileScreen" />
+        <activity android:name=".Menu.CancelMembershipScreen" />
         <activity android:name=".Menu.MyScheduleScreen" />
         <activity android:name=".Menu.MembershipOptionsScreen" />
         <activity android:name=".Menu.PaymentScreen" />
-        <activity android:name=".CancelMembershipScreen" />
-        <activity android:name=".Menu.MyCoursesScreen"></activity>
+        <activity android:name=".Menu.MyCoursesScreen" />
+        <activity android:name=".Menu.FragmentCourse"/>
     </application>
 
 </manifest>
