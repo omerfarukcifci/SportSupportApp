@@ -12,8 +12,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.support.sport.sportsupport.ViewPackage.R;
 import com.support.sport.sportsupport.ViewPackage.WelcomeScreen;
@@ -37,6 +44,10 @@ public class CustomerNavigationMenu extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        /*Menu menu = navigationView.getMenu();
+        MenuItem nav_fullness = menu.findItem(R.id.nav_fullness);
+        nav_fullness.setTitle("80%");*/
+
         navigationView.setNavigationItemSelectedListener(this);
 
         displayView(R.id.nav_my_profile);
@@ -143,6 +154,10 @@ public class CustomerNavigationMenu extends AppCompatActivity
                 title = "Special Offers";
                 viewIsAtHome = false;
                 break;
+            case R.id.nav_fullness:
+                fullnessDialog(45.5);
+                viewIsAtHome = false;
+                break;
 
         }
 
@@ -160,6 +175,29 @@ public class CustomerNavigationMenu extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
+    }
+
+    private void fullnessDialog(double ratio){
+        final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this)
+                .setCancelable(true);
+        LayoutInflater inflater = this.getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.layout_fullness, null);
+        dialogBuilder.setView(dialogView);
+        dialogBuilder.setCancelable(true);
+
+        TextView textView = dialogView.findViewById(R.id.txt_full_ratio);
+        textView.setText(ratio+"%");
+        ProgressBar progressBar = dialogView.findViewById(R.id.fullness_bar_progress);
+        progressBar.setProgress((int)ratio);
+        Button button = dialogView.findViewById(R.id.full_dialog_ok);
+        final AlertDialog alertDialog = dialogBuilder.create();
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.cancel();
+            }
+        });
+        alertDialog.show();
     }
 
 
