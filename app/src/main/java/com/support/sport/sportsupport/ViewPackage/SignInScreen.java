@@ -1,5 +1,6 @@
 package com.support.sport.sportsupport.ViewPackage;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
@@ -32,7 +33,7 @@ public class SignInScreen extends AppCompatActivity  {
 
     private final String TAG = this.getClass().getSimpleName();
     private UserLoginTask mAuthTask = null;
-
+    final Context context = this;
     List<Member> memberList;
     // UI references.
 
@@ -234,4 +235,3 @@ public class SignInScreen extends AppCompatActivity  {
         }
     }
 }
-

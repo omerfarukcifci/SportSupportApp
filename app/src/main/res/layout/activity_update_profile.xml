@@ -33,12 +33,25 @@
                 android:layout_height="wrap_content"
                 android:hint="New Username" />
 
-            <EditText
-                android:id="@+id/editTextUpdate_newpassword"
+
+
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="*****"
-                android:hint="New Password" />
+                app:passwordToggleContentDescription="New Password"
+                app:passwordToggleDrawable="@drawable/ic_keyboard_arrow_right_black_24dp"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorAccent">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/editTextUpdate_newpassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="New Password"
+                    android:inputType="textPassword" />
+            </android.support.design.widget.TextInputLayout>
+
             <EditText
                 android:id="@+id/editTextUpdate_newname"
                 android:layout_width="match_parent"
@@ -76,35 +89,49 @@
                 android:layout_height="wrap_content"
                 android:hint="Old Username" />
 
-            <EditText
-                android:id="@+id/editTextUpdate_oldpassword"
+
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Old Password" />
+                app:passwordToggleContentDescription="Old Password"
+                app:passwordToggleDrawable="@drawable/ic_keyboard_arrow_right_black_24dp"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorAccent">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/editTextUpdate_oldpassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Old Password"
+                    android:inputType="textPassword" />
+            </android.support.design.widget.TextInputLayout>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <Button
                     android:id="@+id/buttonUpdate"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginBottom="30dp"
-                    android:layout_marginRight="40dp"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginRight="40dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_weight="1"
                     android:background="@color/colorPrimary"
                     android:text="Update" />
+
                 <Button
                     android:id="@+id/buttonDelete"
-                    android:layout_weight="1"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginRight="20dp"
+                    android:layout_height="30dp"
                     android:layout_marginBottom="30dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_weight="1"
                     android:background="#de7979"
                     android:text="Delete Account" />
             </LinearLayout>

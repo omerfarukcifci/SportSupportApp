@@ -21,48 +21,62 @@
             android:orientation="vertical"
             android:gravity="center"
             android:layout_weight="1">
+
             <EditText
+                android:id="@+id/soffer_name_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Special Offer Name"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/soffer_branch_name_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Branch Name"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/soffer_start_date_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Start Date"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/soffer_end_date_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="End Date"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/soffer_reference_number__limitM"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Reference Number Limit"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/soffer_attendance_limit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Attendance Limit"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <Button
+                android:id="@+id/create_soffer_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Create New Special Offer"
                 android:layout_margin="5dp"
-                android:background="@color/colorPrimary"/>
+                android:background="@color/colorPrimary"
+                android:text="Create New Special Offer" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -70,18 +84,22 @@
             android:orientation="vertical"
             android:gravity="center"
             android:layout_weight="1">
+
             <EditText
+                android:id="@+id/delete_soffor_name_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Special Offer Name"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <Button
+                android:id="@+id/soffer_delete_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Delete Special Offer"
                 android:layout_margin="5dp"
-                android:background="@color/colorPrimary"/>
+                android:background="@color/colorPrimary"
+                android:text="Delete Special Offer" />
 
         </LinearLayout>
 

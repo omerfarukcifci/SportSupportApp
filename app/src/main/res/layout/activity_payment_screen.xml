@@ -31,6 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
             <EditText
+                android:id="@+id/EDTcardNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="numberDecimal"
@@ -49,6 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
             <EditText
+                android:id="@+id/EDTcardHolderName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textAutoComplete"
@@ -67,6 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
             <EditText
+                android:id="@+id/EDTexprationDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="date"
@@ -85,6 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1" />
             <EditText
+                android:id="@+id/EDTcvv2number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -99,6 +103,7 @@
             />
 
         <Button
+            android:id="@+id/BTNpay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/colorSecondary"

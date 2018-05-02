@@ -19,36 +19,57 @@
             android:orientation="vertical"
             android:gravity="center"
             android:layout_weight="1">
+
             <EditText
+                android:id="@+id/trainer_name_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Trainer Name"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/trainer_surname_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Trainer Surname"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/trainer_username_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Trainer Username"
                 android:maxLines="1"
                 android:singleLine="true" />
-            <EditText
+
+
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
-                android:maxLines="1"
-                android:singleLine="true" />
+                app:passwordToggleContentDescription="Password"
+                app:passwordToggleDrawable="@drawable/ic_keyboard_arrow_right_black_24dp"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorAccent">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/trainer_password_M"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password"
+                    android:inputType="textPassword" />
+            </android.support.design.widget.TextInputLayout>
+
+
             <Button
+                android:id="@+id/createTrainer_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Create Trainer"
                 android:layout_margin="5dp"
-                android:background="@color/colorPrimary"/>
+                android:background="@color/colorPrimary"
+                android:text="Create Trainer" />
         </LinearLayout>
 
 

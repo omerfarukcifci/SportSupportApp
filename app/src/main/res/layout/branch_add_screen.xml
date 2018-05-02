@@ -20,48 +20,62 @@
             android:orientation="vertical"
             android:gravity="center"
             android:layout_weight="1">
+
             <EditText
+                android:id="@+id/branch_name_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Branch Name"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/branch_quota_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Branch Quota"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/branch_phone_number_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Phone Number"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/branch_city_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="City"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/branch_district_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="District"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/branch_address_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Adress"
+                android:hint="Address"
                 android:maxLines="2"
                 android:singleLine="false" />
+
             <Button
+                android:id="@+id/open_new_branch_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Open New Branch"
                 android:layout_margin="5dp"
-                android:background="@color/colorPrimary"/>
+                android:background="@color/colorPrimary"
+                android:text="Open New Branch" />
         </LinearLayout>
 
 

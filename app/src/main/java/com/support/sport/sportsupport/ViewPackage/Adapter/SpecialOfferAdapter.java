@@ -2,8 +2,6 @@ package com.support.sport.sportsupport.ViewPackage.Adapter;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.support.sport.sportsupport.Model.SpecialOffer;
-import com.support.sport.sportsupport.ViewPackage.Menu.CustomerNavigationMenu;
-import com.support.sport.sportsupport.ViewPackage.Menu.MyCoursesScreen;
 import com.support.sport.sportsupport.ViewPackage.R;
-import com.support.sport.sportsupport.ViewPackage.WelcomeScreen;
 
 import java.text.SimpleDateFormat;
 
@@ -31,6 +26,7 @@ public class SpecialOfferAdapter extends RecyclerView.Adapter<SpecialOfferAdapte
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
         public TextView offerName;
+        public TextView limit;
         public TextView startDate;
         public TextView endDate;
         public Button apply;
@@ -38,6 +34,7 @@ public class SpecialOfferAdapter extends RecyclerView.Adapter<SpecialOfferAdapte
         public ViewHolder(View itemView) {
             super(itemView);
             offerName   = itemView.findViewById(R.id.offer_name);
+            limit = itemView.findViewById(R.id.offer_limit);
             startDate = itemView.findViewById(R.id.offer_start_date);
             endDate = itemView.findViewById(R.id.offer_end_date);
             apply = itemView.findViewById(R.id.offer_apply);
@@ -95,7 +92,7 @@ public class SpecialOfferAdapter extends RecyclerView.Adapter<SpecialOfferAdapte
                 alertDialog.setMessage("This offer is not available for you. Visit here later for more!");
                 // Setting Positive "Yes" Button
                 alertDialog.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog,int which) {
+                    public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });

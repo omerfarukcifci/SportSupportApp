@@ -18,31 +18,41 @@
             android:orientation="vertical"
             android:gravity="center"
             android:layout_weight="1">
+
             <EditText
+                android:id="@+id/course_name_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Course Name"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/course_quota_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Quota"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/branch_name_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Branch Name"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/trainer_name_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Trainer Name"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/speciesM"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Species"
@@ -52,14 +62,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
+
                 <EditText
+                    android:id="@+id/start_date_course"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:hint="Start Date"
                     android:maxLines="1"
                     android:singleLine="true" />
+
                 <EditText
+                    android:id="@+id/end_date_course"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -67,7 +81,9 @@
                     android:maxLines="1"
                     android:singleLine="true" />
             </LinearLayout>
+
             <EditText
+                android:id="@+id/course_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Description"
@@ -75,11 +91,12 @@
                 android:singleLine="false" />
 
             <Button
+                android:id="@+id/open_course_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Open Course"
                 android:layout_margin="5dp"
-                android:background="@color/colorPrimary"/>
+                android:background="@color/colorPrimary"
+                android:text="Open Course" />
         </LinearLayout>
 
 

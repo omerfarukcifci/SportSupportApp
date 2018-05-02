@@ -32,11 +32,23 @@
             android:layout_height="wrap_content"
             android:hint="Username" />
 
-        <EditText
-            android:id="@+id/editTextUpdate_oldpassword"
+
+        <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password" />
+            app:passwordToggleContentDescription="Password"
+            app:passwordToggleDrawable="@drawable/ic_keyboard_arrow_right_black_24dp"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/colorAccent">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/editTextUpdate_oldpassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+
 
         <Button
             android:id="@+id/buttonDelete"

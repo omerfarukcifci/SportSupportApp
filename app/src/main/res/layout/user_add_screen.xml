@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+
         android:layout_margin="10dp">
 
         <LinearLayout
@@ -20,46 +21,68 @@
             android:orientation="vertical">
 
             <EditText
+                android:id="@+id/name_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Name"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/surname_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Surname"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/username_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Username"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/birthdate_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Birth Date"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/email_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Email"
                 android:maxLines="1"
                 android:singleLine="true" />
-            <EditText
+
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
-                android:maxLines="1"
-                android:singleLine="true" />
+                app:passwordToggleContentDescription="Password"
+                app:passwordToggleDrawable="@drawable/ic_keyboard_arrow_right_black_24dp"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorAccent">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/password_MM"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password"
+                    android:inputType="textPassword" />
+            </android.support.design.widget.TextInputLayout>
+
             <Button
+                android:id="@+id/add_new_user_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add New User"
-                android:background="@color/colorPrimary"/>
+                android:background="@color/colorPrimary"
+                android:text="Add New User" />
 
         </LinearLayout>
 

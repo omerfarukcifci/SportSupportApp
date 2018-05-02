@@ -19,37 +19,57 @@
             android:orientation="vertical"
             android:gravity="center"
             android:layout_weight="1">
+
             <EditText
+                android:id="@+id/manager_name_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Manager Name"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/manager_surname_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Manager Surname"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/manager_username_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Manager Username"
                 android:maxLines="1"
                 android:singleLine="true" />
+
             <EditText
+                android:id="@+id/manager_branchID_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Manager's Branch Id"
                 android:maxLines="1"
                 android:singleLine="true" />
-            <EditText
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Password"
-                android:maxLines="1"
-                android:singleLine="true" />
+                app:passwordToggleContentDescription="Password"
+                app:passwordToggleDrawable="@drawable/ic_keyboard_arrow_right_black_24dp"
+                app:passwordToggleEnabled="true"
+                app:passwordToggleTint="@color/colorAccent">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/manager_password_M"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password"
+                    android:inputType="textPassword" />
+            </android.support.design.widget.TextInputLayout>
+
             <Button
+                android:id="@+id/create_manager_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Create Manager"
