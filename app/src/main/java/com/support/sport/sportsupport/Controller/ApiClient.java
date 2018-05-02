@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = "http://207.154.246.182:8080/support-2.1/member/";
+    public static final String BASE_URL = "http://207.154.246.182:8080/supportsport/";
     private static Retrofit retrofit = null;
 
 

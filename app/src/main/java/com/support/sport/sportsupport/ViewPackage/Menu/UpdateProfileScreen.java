@@ -40,7 +40,7 @@ public class UpdateProfileScreen extends AppCompatActivity {
         delete = findViewById(R.id.buttonDelete);
 
         Member m = new Member();
-        m.setAge("24/04/2018");
+        m.setAge(null);
         m.setMail("testuser@gmail.com");
         m.setUsername("testuser");
         m.setName("Jane");
@@ -135,7 +135,7 @@ public class UpdateProfileScreen extends AppCompatActivity {
     }
 
     public void fillpreform(Member m){
-        updateBirthday.setText(m.getAge());
+        updateBirthday.setText(null);
         updateMail.setText(m.getMail());
         updateNewUsername.setText(m.getUsername());
         updateSurname.setText(m.getSurname());

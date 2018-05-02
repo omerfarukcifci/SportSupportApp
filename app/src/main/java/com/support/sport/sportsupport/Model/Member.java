@@ -2,6 +2,8 @@ package com.support.sport.sportsupport.Model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 /**
  * Created by Merve on 12.04.2018.
  */
@@ -28,17 +30,19 @@ public class Member {
     private int referenceNumber; //This is for a member's friend count that came with member.
     @SerializedName("branchAuthority")
     private int branchAuthority; //This count for user's entered another branches except member's registered branch
-
-    public String getAge() {
-        return age;
-    }
-
-    public void setAge(String age) {
-        this.age = age;
-    }
-
+    @SerializedName("age")
     private String age;
+    @SerializedName("endDate")
+    private String endDate;
+    @SerializedName("startDate")
+    private String startDate;
 
+    public String getAge() { return age;}
+    public void setAge(String age) { this.age = age;}
+    public String getEndDate() { return endDate;}
+    public void setEndDate(String endDate) {this.endDate = endDate;}
+    public String getStartDate() { return startDate;}
+    public void setStartDate(String startDate) { this.startDate = startDate;}
     public String getName() {
         return name;
     }
@@ -100,7 +104,20 @@ public class Member {
         this.id = id;
     }
 
-    public Member(String name, String surname, String username, String statue, String status) {
+    public Member(String name, String surname, String username, String password, String statue, String status, String mail, int referenceNumber, int branchAuthority, String age){
+        this.name = name;
+        this.surname = surname;
+        this.username = username;
+        this.password = password;
+        this.statue = statue;
+        this.status = status;
+        this.mail = mail;
+        this.referenceNumber = referenceNumber;
+        this.branchAuthority = branchAuthority;
+        this.age = age;
+    }
+
+    public Member(String name, String surname, String username, String statue, String status){
         this.name = name;
         this.surname = surname;
         this.username = username;

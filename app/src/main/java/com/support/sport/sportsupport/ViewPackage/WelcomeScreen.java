@@ -18,6 +18,15 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.support.sport.sportsupport.Controller.ApiClient;
+import com.support.sport.sportsupport.Controller.ApiInterface;
+import com.support.sport.sportsupport.Controller.AppController;
+import com.support.sport.sportsupport.Controller.Key;
+import com.support.sport.sportsupport.Controller.UserController;
+
+import java.io.IOException;
 
 public class WelcomeScreen extends AppCompatActivity {
 
@@ -32,7 +41,6 @@ public class WelcomeScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // Checking for first time launch - before calling setContentView()
         prefManager = new PrefManager(this);
         if (!prefManager.isFirstTimeLaunch()) {

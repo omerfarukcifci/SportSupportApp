@@ -14,7 +14,7 @@ import com.support.sport.sportsupport.Model.Member;
 
 public class ProfileController extends AppController{
 
-
+/*
     Member[] members = null;
 
     public Member findUser(int id){
@@ -29,6 +29,7 @@ public class ProfileController extends AppController{
         /****
          * GET ALL
          */
+/*
         Call<List<Member>> call = apiService.getAllMembers();
         call.enqueue(new Callback<List<Member>>() {
             @Override
@@ -51,6 +52,7 @@ public class ProfileController extends AppController{
         /****
          * READ ONE
          */
+/*
         getAll();
         final Member[] m = new Member[1];
         Call<Integer> oneID = apiService.getMember(username, password);
@@ -122,6 +124,6 @@ public class ProfileController extends AppController{
         });
 
     }
-
+*/
 
 }

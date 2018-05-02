@@ -39,7 +39,7 @@ public class CancelMembershipScreen extends AppCompatActivity {
                 if(blankController == 0){
 
 
-                    Member temp = cr.readOne(username.getText().toString(), password.getText().toString());
+                   // Member temp = cr.readOne(username.getText().toString(), password.getText().toString());
                 //    if (temp != null) {
                         Toast.makeText(CancelMembershipScreen.this, "Successfully cancel membership", Toast.LENGTH_LONG).show();
                   //      Toast.makeText(SignInActivity.this, "Hello " + temp.getName() + " :)", Toast.LENGTH_LONG).show();

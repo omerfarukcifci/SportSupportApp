@@ -73,7 +73,7 @@ public class SignUpScreen extends AppCompatActivity {
 
                 if (spaceController == 0) {
 
-                cr.addMember(0,0,usernameStr,passwordStr,"active","standard",mailStr,nameStr,surnameStr);
+                //cr.addMember(0,0,usernameStr,passwordStr,"active","standard",mailStr,nameStr,surnameStr);
              //   Toast.makeText(SignUpScreen.this,"Registration Completed!",Toast.LENGTH_LONG).show();
             //    Toast.makeText(SignUpScreen.this,"Succesfully Updated!",Toast.LENGTH_LONG).show();
 

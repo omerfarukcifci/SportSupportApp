@@ -44,7 +44,6 @@
         <activity android:name=".Menu.MyCoursesScreen" />
         <activity android:name=".Menu.FragmentCourse"/>
         <activity android:name=".Management.FragmentManagementPanel" />
-        <activity android:name=".Menu.FragmentCourse" />
         <activity android:name=".Management.ManagerManagementScreen" />
         <activity android:name=".Management.UserManagementScreen" />
         <activity android:name=".Management.TrainerManagementScreen" />
