@@ -4,100 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.support.sport.sportsupport.ViewPackage.Management.UserManagementScreen">
-
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="10dp">
+    tools:context="com.support.sport.sportsupport.ViewPackage.Management.ManagerManagementScreen">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="5dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Name"
-            android:maxLines="1"
-            android:singleLine="true" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Surname"
-            android:maxLines="1"
-            android:singleLine="true" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Username"
-            android:maxLines="1"
-            android:singleLine="true" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Birth Date"
-            android:maxLines="1"
-            android:singleLine="true" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Email"
-            android:maxLines="1"
-            android:singleLine="true" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:maxLines="1"
-            android:singleLine="true" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Add New User"
-            android:background="@color/colorPrimary"/>
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Username"
-            android:maxLines="1"
-            android:singleLine="true" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:orientation="horizontal">
-            <Button
-                android:layout_width="match_parent"
+            <SearchView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:text="Delete User"
-                android:background="@color/colorSecondary"/>
-            <Button
-                android:layout_width="match_parent"
+                android:searchIcon="@android:drawable/ic_menu_search">
+
+            </SearchView>
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/floatingActionButtonUser"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_margin="5dp"
-                android:text="Ban User"
-                android:background="@color/colorSecondary"/>
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:padding="10dp"
+                android:layout_gravity="top|end"
+                android:clickable="true"
+                app:srcCompat="@android:drawable/ic_input_add" />
 
         </LinearLayout>
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/users_list"
+                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </ScrollView>
+
+
     </LinearLayout>
 
-</LinearLayout>
+
+
+
+
+
+
 
 </android.support.constraint.ConstraintLayout>

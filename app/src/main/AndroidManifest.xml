@@ -50,7 +50,12 @@
         <activity android:name=".Management.TraineeManagementScreen" />
         <activity android:name=".Management.CourseManagementScreen" />
         <activity android:name=".Management.BranchManagementScreen" />
-        <activity android:name=".Management.SpecialOfferManagementScreen"></activity>
+        <activity android:name=".Management.SpecialOfferManagementScreen" />
+        <activity android:name=".Management.ManagerAddScreen" />
+        <activity android:name=".Management.BranchAddScreen" />
+        <activity android:name=".Management.CourseAddScreen" />
+        <activity android:name=".Management.TrainerAddScreen" />
+        <activity android:name=".Adapter.UserAddScreen"></activity>
     </application>
 
 </manifest>

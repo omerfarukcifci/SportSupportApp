@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.support.sport.sportsupport.ViewPackage.Management.SpecialOfferManagementScreen">
-
+    tools:context="com.support.sport.sportsupport.ViewPackage.Management.BranchManagementScreen">
 
 
     <LinearLayout
@@ -24,66 +23,48 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Special Offer Name"
-                android:maxLines="1"
-                android:singleLine="true" />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:hint="Branch Name"
                 android:maxLines="1"
                 android:singleLine="true" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Start Date"
+                android:hint="Branch Quota"
                 android:maxLines="1"
                 android:singleLine="true" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="End Date"
+                android:hint="Phone Number"
                 android:maxLines="1"
                 android:singleLine="true" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Reference Number Limit"
+                android:hint="City"
                 android:maxLines="1"
                 android:singleLine="true" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Attendance Limit"
+                android:hint="District"
                 android:maxLines="1"
                 android:singleLine="true" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Adress"
+                android:maxLines="2"
+                android:singleLine="false" />
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Create New Special Offer"
+                android:text="Open New Branch"
                 android:layout_margin="5dp"
                 android:background="@color/colorPrimary"/>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_weight="1">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Special Offer Name"
-                android:maxLines="1"
-                android:singleLine="true" />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Delete Special Offer"
-                android:layout_margin="5dp"
-                android:background="@color/colorPrimary"/>
 
-        </LinearLayout>
 
     </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

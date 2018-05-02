@@ -5,102 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.support.sport.sportsupport.ViewPackage.Management.CourseManagementScreen">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="10dp"
-        android:gravity="center">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_weight="1">
-            <EditText
-                android:layout_width="match_parent"
+            android:orientation="horizontal">
+            <SearchView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Course Name"
-                android:maxLines="1"
-                android:singleLine="true" />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Quota"
-                android:maxLines="1"
-                android:singleLine="true" />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Branch Name"
-                android:maxLines="1"
-                android:singleLine="true" />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Trainer Name"
-                android:maxLines="1"
-                android:singleLine="true" />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Species"
-                android:maxLines="1"
-                android:singleLine="true" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="Start Date"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="End Date"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-            </LinearLayout>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Description"
-                android:maxLines="3"
-                android:singleLine="false" />
+                android:layout_weight="1"
+                android:searchIcon="@android:drawable/ic_menu_search">
 
-            <Button
-                android:layout_width="match_parent"
+            </SearchView>
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/floatingActionButtonCourse"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Open Course"
-                android:layout_margin="5dp"
-                android:background="@color/colorPrimary"/>
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:padding="10dp"
+                android:layout_gravity="top|end"
+                android:clickable="true"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
         </LinearLayout>
-        <LinearLayout
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_weight="1">
-            <EditText
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/course_list_management"
+                android:scrollbars="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Course Name"
-                android:maxLines="1"
-                android:singleLine="true" />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Close Course"
-                android:layout_margin="5dp"
-                android:background="@color/colorPrimary"/>
+                android:layout_height="wrap_content"/>
+        </ScrollView>
 
-        </LinearLayout>
 
     </LinearLayout>
+
+
+
+
+
+
+
+
 </android.support.constraint.ConstraintLayout>

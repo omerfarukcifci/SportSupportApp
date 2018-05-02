@@ -6,71 +6,54 @@
     android:layout_height="match_parent"
     tools:context="com.support.sport.sportsupport.ViewPackage.Management.TrainerManagementScreen">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="10dp"
-    android:gravity="center">
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_weight="1">
-        <EditText
+        android:orientation="vertical">
+
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Trainer Name"
-            android:maxLines="1"
-            android:singleLine="true" />
-        <EditText
+            android:orientation="horizontal">
+            <SearchView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:searchIcon="@android:drawable/ic_menu_search">
+
+            </SearchView>
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/floatingActionButtonTrainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:padding="10dp"
+                android:layout_gravity="top|end"
+                android:clickable="true"
+                app:srcCompat="@android:drawable/ic_input_add" />
+
+        </LinearLayout>
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Trainer Surname"
-            android:maxLines="1"
-            android:singleLine="true" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Trainer Username"
-            android:maxLines="1"
-            android:singleLine="true" />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Password"
-            android:maxLines="1"
-            android:singleLine="true" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Create Trainer"
-            android:layout_margin="5dp"
-            android:background="@color/colorPrimary"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_weight="1">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Trainer Username"
-            android:maxLines="1"
-            android:singleLine="true" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Delete Trainer"
-            android:layout_margin="5dp"
-            android:background="@color/colorPrimary"/>
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/trainers_list"
+                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </ScrollView>
+
 
     </LinearLayout>
 
-</LinearLayout>
+
+
+
+
+
+
 
 </android.support.constraint.ConstraintLayout>

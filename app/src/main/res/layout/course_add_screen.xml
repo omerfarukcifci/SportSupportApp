@@ -4,10 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.support.sport.sportsupport.ViewPackage.Management.SpecialOfferManagementScreen">
-
-
-
+    tools:context="com.support.sport.sportsupport.ViewPackage.Management.CourseManagementScreen">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,7 +21,13 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Special Offer Name"
+                android:hint="Course Name"
+                android:maxLines="1"
+                android:singleLine="true" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Quota"
                 android:maxLines="1"
                 android:singleLine="true" />
             <EditText
@@ -36,54 +39,49 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Start Date"
+                android:hint="Trainer Name"
                 android:maxLines="1"
                 android:singleLine="true" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="End Date"
+                android:hint="Species"
                 android:maxLines="1"
                 android:singleLine="true" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="Start Date"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="End Date"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+            </LinearLayout>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Reference Number Limit"
-                android:maxLines="1"
-                android:singleLine="true" />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Attendance Limit"
-                android:maxLines="1"
-                android:singleLine="true" />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Create New Special Offer"
-                android:layout_margin="5dp"
-                android:background="@color/colorPrimary"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_weight="1">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Special Offer Name"
-                android:maxLines="1"
-                android:singleLine="true" />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Delete Special Offer"
-                android:layout_margin="5dp"
-                android:background="@color/colorPrimary"/>
+                android:hint="Description"
+                android:maxLines="3"
+                android:singleLine="false" />
 
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Open Course"
+                android:layout_margin="5dp"
+                android:background="@color/colorPrimary"/>
         </LinearLayout>
+
 
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>

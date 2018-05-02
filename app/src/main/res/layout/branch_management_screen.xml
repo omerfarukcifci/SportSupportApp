@@ -6,84 +6,62 @@
     android:layout_height="match_parent"
     tools:context="com.support.sport.sportsupport.ViewPackage.Management.BranchManagementScreen">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_margin="10dp"
-        android:gravity="center">
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/branch_view_all_stats_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View All Stats"
+            android:backgroundTint="@color/colorSecondary"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_weight="1">
-            <EditText
-                android:layout_width="match_parent"
+            android:orientation="horizontal">
+            <SearchView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Branch Name"
-                android:maxLines="1"
-                android:singleLine="true" />
-            <EditText
-                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:searchIcon="@android:drawable/ic_menu_search">
+
+            </SearchView>
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/floatingActionButtonBranch"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Branch Quota"
-                android:maxLines="1"
-                android:singleLine="true" />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Phone Number"
-                android:maxLines="1"
-                android:singleLine="true" />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="City"
-                android:maxLines="1"
-                android:singleLine="true" />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="District"
-                android:maxLines="1"
-                android:singleLine="true" />
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Adress"
-                android:maxLines="2"
-                android:singleLine="false" />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Open New Branch"
-                android:layout_margin="5dp"
-                android:background="@color/colorPrimary"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_weight="1">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Branch Name"
-                android:maxLines="1"
-                android:singleLine="true" />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Close Branch"
-                android:layout_margin="5dp"
-                android:background="@color/colorPrimary"/>
+                android:layout_margin="10dp"
+                android:backgroundTint="@color/colorSecondary"
+                android:padding="10dp"
+                android:layout_gravity="top|end"
+                android:clickable="true"
+                app:srcCompat="@android:drawable/ic_input_add" />
 
         </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/branch_list"
+                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </ScrollView>
+
 
     </LinearLayout>
+
+
+
+
+
+
+
 
 </android.support.constraint.ConstraintLayout>
