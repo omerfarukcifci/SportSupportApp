@@ -90,7 +90,8 @@ public class FragmentManagementPanel extends AppCompatActivity {
         traineeManagement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(FragmentManagementPanel.this,TraineeManagementScreen.class);
+                startActivity(intent);
             }
         });
         courseManagement.setOnClickListener(new View.OnClickListener() {

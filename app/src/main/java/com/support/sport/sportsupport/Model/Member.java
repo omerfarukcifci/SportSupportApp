@@ -100,4 +100,14 @@ public class Member {
         this.id = id;
     }
 
+    public Member(String name, String surname, String username, String statue, String status) {
+        this.name = name;
+        this.surname = surname;
+        this.username = username;
+        this.statue = statue;
+        this.status = status;
+    }
+
+    public Member() {
+    }
 }

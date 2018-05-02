@@ -6,4 +6,45 @@
     android:layout_height="match_parent"
     tools:context="com.support.sport.sportsupport.ViewPackage.Management.TraineeManagementScreen">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <SearchView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:searchIcon="@android:drawable/ic_menu_search">
+
+            </SearchView>
+
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/trainee_list"
+                android:scrollbars="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </ScrollView>
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
+
 </android.support.constraint.ConstraintLayout>
