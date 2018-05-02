@@ -4,10 +4,12 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.support.sport.sportsupport.Model.Member;
+import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
 
 import java.io.IOException;
 import java.util.Date;
 
+import de.greenrobot.event.EventBus;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -18,22 +20,23 @@ import retrofit2.Response;
 
 public class UserController extends AppController{
 
-    public Member login(String username, String password) {
-        final Member[] m = new Member[1];
+    public void login(String username, String password){
+        //final Member[] m = new Member[1];
         Call<Member> memberCall = apiService.getMemberWithUsernamePassword(username, password);
         //Key.cMember = memberCall.execute().body();
         memberCall.enqueue(new Callback<Member>() {
             @Override
             public void onResponse(Call<Member> call, Response<Member> response) {
-                m[0] = response.body();
+                Key.cMember = response.body();
                 Log.d("success","Spring success");
+                EventBus.getDefault().post(new RetrofitEvent(true));
             }
             @Override
             public void onFailure(Call<Member> call, Throwable t) {
                 Log.d("failure","Spring error");
+                EventBus.getDefault().post(new RetrofitEvent(false));
             }
         });
-        return m[0];
     }
 
     public void signIn(String name, String surname, String username, String password, String mail, Date age){

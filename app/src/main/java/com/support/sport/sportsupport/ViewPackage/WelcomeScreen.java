@@ -28,6 +28,8 @@ import com.support.sport.sportsupport.Controller.UserController;
 
 import java.io.IOException;
 
+import de.greenrobot.event.EventBus;
+
 public class WelcomeScreen extends AppCompatActivity {
 
     private ViewPager viewPager;
@@ -38,10 +40,13 @@ public class WelcomeScreen extends AppCompatActivity {
     private Button btnSkip, btnNext ,signIn_button ,signUp_button;
     private PrefManager prefManager;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Checking for first time launch - before calling setContentView()
+
         prefManager = new PrefManager(this);
         if (!prefManager.isFirstTimeLaunch()) {
             launchHomeScreen();

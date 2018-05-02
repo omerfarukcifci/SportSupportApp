@@ -15,6 +15,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.support.sport.sportsupport.Controller.Key;
+import com.support.sport.sportsupport.Controller.UserController;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.Controller.ApiClient;
 import com.support.sport.sportsupport.Controller.ApiInterface;
@@ -24,6 +26,8 @@ import com.support.sport.sportsupport.ViewPackage.Menu.CustomerNavigationMenu;
 import com.support.sport.sportsupport.ViewPackage.Menu.CustomerNavigationMenu;
 
 import java.util.List;
+
+import de.greenrobot.event.EventBus;
 
 /**
  * A login screen that offers login via email/password.
@@ -41,11 +45,35 @@ public class SignInScreen extends AppCompatActivity  {
     private Button signInButton;
     private CheckBox checkBoxMember,checkBoxManager,checkBoxOwner,checkBoxTrainer;
 
+    public void onEvent(RetrofitEvent event) {
+
+        if(event.isRetrofitCompleted){
+            Toast.makeText(getApplicationContext(), Key.cMember.getId()+"",Toast.LENGTH_LONG).show();
+            //if you had  a progress dialog showing, hide it here.
+            //then of course do what you needed here.
+        }else{
+            Toast.makeText(getApplicationContext(),"NO",Toast.LENGTH_LONG).show();
+            //the request might have failed here due to network issues
+            //update the ui accordingly.
+        }
+    }
+
+    public void onDestroy() {
+
+        EventBus.getDefault().unregister(this);
+        super.onDestroy();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         // Set up the login form.
+
+        EventBus.getDefault().register(this);
+        UserController userController = new UserController();
+        userController.login("hello","123456");
+
 
         mUsernameView= (EditText) findViewById(R.id.login_username);
         mPasswordView = (EditText) findViewById(R.id.login_password);
