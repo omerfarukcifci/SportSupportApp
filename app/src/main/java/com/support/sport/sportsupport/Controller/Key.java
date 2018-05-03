@@ -16,7 +16,11 @@ public class Key {
 
     public static Member cMember = null;
     public static Manager newManager = null;
+    public static List<Manager> allManagers = null;
 
+    public static List<Manager> getAllManagers() {
+        return allManagers;
+    }
 
     public static Course oneCourse = null;
 
@@ -27,6 +31,8 @@ public class Key {
     public Course getOneCourse(){
         return oneCourse;
     }
+
+
 
     public static Manager getNewManager() {
         return newManager;

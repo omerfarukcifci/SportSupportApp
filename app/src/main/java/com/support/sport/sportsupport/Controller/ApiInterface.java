@@ -67,4 +67,8 @@ public interface ApiInterface {
     Call<Manager> registerManager(@Query("name") String name, @Query("surname") String surname, @Query("username") String username,
                                  @Query("password") String password, @Query("branchId") int branchId);
 
+    @GET("manager/all")
+    Call<List<Manager>> allManagers();
+
+
 }

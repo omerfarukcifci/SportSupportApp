@@ -34,4 +34,25 @@ public class ManagerManagementController extends AppController{
             }
         });
     }
+
+
+    public void allManagers(){
+
+        Call<List<Manager>> managers = apiService.allManagers();
+        managers.enqueue(new Callback<List<Manager>>() {
+            @Override
+            public void onResponse(Call<List<Manager>> call, Response<List<Manager>> response) {
+                Key.allManagers = response.body();
+                EventBus.getDefault().post(new RetrofitEvent(true));
+            }
+            @Override
+            public void onFailure(Call<List<Manager>> call, Throwable t) {
+                Log.d("failure","Spring error ALLL MANAGERSSS");
+                EventBus.getDefault().post(new RetrofitEvent(false));
+            }
+        });
+
+
+    }
+
 }
