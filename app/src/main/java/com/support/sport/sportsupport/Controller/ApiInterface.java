@@ -5,6 +5,8 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
+import com.support.sport.sportsupport.Model.ActivityPlan;
+import com.support.sport.sportsupport.Model.ClassMemberList;
 import com.support.sport.sportsupport.Model.Course;
 import com.support.sport.sportsupport.Model.Member;
 
@@ -17,36 +19,46 @@ import java.util.List;
 
 public interface ApiInterface {
 
+    //user controller
     @GET("member/get")
     Call<Member> getMemberWithUsernamePassword(@Query("username") String username, @Query("password") String password);
+
     @GET("member/add")
     Call<Member> registerMember(@Query("name") String name, @Query("surname") String surname, @Query("username") String username,
-                                @Query("password") String password, @Query("mail") String mail, @Query("age") Date age);
+                                @Query("password") String password, @Query("mail") String mail, @Query("age") String age);
+
+
+    //course controller
     @GET("course/all/{id}")
-    Call<Course> showAllCourses(@Path("id") int branchId);
+    Call<List<Course>> showAllCourses(@Path("id") int branchId);
+
     @GET("enrolledcourses/all/my/{id}")
-    Call<Course> showMyCourses(@Path("id") int memberId);
+    Call<List<Course>> showMyCourses(@Path("id") int memberId);
+
+    @GET("course/get/{id}")
+    Call<Course> getOneCourse(@Path("id") int courseId);
+
+    @GET("course/enroll/{id}")
+    Call<ClassMemberList> enrollCourse(@Path("id") int courseId, @Query("memberId") int memberId);
+
+    @GET("course/drop/{id}")
+    Call<ClassMemberList> dropCourse(@Path("id") int courseId, @Query("memberId") int memberId);
+
+    
+    //myprofile
+    //class diagramdaki loadmemberinfo için retrofite gerek yok, loginde zaten biliglerini aldık, boş bir şey yazabilirisniz
+    //viewbranchfullness i ben yaparım
+    @GET("activity/schedule/{id}")
+    Call<List<ActivityPlan>> getMySchedule(@Path("id") int memberId);
+
+    @GET("member/update/personalinfo")
+    Call<Member> updateProfile(@Query("id") int memberId, @Query("name") String name, @Query("surname") String surname,
+                               @Query("newusername") String username, @Query("newpassword") String newpassword,
+                               @Query("mail") String mail, @Query("age") String age);
+
+    //Transactional -- farkli bir durumu olabilir
+    @GET("member/cancel")
+    Call<Member> cancelMembership(@Query("username") String username, @Query("endDate") String endDate);
 
 
-
-
-
-
-
-
-    /*@GET("delete")
-    Call<Integer> deleteMember(@Query("username") String username, @Query("password") String password);
-    @GET("all")
-    Call<List<Member>> getAllMembers();
-    @GET("update/personalinfo")
-    Call<Integer> updateMember(@Query("username") String username, @Query("password") String password,
-                               @Query("newusername") String newusername,@Query("newpassword") String newpassword,
-                               @Query("mail") String mail, @Query("name") String name, @Query("surname") String surname);
-    @GET("add")
-    Call<Integer> addMember(@Query("referenceNumber") int referenceNumber, @Query("branchAuthority") int branchAuthority,
-                            @Query("username") String username,@Query("password") String password,
-                            @Query("statue") String statue, @Query("status") String status,
-                            @Query("mail") String mail, @Query("name") String name, @Query("surname") String surname);
-    @GET("get")
-    Call<Integer> getMember(@Query("username") String username, @Query("password") String password);*/
 }

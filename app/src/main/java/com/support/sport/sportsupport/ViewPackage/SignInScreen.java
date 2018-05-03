@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.AsyncTask;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -49,12 +50,21 @@ public class SignInScreen extends AppCompatActivity  {
 
         if(event.isRetrofitCompleted){
             Toast.makeText(getApplicationContext(), Key.cMember.getId()+"",Toast.LENGTH_LONG).show();
-            //if you had  a progress dialog showing, hide it here.
-            //then of course do what you needed here.
+            if(checkBoxManager.isChecked() || checkBoxTrainer.isChecked() || checkBoxOwner.isChecked()){
+                Intent intent = new Intent(SignInScreen.this,FragmentManagementPanel.class);
+                intent.putExtra("checkboxManager",checkBoxManager.isChecked());
+                intent.putExtra("checkboxTrainer",checkBoxTrainer.isChecked());
+                intent.putExtra("checkboxOwner",checkBoxOwner.isChecked());
+                startActivity(intent);
+            }
+            else if(checkBoxMember.isChecked()){
+                Intent intent2 = new Intent(SignInScreen.this,CustomerNavigationMenu.class);
+                startActivity(intent2);
+            }else{
+                // Handle checkbox selections.
+            }
         }else{
-            Toast.makeText(getApplicationContext(),"NO",Toast.LENGTH_LONG).show();
-            //the request might have failed here due to network issues
-            //update the ui accordingly.
+            Toast.makeText(getApplicationContext(), "Invalid",Toast.LENGTH_LONG).show();
         }
     }
 
@@ -71,9 +81,6 @@ public class SignInScreen extends AppCompatActivity  {
         // Set up the login form.
 
         EventBus.getDefault().register(this);
-        UserController userController = new UserController();
-        userController.login("hello","123456");
-
 
         mUsernameView= (EditText) findViewById(R.id.login_username);
         mPasswordView = (EditText) findViewById(R.id.login_password);
@@ -86,36 +93,10 @@ public class SignInScreen extends AppCompatActivity  {
         signInButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                String userName = mUsernameView.getText().toString();
+                String username = mUsernameView.getText().toString();
                 String password = mPasswordView.getText().toString();
-
-                if(checkBoxManager.isChecked() || checkBoxTrainer.isChecked() || checkBoxOwner.isChecked()){
-                    Intent intent = new Intent(SignInScreen.this,FragmentManagementPanel.class);
-                    intent.putExtra("checkboxManager",checkBoxManager.isChecked());
-                    intent.putExtra("checkboxTrainer",checkBoxTrainer.isChecked());
-                    intent.putExtra("checkboxOwner",checkBoxOwner.isChecked());
-                    startActivity(intent);
-                }
-                else if(checkBoxMember.isChecked()){
-                    Intent intent2 = new Intent(SignInScreen.this,CustomerNavigationMenu.class);
-                    startActivity(intent2);
-                }else{
-                    // Handle checkbox selections.
-                }
-
-                /*ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-                ProfileController cr = new ProfileController();
-
-
-                Member temp = cr.readOne(userName,password);
-                if(temp!=null){
-                    Toast.makeText(SignInActivity.this,"Hello "+temp.getName()+" :)",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(SignInActivity.this,MenuActivity.class);
-                    startActivity(intent);
-                }else{
-                    Toast.makeText(SignInActivity.this,"Password or Username invalid!",Toast.LENGTH_LONG).show();
-                }*/
-
+                UserController userController = new UserController();
+                userController.login(username,password);
 
             }
         });
@@ -210,33 +191,6 @@ public class SignInScreen extends AppCompatActivity  {
             }
         });
     }
-
-
-    /*private void getAllPosts(PostService postService, final String username, String password) {
-        Call<List<Member>> getAllPostsCall = postService.getAllPosts();
-        final boolean checkusername=false;
-        boolean checkpassword=false;
-        boolean check=false;
-
-        getAllPostsCall.enqueue(new Callback<List<Member>>() {
-            @Override
-            public void onResponse(Call<List<Member>> call, Response<List<Member>> response) {
-                //displayPost(response.body().get(0));
-                for(int i=0; i<response.body().size();i++){
-                    memberList.add(response.body().get(i));
-
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<List<Member>> call, Throwable t) {
-                Log.e(TAG, "Error occured while fetching post.");
-            }
-        });
-
-    }*/
-
 
     private boolean isEmailValid(String email) {
         //TODO: Replace this with your own logic
