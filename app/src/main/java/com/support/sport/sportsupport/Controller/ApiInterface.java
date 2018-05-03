@@ -8,6 +8,7 @@ import retrofit2.http.Query;
 import com.support.sport.sportsupport.Model.ActivityPlan;
 import com.support.sport.sportsupport.Model.ClassMemberList;
 import com.support.sport.sportsupport.Model.Course;
+import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.Model.Member;
 
 import java.util.Date;
@@ -60,5 +61,10 @@ public interface ApiInterface {
     @GET("member/cancel")
     Call<Member> cancelMembership(@Query("username") String username, @Query("endDate") String endDate);
 
+
+
+    @GET("manager/add")
+    Call<Manager> registerManager(@Query("name") String name, @Query("surname") String surname, @Query("username") String username,
+                                 @Query("password") String password, @Query("branchId") int branchId);
 
 }

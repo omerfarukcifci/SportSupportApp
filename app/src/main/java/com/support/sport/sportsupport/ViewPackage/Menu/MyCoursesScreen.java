@@ -93,7 +93,7 @@ public class MyCoursesScreen extends AppCompatActivity {
 
         CourseController courseC = new CourseController();
 
-        courseC.getMyCourses(8);
+        courseC.getMyCourses(Key.cMember.getId());
         Log.d("onCreate","onCreateonCreateonCreateonCreateonCreateonCreate");
 
 /*

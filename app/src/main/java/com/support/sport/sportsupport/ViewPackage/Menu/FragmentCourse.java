@@ -133,7 +133,7 @@ public class FragmentCourse extends AppCompatActivity {
 
                         CourseController courseC = new CourseController();
                         courseC.enrollCourse(c.getId(),Key.cMember.getId());
-                        courseC.getMyCourses(Key.cMember.getId());
+                      //  courseC.getMyCourses(Key.cMember.getId());
                         //       Toast.makeText(FragmentCourse.this, "Succesfully Dropped!", Toast.LENGTH_LONG).show();
 
                         Toast.makeText(FragmentCourse.this, "Enrollment Completed!", Toast.LENGTH_LONG).show();
@@ -144,7 +144,7 @@ public class FragmentCourse extends AppCompatActivity {
 
                         CourseController courseC = new CourseController();
                         courseC.dropCourse(c.getId(), Key.cMember.getId());
-                        courseC.getMyCourses(Key.cMember.getId());
+                   //     courseC.getMyCourses(Key.cMember.getId());
                         Toast.makeText(FragmentCourse.this, "Succesfully Dropped!", Toast.LENGTH_LONG).show();
                         enrolldrop.setText("ENROLL");
                         enrolldrop.setBackgroundColor(Color.parseColor("#3395ff"));

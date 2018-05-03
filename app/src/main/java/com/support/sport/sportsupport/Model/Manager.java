@@ -1,15 +1,21 @@
 package com.support.sport.sportsupport.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Faruk on 27.04.2018.
  */
 
 public class Manager {
-
+    @SerializedName("name")
     private String name;
+    @SerializedName("surname")
     private String surname;
+    @SerializedName("username")
     private String username;
+    @SerializedName("password")
     private String password;
+    @SerializedName("branchId")
     private int branchId;
 
     public Manager(String name, String surname, String username, String password, int branchId) {

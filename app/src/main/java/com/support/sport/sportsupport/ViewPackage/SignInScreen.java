@@ -12,6 +12,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.support.sport.sportsupport.Controller.Key;
 import com.support.sport.sportsupport.Controller.UserController;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.ViewPackage.Management.FragmentManagementPanel;
@@ -41,18 +43,27 @@ public class SignInScreen extends AppCompatActivity  {
     public void onEvent(RetrofitEvent event) {
 
         if(event.isRetrofitCompleted){
-            if(checkBoxManager.isChecked() || checkBoxTrainer.isChecked() || checkBoxOwner.isChecked()){
+            if(checkBoxManager.isChecked() || checkBoxTrainer.isChecked() && !Key.cMember.getStatue().equals("owner")){
                 Intent intent = new Intent(SignInScreen.this,FragmentManagementPanel.class);
                 intent.putExtra("checkboxManager",checkBoxManager.isChecked());
                 intent.putExtra("checkboxTrainer",checkBoxTrainer.isChecked());
                 intent.putExtra("checkboxOwner",checkBoxOwner.isChecked());
                 startActivity(intent);
+            }else if(checkBoxOwner.isChecked() && Key.cMember.getStatue().equals("owner")){
+                Intent intent = new Intent(SignInScreen.this,FragmentManagementPanel.class);
+                intent.putExtra("checkboxManager",checkBoxManager.isChecked());
+                intent.putExtra("checkboxTrainer",checkBoxTrainer.isChecked());
+                intent.putExtra("checkboxOwner",checkBoxOwner.isChecked());
+                Toast.makeText(getApplicationContext(), "owner gibi owner bee",Toast.LENGTH_LONG).show();
+                startActivity(intent);
             }
-            else if(checkBoxMember.isChecked()){
+            else if(checkBoxMember.isChecked() && !Key.cMember.getStatue().equals("owner")){
                 Intent intent2 = new Intent(SignInScreen.this,CustomerNavigationMenu.class);
                 startActivity(intent2);
             }else{
                 // Handle checkbox selections.
+                Toast.makeText(getApplicationContext(), "Please Pick Correct Membertype",Toast.LENGTH_LONG).show();
+
             }
         }else{
             Toast.makeText(getApplicationContext(), "Invalid",Toast.LENGTH_LONG).show();
