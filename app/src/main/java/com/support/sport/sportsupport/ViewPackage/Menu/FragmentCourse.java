@@ -37,9 +37,9 @@ public class FragmentCourse extends AppCompatActivity {
     public void onEvent(RetrofitEvent event) {
 
         if(event.isRetrofitCompleted){
-            Toast.makeText(getApplicationContext(), "OLDU BAŞAM OLDU",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "The process is successfully",Toast.LENGTH_LONG).show();
         }else{
-            Toast.makeText(getApplicationContext(), "Invalid",Toast.LENGTH_LONG).show();
+        //    Toast.makeText(getApplicationContext(), "Invalid process",Toast.LENGTH_LONG).show();
         }
     }
     @Override
@@ -64,13 +64,23 @@ public class FragmentCourse extends AppCompatActivity {
 
 
         Intent i = getIntent();
-       final Course c = (Course) i.getSerializableExtra("MyCourse");
-      final  int category = i.getIntExtra("category",-1);
-      //  int category =0;
+        final Course c = (Course) i.getSerializableExtra("MyCourse");
+        final  int category = i.getIntExtra("category",-1);
+        //  int category =0;
+        int find = 0;
+
+        if(Key.myClist!=null)
+        for(int l = 0 ; l < Key.myClist.size(); l++){
+            if(Key.myClist.get(l).getId()==c.getId()){
+                find =1;
+            }
+
+        }
+        final int cat = find;
 
         enrolldrop = findViewById(R.id.spec_course_drop);
-        if (category==0) enrolldrop.setText("ENROLL");
-        if (category==1) {
+        if (cat==0) enrolldrop.setText("ENROLL");
+        if (cat==1) {
             enrolldrop.setText("DROP");
             enrolldrop.setBackgroundColor(Color.RED);
         }
@@ -94,8 +104,8 @@ public class FragmentCourse extends AppCompatActivity {
             enrolldrop.setBackgroundColor(Color.GRAY);
         }
         */
-     //   quota.setText("Available Quota: "+c.getAvailableQuota()+"/"+c.getQuota());
-      final  int availableQuota = c.getAvailableQuota();
+        //   quota.setText("Available Quota: "+c.getAvailableQuota()+"/"+c.getQuota());
+        final  int availableQuota = c.getAvailableQuota();
 
 
         enrolldrop.setOnClickListener(new View.OnClickListener() {
@@ -111,27 +121,25 @@ public class FragmentCourse extends AppCompatActivity {
                                 public void onClick(View view) {
                                 }
                             });
-
                     snackbar.show();
-
                     */
 
 
                 }else{
-                    if(category==0) {
-                        setContentView(R.layout.activity_my_courses_screen);
+                    if(cat==0) {
+
 
 
 
                         CourseController courseC = new CourseController();
                         courseC.enrollCourse(c.getId(),Key.cMember.getId());
                         courseC.getMyCourses(Key.cMember.getId());
-                 //       Toast.makeText(FragmentCourse.this, "Succesfully Dropped!", Toast.LENGTH_LONG).show();
+                        //       Toast.makeText(FragmentCourse.this, "Succesfully Dropped!", Toast.LENGTH_LONG).show();
 
                         Toast.makeText(FragmentCourse.this, "Enrollment Completed!", Toast.LENGTH_LONG).show();
                         enrolldrop.setText("DROP");
                         enrolldrop.setBackgroundColor(Color.RED);
-                     //   category = 1;
+                        //   category = 1;
                     }else{
 
                         CourseController courseC = new CourseController();
@@ -140,7 +148,7 @@ public class FragmentCourse extends AppCompatActivity {
                         Toast.makeText(FragmentCourse.this, "Succesfully Dropped!", Toast.LENGTH_LONG).show();
                         enrolldrop.setText("ENROLL");
                         enrolldrop.setBackgroundColor(Color.parseColor("#3395ff"));
-                     //   category = 0;
+                        //   category = 0;
                     }
                 }
             }

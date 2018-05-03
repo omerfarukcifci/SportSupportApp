@@ -64,6 +64,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         holder.lecdayfreq.setText("Every "+c.getDeleteDay());
         holder.enddate.setText("Ends at: "+c.getDeleteDate());
 
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)

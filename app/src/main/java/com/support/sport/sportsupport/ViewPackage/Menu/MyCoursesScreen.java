@@ -32,7 +32,7 @@ public class MyCoursesScreen extends AppCompatActivity {
     public void onEvent(RetrofitEvent event) {
 
         if(event.isRetrofitCompleted){
-            Toast.makeText(getApplicationContext(), Key.myClist.get(0).getName()+"",Toast.LENGTH_LONG).show();
+           // Toast.makeText(getApplicationContext(), Key.myClist.get(0).getName()+"",Toast.LENGTH_LONG).show();
             textView = findViewById(R.id.coursetext);
             RecyclerView recyclerView = findViewById(R.id.my_courses_list);
             final Course[] courses = new Course[Key.myClist.size()];
@@ -67,7 +67,10 @@ public class MyCoursesScreen extends AppCompatActivity {
             }
 
         }else{
-            Toast.makeText(getApplicationContext(), "Invalid",Toast.LENGTH_LONG).show();
+            setContentView(R.layout.activity_my_courses_screen);
+            textView = findViewById(R.id.coursetext);
+       //     Toast.makeText(getApplicationContext(), "Invalid",Toast.LENGTH_LONG).show();
+            textView.setText("You have not enrolled to any courses yet.\nYou can see our open courses from Courses tab.");
         }
     }
 
@@ -90,7 +93,7 @@ public class MyCoursesScreen extends AppCompatActivity {
 
         CourseController courseC = new CourseController();
 
-       courseC.getMyCourses(8);
+        courseC.getMyCourses(8);
         Log.d("onCreate","onCreateonCreateonCreateonCreateonCreateonCreate");
 
 /*
@@ -98,13 +101,10 @@ public class MyCoursesScreen extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.my_courses_list);
         Course c1 = new Course("ZUMBA",50,40,"Monday","24/05/2019","Lewis Carroll","This Zumba Class is given by our new trainer. We hope to enjoy the class together! Join us on every monday!");
         Course c2 = new Course("PILATES",30,10,"Month","24/05/2019","Johnathan Swift","This class will be perfect for you. Give it a try, we hope to see you every month!");
-
         final Course[] courses = new Course[2];
         courses[0] = c1;
         courses[1] = c2;
-
         final Course[] coursestry = null;
-
         if (courses == null){
             textView.setText("You have not enrolled to any courses yet.\nYou can see our open courses from Courses tab.");
         }else {
@@ -120,15 +120,11 @@ public class MyCoursesScreen extends AppCompatActivity {
                     intent.putExtra("MyCourse",courses[position]);
                     intent.putExtra("category",1);
                     startActivity(intent);
-
                 }
-
                 @Override
                 public void onLongClick(View view, int position) {
-
                 }
             }));
-
         }
         */
     }
@@ -138,7 +134,7 @@ public class MyCoursesScreen extends AppCompatActivity {
         super.onResume();  // Always call the superclass method first
         Log.d("ONRESUME","resumeresumeresume");
 
-        }
+    }
     @Override
     public void onStart() {
         super.onStart();  // Always call the superclass method first
