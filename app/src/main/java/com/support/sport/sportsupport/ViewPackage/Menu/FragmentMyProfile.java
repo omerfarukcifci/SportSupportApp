@@ -1,9 +1,11 @@
 package com.support.sport.sportsupport.ViewPackage.Menu;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,15 +24,18 @@ public class FragmentMyProfile extends Fragment {
 
     Button buttonMySchedule,buttonMyCourses,buttonBecomeMember,buttonCancelMembership;
     TextView profileName,memberStatus;
+    Member member;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_my_profile,container,false);
-
+        /*if (Key.updatedProfile){
+            reload();
+        }*/
+        member = Key.cMember;
         profileName = rootView.findViewById(R.id.myprofile_name);
         memberStatus = rootView.findViewById(R.id.myprofile_status);
-        Member member = Key.cMember;
         profileName.setText("WELCOME "+member.getName().toUpperCase()+" "+member.getSurname().toUpperCase());
         memberStatus.setText("MEMBERSHIP STATUS : "+member.getStatus().toUpperCase());
 
@@ -63,4 +68,16 @@ public class FragmentMyProfile extends Fragment {
 
         return rootView;
     }
+
+    @Override
+    public void onResume(){
+        if (Key.updatedProfile){
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.detach(this).attach(this).commit();
+            member = Key.cMember;
+            Key.updatedProfile = false;
+        }
+        super.onResume();
+    }
+
 }

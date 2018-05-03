@@ -1,5 +1,6 @@
 package com.support.sport.sportsupport.ViewPackage.Menu;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -19,6 +20,7 @@ import com.support.sport.sportsupport.Controller.MyProfile;
 import com.support.sport.sportsupport.Controller.ProfileController;
 import com.support.sport.sportsupport.Model.ActivityPlan;
 import com.support.sport.sportsupport.Model.Member;
+import com.support.sport.sportsupport.ViewPackage.Management.FragmentManagementPanel;
 import com.support.sport.sportsupport.ViewPackage.R;
 import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
 import com.support.sport.sportsupport.ViewPackage.SignInScreen;
@@ -42,7 +44,7 @@ public class UpdateProfileScreen extends AppCompatActivity {
         if(event.isRetrofitCompleted){
 
             Toast.makeText(this, "Profile information updated ! ",Toast.LENGTH_LONG).show();
-            startActivity(new Intent(UpdateProfileScreen.this, SignInScreen.class));
+            //startActivity(new Intent(UpdateProfileScreen.this, SignInScreen.class));
 
         }else{
             Toast.makeText(this, "Error ! Profile hasn't updated. Try again.",Toast.LENGTH_LONG).show();
@@ -117,16 +119,17 @@ public class UpdateProfileScreen extends AppCompatActivity {
 
                 if(blankController == 0){
                     Member m = Key.cMember;
+                    String newpassword = null;
+                    if (updateNewPassword.length()==0){
+                        newpassword = null;
+                    }else newpassword = updateNewPassword.getText().toString();
 
                     MyProfile controller = new MyProfile();
-                    Key.cMember = controller.updateProfileInfo(m.getId(),updateName.getText().toString(),updateSurname.getText().toString(),
-                            updateNewUsername.getText().toString(),updateNewPassword.getText().toString(),
+                    controller.updateProfileInfo(m.getId(),updateName.getText().toString(),updateSurname.getText().toString(),
+                            updateNewUsername.getText().toString(),newpassword,
                             updateMail.getText().toString(),updateBirthday.getText().toString());
-
-
-
-
-                }else{
+                    Key.updatedProfile = true;
+               }else{
 
                     blankController =0;
                 }
@@ -185,5 +188,6 @@ public class UpdateProfileScreen extends AppCompatActivity {
         updateSurname.setText(m.getSurname());
         updateName.setText(m.getName());
     }
+
 
 }

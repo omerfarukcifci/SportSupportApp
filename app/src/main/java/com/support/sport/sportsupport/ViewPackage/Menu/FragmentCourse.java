@@ -37,7 +37,7 @@ public class FragmentCourse extends AppCompatActivity {
     public void onEvent(RetrofitEvent event) {
 
         if(event.isRetrofitCompleted){
-            Toast.makeText(getApplicationContext(), "The process is successfully",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "The process is successfull",Toast.LENGTH_LONG).show();
         }else{
         //    Toast.makeText(getApplicationContext(), "Invalid process",Toast.LENGTH_LONG).show();
         }
@@ -124,15 +124,11 @@ public class FragmentCourse extends AppCompatActivity {
                     snackbar.show();
                     */
 
-
                 }else{
                     if(cat==0) {
-
-
-
-
                         CourseController courseC = new CourseController();
                         courseC.enrollCourse(c.getId(),Key.cMember.getId());
+                        Key.courseUpdated = true;
                       //  courseC.getMyCourses(Key.cMember.getId());
                         //       Toast.makeText(FragmentCourse.this, "Succesfully Dropped!", Toast.LENGTH_LONG).show();
 
@@ -144,6 +140,7 @@ public class FragmentCourse extends AppCompatActivity {
 
                         CourseController courseC = new CourseController();
                         courseC.dropCourse(c.getId(), Key.cMember.getId());
+                        Key.courseUpdated = true;
                    //     courseC.getMyCourses(Key.cMember.getId());
                         Toast.makeText(FragmentCourse.this, "Succesfully Dropped!", Toast.LENGTH_LONG).show();
                         enrolldrop.setText("ENROLL");
@@ -154,7 +151,6 @@ public class FragmentCourse extends AppCompatActivity {
             }
         });
 
-
-
     }
+
 }

@@ -15,6 +15,7 @@ import com.support.sport.sportsupport.Controller.ProfileController;
 import com.support.sport.sportsupport.Model.Member;
 
 
+import com.support.sport.sportsupport.ViewPackage.Management.FragmentManagementPanel;
 import com.support.sport.sportsupport.ViewPackage.R;
 import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
 import com.support.sport.sportsupport.ViewPackage.SignInScreen;
@@ -78,11 +79,11 @@ public class CancelMembershipScreen extends AppCompatActivity {
 
                     MyProfile controller = new MyProfile();
                     if(username.getText().toString().compareTo(m.getUsername())==0 && password.getText().toString().compareTo(m.getPassword())==0){
-                        Key.cMember=controller.cancelMembership(username.getText().toString(),null);
+                        controller.cancelMembership(username.getText().toString(),"2018-08-08");
+                        Key.updatedProfile = true;
                     }else{
                         Toast.makeText(CancelMembershipScreen.this, "Username or password invalid ! ", Toast.LENGTH_LONG).show();
                     }
-
 
                    // Member temp = cr.readOne(username.getText().toString(), password.getText().toString());
                 //    if (temp != null) {
@@ -114,4 +115,5 @@ public class CancelMembershipScreen extends AppCompatActivity {
         }
         return 0;
     }
+
 }

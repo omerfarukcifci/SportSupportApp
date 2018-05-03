@@ -7,8 +7,13 @@ package com.support.sport.sportsupport.ViewPackage;
 public class RetrofitEvent {
 
     public boolean isRetrofitCompleted;
+    public int pID = 0;
     public RetrofitEvent(boolean b){
         isRetrofitCompleted = b;
+    }
+    public RetrofitEvent(boolean b, int i) {
+        isRetrofitCompleted = b;
+        pID = i;
     }
 
 }

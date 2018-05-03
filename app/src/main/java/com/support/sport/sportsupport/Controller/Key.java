@@ -48,6 +48,13 @@ public class Key {
     public static List<Course> allClist = null;
     public static List<Course> myClist = null;
 
+    public static boolean updatedProfile = false;
+
+    public static boolean courseUpdated = false;
+
+
+
+
     public  List<Course> getMyClist() {
         return myClist;
     }

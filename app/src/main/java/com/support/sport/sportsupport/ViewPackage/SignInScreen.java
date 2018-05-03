@@ -54,7 +54,6 @@ public class SignInScreen extends AppCompatActivity  {
                 intent.putExtra("checkboxManager",checkBoxManager.isChecked());
                 intent.putExtra("checkboxTrainer",checkBoxTrainer.isChecked());
                 intent.putExtra("checkboxOwner",checkBoxOwner.isChecked());
-                Toast.makeText(getApplicationContext(), "owner gibi owner bee",Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
             else if(checkBoxMember.isChecked() && !Key.cMember.getStatue().equals("owner")){

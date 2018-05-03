@@ -20,8 +20,6 @@ public class FragmentManagementPanel extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_management_panel);
 
-
-
         Intent intent = getIntent();
         boolean manager = intent.getExtras().getBoolean("checkboxManager");
         boolean owner = intent.getExtras().getBoolean("checkboxOwner");

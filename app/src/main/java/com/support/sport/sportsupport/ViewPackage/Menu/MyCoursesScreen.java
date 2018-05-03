@@ -74,23 +74,18 @@ public class MyCoursesScreen extends AppCompatActivity {
         }
     }
 
-    public void onDestroy() {
 
+    @Override
+    public void onStop() {
+        super.onStop();
         EventBus.getDefault().unregister(this);
-        super.onDestroy();
     }
-
-
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_courses_screen);
-        EventBus.getDefault().register(this);
-
-
         CourseController courseC = new CourseController();
 
         courseC.getMyCourses(Key.cMember.getId());
@@ -130,15 +125,13 @@ public class MyCoursesScreen extends AppCompatActivity {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();  // Always call the superclass method first
-        Log.d("ONRESUME","resumeresumeresume");
-
-    }
-    @Override
     public void onStart() {
         super.onStart();  // Always call the superclass method first
+        EventBus.getDefault().register(this);
         Log.d("onStart","startsatart");
 
+
     }
+
+
 }

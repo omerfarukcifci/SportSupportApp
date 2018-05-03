@@ -49,7 +49,7 @@ public class MyProfile extends AppController {
         memberCall.enqueue(new Callback<Member>() {
             @Override
             public void onResponse(Call<Member> call, Response<Member> response) {
-                Key.updatedMember = response.body();
+                Key.cMember = response.body();
                 Log.d("success","Spring success");
                 EventBus.getDefault().post(new RetrofitEvent(true));
             }
@@ -61,7 +61,7 @@ public class MyProfile extends AppController {
             }
         });
 
-        return Key.updatedMember;
+        return Key.cMember;
     }
 
     public Member cancelMembership(String username, String endDate){
@@ -70,7 +70,7 @@ public class MyProfile extends AppController {
         memCall.enqueue(new Callback<Member>() { 
             @Override
             public void onResponse(Call<Member> call, Response<Member> response) {
-                Key.cancelledMember = response.body();
+                Key.cMember = response.body();
                 Log.d("success","Spring success");
                 EventBus.getDefault().post(new RetrofitEvent(true));
             }
@@ -83,7 +83,7 @@ public class MyProfile extends AppController {
         });
 
 
-        return Key.cancelledMember;
+        return Key.cMember;
     }
 
 

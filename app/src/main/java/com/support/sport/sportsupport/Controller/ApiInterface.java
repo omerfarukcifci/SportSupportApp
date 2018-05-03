@@ -74,7 +74,7 @@ public interface ApiInterface {
 
     @GET("branch/add")
     Call<Branch> createBranch(@Query("name") String name, @Query("quota") int quota,
-                              @Query("phoneNumber") long phoneNumber, @Query("city") String city,
+                              @Query("telephoneNumber") long phoneNumber, @Query("city") String city,
                               @Query("district") String district, @Query("address") String address);
 
 
