@@ -67,7 +67,7 @@ public class MyProfile extends AppController {
     public Member cancelMembership(String username, String endDate){
 
         Call<Member> memCall = apiService.cancelMembership(username,endDate);
-        memCall.enqueue(new Callback<Member>() {
+        memCall.enqueue(new Callback<Member>() { 
             @Override
             public void onResponse(Call<Member> call, Response<Member> response) {
                 Key.cancelledMember = response.body();

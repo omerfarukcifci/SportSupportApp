@@ -1,6 +1,7 @@
 package com.support.sport.sportsupport.Controller;
 
 import com.support.sport.sportsupport.Model.ActivityPlan;
+import com.support.sport.sportsupport.Model.Branch;
 import com.support.sport.sportsupport.Model.ClassMemberList;
 import com.support.sport.sportsupport.Model.Course;
 import com.support.sport.sportsupport.Model.Manager;
@@ -37,6 +38,8 @@ public class Key {
     public static Manager getNewManager() {
         return newManager;
     }
+
+    public static Branch addedBranch=null;
 
     public static List<ActivityPlan> memberSchedule=null;
     public static Member updatedMember=null;

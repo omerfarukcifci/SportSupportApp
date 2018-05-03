@@ -6,10 +6,12 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 import com.support.sport.sportsupport.Model.ActivityPlan;
+import com.support.sport.sportsupport.Model.Branch;
 import com.support.sport.sportsupport.Model.ClassMemberList;
 import com.support.sport.sportsupport.Model.Course;
 import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.Model.Member;
+import com.support.sport.sportsupport.ViewPackage.Menu.CancelMembershipScreen;
 
 import java.util.Date;
 import java.util.List;
@@ -69,6 +71,11 @@ public interface ApiInterface {
 
     @GET("manager/all")
     Call<List<Manager>> allManagers();
+
+    @GET("branch/add")
+    Call<Branch> createBranch(@Query("name") String name, @Query("quota") int quota,
+                              @Query("phoneNumber") long phoneNumber, @Query("city") String city,
+                              @Query("district") String district, @Query("address") String address);
 
 
 }

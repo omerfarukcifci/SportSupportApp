@@ -1,17 +1,27 @@
 package com.support.sport.sportsupport.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Faruk on 2.05.2018.
  */
 
 public class Branch {
 
+    @SerializedName("id")
+    private int id;
+    @SerializedName("name")
     private String name;
+    @SerializedName("quota")
     private int quota;
+    @SerializedName("phoneNumber")
     private long phoneNumber;
+    @SerializedName("city")
     private String city;
+    @SerializedName("district")
     private String district;
-    private String adress;
+    @SerializedName("address")
+    private String address;
 
     public Branch(String name, int quota, long phoneNumber, String city, String district, String adress) {
         this.name = name;
@@ -19,9 +29,15 @@ public class Branch {
         this.phoneNumber = phoneNumber;
         this.city = city;
         this.district = district;
-        this.adress = adress;
+        this.address = adress;
     }
 
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }
@@ -63,10 +79,10 @@ public class Branch {
     }
 
     public String getAdress() {
-        return adress;
+        return address;
     }
 
     public void setAdress(String adress) {
-        this.adress = adress;
+        this.address = adress;
     }
 }
