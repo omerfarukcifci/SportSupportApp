@@ -17,14 +17,14 @@
         <TextView
             android:id="@+id/trainee_name"
             android:layout_marginTop="8dp"
-            android:text="User Name"
+            android:text="Trainee Name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="18sp"/>
         <TextView
             android:id="@+id/trainee_surname"
-            android:text="User Surname"
+            android:text="Trainee Surname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimaryDark"
@@ -66,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:src="@android:drawable/ic_menu_manage"
+            android:src="@android:drawable/ic_menu_edit"
             android:backgroundTint="@color/colorPrimary"/>
         <ImageButton
             android:id="@+id/about_trainee_button"

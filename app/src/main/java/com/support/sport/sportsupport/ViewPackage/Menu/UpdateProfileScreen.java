@@ -2,6 +2,7 @@ package com.support.sport.sportsupport.ViewPackage.Menu;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,9 +14,19 @@ import android.widget.Toast;
 
 import com.support.sport.sportsupport.Controller.ApiClient;
 import com.support.sport.sportsupport.Controller.ApiInterface;
+import com.support.sport.sportsupport.Controller.Key;
+import com.support.sport.sportsupport.Controller.MyProfile;
 import com.support.sport.sportsupport.Controller.ProfileController;
+import com.support.sport.sportsupport.Model.ActivityPlan;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.ViewPackage.R;
+import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
+import com.support.sport.sportsupport.ViewPackage.SignInScreen;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+
+import java.util.List;
 
 public class UpdateProfileScreen extends AppCompatActivity {
 
@@ -23,6 +34,36 @@ public class UpdateProfileScreen extends AppCompatActivity {
             updateMail,updateBirthday,updateName,updateSurname;
     private Button delete,update;
     final Context context = this;
+
+
+    @Subscribe
+    public void onEvent(RetrofitEvent event) {
+
+        if(event.isRetrofitCompleted){
+
+            Toast.makeText(this, "Profile information updated ! ",Toast.LENGTH_LONG).show();
+            startActivity(new Intent(UpdateProfileScreen.this, SignInScreen.class));
+
+        }else{
+            Toast.makeText(this, "Error ! Profile hasn't updated. Try again.",Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,15 +80,8 @@ public class UpdateProfileScreen extends AppCompatActivity {
         update =    findViewById(R.id.buttonUpdate);
         delete = findViewById(R.id.buttonDelete);
 
-        Member m = new Member();
-        m.setAge(null);
-        m.setMail("testuser@gmail.com");
-        m.setUsername("testuser");
-        m.setName("Jane");
-        m.setSurname("Doe");
-
-        fillpreform(m);
-
+        Member m1 = Key.cMember;
+        fillpreform(m1);
 
 
         /**/
@@ -75,13 +109,23 @@ public class UpdateProfileScreen extends AppCompatActivity {
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // BURAYI DOLDUR
+
+
                 int blankController = 0;
                 blankController = controlBlank(updateOldPassword);
                 blankController += controlBlank(updateOldUsername);
 
                 if(blankController == 0){
-                    Toast.makeText(UpdateProfileScreen.this, "Profile Updated", Toast.LENGTH_LONG).show();
+                    Member m = Key.cMember;
+
+                    MyProfile controller = new MyProfile();
+                    Key.cMember = controller.updateProfileInfo(m.getId(),updateName.getText().toString(),updateSurname.getText().toString(),
+                            updateNewUsername.getText().toString(),updateNewPassword.getText().toString(),
+                            updateMail.getText().toString(),updateBirthday.getText().toString());
+
+
+
+
                 }else{
 
                     blankController =0;

@@ -36,7 +36,7 @@ public class FragmentAllCourses extends Fragment {
         super.onSaveInstanceState(savedInstanceState);
     }
 
-    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    @Subscribe
     public void onEvent(RetrofitEvent event) {
 
         if(event.isRetrofitCompleted){

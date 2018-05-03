@@ -9,16 +9,52 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.support.sport.sportsupport.Controller.Key;
+import com.support.sport.sportsupport.Controller.MyProfile;
 import com.support.sport.sportsupport.Controller.ProfileController;
 import com.support.sport.sportsupport.Model.Member;
 
 
 import com.support.sport.sportsupport.ViewPackage.R;
+import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
+import com.support.sport.sportsupport.ViewPackage.SignInScreen;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 public class CancelMembershipScreen extends AppCompatActivity {
 
     private EditText username,password;
     private Button cancel;
+
+    @Subscribe
+    public void onEvent(RetrofitEvent event) {
+
+        if(event.isRetrofitCompleted){
+
+            Toast.makeText(this, "Membership cancelled successfully ! ",Toast.LENGTH_LONG).show();
+            //
+            //startActivity(new Intent(CancelMembershipScreen.this, CustomerNavigationMenu.class));
+
+        }else{
+            Toast.makeText(this, "Error ! Profile hasn't cancelled. Try again.",Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +74,19 @@ public class CancelMembershipScreen extends AppCompatActivity {
                 ProfileController cr = new ProfileController();
                 if(blankController == 0){
 
+                    Member m = Key.cMember;
+
+                    MyProfile controller = new MyProfile();
+                    if(username.getText().toString().compareTo(m.getUsername())==0 && password.getText().toString().compareTo(m.getPassword())==0){
+                        Key.cMember=controller.cancelMembership(username.getText().toString(),null);
+                    }else{
+                        Toast.makeText(CancelMembershipScreen.this, "Username or password invalid ! ", Toast.LENGTH_LONG).show();
+                    }
+
 
                    // Member temp = cr.readOne(username.getText().toString(), password.getText().toString());
                 //    if (temp != null) {
-                        Toast.makeText(CancelMembershipScreen.this, "Successfully cancel membership", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(CancelMembershipScreen.this, "Successfully cancel membership", Toast.LENGTH_LONG).show();
                   //      Toast.makeText(SignInActivity.this, "Hello " + temp.getName() + " :)", Toast.LENGTH_LONG).show();
                   //      Intent intent = new Intent(SignInActivity.this, MenuActivity.class);
                   //      startActivity(intent);
