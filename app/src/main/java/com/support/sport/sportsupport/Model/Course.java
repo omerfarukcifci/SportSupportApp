@@ -10,31 +10,11 @@ import java.util.Date;
  */
 
 
-@SuppressWarnings("serial")
+
 public class Course implements Serializable{
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setStartDate(String startDate) {
-        this.startDate = startDate;
-    }
-
-    public void setEndDate(String endDate) {
-        this.endDate = endDate;
-    }
-
-    public void setCurrentDate(String currentDate) {
-        this.currentDate = currentDate;
-    }
-
     @SerializedName("id")
     private int id;
+
     @SerializedName("name")
     private String name;
     @SerializedName("quota")
@@ -49,20 +29,7 @@ public class Course implements Serializable{
     private int trainerId;
     @SerializedName("species")
     private String species;
-
-    public String getStartDate() {
-        return startDate;
-    }
-
-    public String getEndDate() {
-        return endDate;
-    }
-
-    public String getCurrentDate() {
-        return currentDate;
-    }
-
-    @SerializedName("cDate")
+    @SerializedName("currentDate")
     private String currentDate;
     @SerializedName("description")
     private String description;
@@ -117,6 +84,18 @@ public class Course implements Serializable{
     public void setBranchId(int branchId) {
         this.branchId = branchId;
     }
+    public String getStartDate() {
+        return startDate;
+    }
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+    public String getEndDate() {
+        return endDate;
+    }
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
     public int getTrainerId() {
         return trainerId;
     }
@@ -129,6 +108,12 @@ public class Course implements Serializable{
     public void setSpecies(String species) {
         this.species = species;
     }
+    public String getCurrentDate() {
+        return currentDate;
+    }
+    public void setCurrentDate(String currentDate) {
+        this.currentDate = currentDate;
+    }
     public String getDescription() {
         return description;
     }
@@ -140,6 +125,12 @@ public class Course implements Serializable{
     }
     public void setAvailableQuota(int availableQuota) {
         this.availableQuota = availableQuota;
+    }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Course(String name, int quota, int availableQuota, String day, String end, String trainer, String text){

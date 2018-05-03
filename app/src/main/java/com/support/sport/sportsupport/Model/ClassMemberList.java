@@ -1,11 +1,16 @@
 package com.support.sport.sportsupport.Model;
 
-public class ClassMemberList {
+import com.google.gson.annotations.SerializedName;
 
+public class ClassMemberList {
+	@SerializedName("id")
 	private int id;
-	
+
+	@SerializedName("courseId")
 	private int courseId;
+	@SerializedName("memberId")
 	private int memberId;
+	@SerializedName("attendace")
 	private int attendance;
 	
 	

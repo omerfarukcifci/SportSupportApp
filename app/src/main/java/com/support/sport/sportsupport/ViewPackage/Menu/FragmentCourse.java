@@ -10,14 +10,51 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.support.sport.sportsupport.Controller.CourseController;
+import com.support.sport.sportsupport.Controller.Key;
 import com.support.sport.sportsupport.Model.Course;
+import com.support.sport.sportsupport.ViewPackage.Management.FragmentManagementPanel;
 import com.support.sport.sportsupport.ViewPackage.R;
+import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
+import com.support.sport.sportsupport.ViewPackage.SignInScreen;
 import com.support.sport.sportsupport.ViewPackage.SignUpScreen;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class FragmentCourse extends AppCompatActivity {
 
     TextView title, date, trainer, freq, desc,quota;
     Button enrolldrop;
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onEvent(RetrofitEvent event) {
+
+        if(event.isRetrofitCompleted){
+            Toast.makeText(getApplicationContext(), "OLDU BAŞAM OLDU",Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "Invalid",Toast.LENGTH_LONG).show();
+        }
+    }
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +64,9 @@ public class FragmentCourse extends AppCompatActivity {
 
 
         Intent i = getIntent();
-        Course c = (Course) i.getSerializableExtra("MyCourse");
-      //  int category = i.getIntExtra("category",-1);
-        int category =1;
+       final Course c = (Course) i.getSerializableExtra("MyCourse");
+      final  int category = i.getIntExtra("category",-1);
+      //  int category =0;
 
         enrolldrop = findViewById(R.id.spec_course_drop);
         if (category==0) enrolldrop.setText("ENROLL");
@@ -46,23 +83,24 @@ public class FragmentCourse extends AppCompatActivity {
         quota = findViewById(R.id.spec_course_quota);
 
         title.setText(c.getName()+" CLASS");
-        date.setText("Ends at: "+c.getDeleteDate());
-        trainer.setText("Trainer: "+c.getDeleteTrainer());
+
+        date.setText("Ends at: "+c.getEndDate());
+        trainer.setText("Trainer: "+c.getTrainerId());
         freq.setText("Every "+c.getDeleteDay());
         desc.setText(c.getDescription());
-        quota.setText("Available Quota: 1/"+c.getQuota());
+        quota.setText("Available Quota: "+c.getAvailableQuota()+"/"+c.getQuota());
       /*  if(c.getAvailableQuota()==0) {
             enrolldrop.setClickable(false);
             enrolldrop.setBackgroundColor(Color.GRAY);
         }
         */
      //   quota.setText("Available Quota: "+c.getAvailableQuota()+"/"+c.getQuota());
+      final  int availableQuota = c.getAvailableQuota();
 
 
         enrolldrop.setOnClickListener(new View.OnClickListener() {
 
-            int availableQuota = 1;
-            int category = 1;
+
             @Override
             public void onClick(View view) {
                 if (availableQuota == 0) {
@@ -81,16 +119,34 @@ public class FragmentCourse extends AppCompatActivity {
 
                 }else{
                     if(category==0) {
+                        setContentView(R.layout.activity_my_courses_screen);
+
+
+
+                        CourseController courseC = new CourseController();
+                        courseC.enrollCourse(c.getId(),Key.cMember.getId());
+                        courseC.getMyCourses(Key.cMember.getId());
+                 //       Toast.makeText(FragmentCourse.this, "Succesfully Dropped!", Toast.LENGTH_LONG).show();
+
                         Toast.makeText(FragmentCourse.this, "Enrollment Completed!", Toast.LENGTH_LONG).show();
                         enrolldrop.setText("DROP");
                         enrolldrop.setBackgroundColor(Color.RED);
+                     //   category = 1;
                     }else{
+
+                        CourseController courseC = new CourseController();
+                        courseC.dropCourse(c.getId(), Key.cMember.getId());
+                        courseC.getMyCourses(Key.cMember.getId());
                         Toast.makeText(FragmentCourse.this, "Succesfully Dropped!", Toast.LENGTH_LONG).show();
                         enrolldrop.setText("ENROLL");
                         enrolldrop.setBackgroundColor(Color.parseColor("#3395ff"));
+                     //   category = 0;
                     }
                 }
             }
         });
+
+
+
     }
 }
