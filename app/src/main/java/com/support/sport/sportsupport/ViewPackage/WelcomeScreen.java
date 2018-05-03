@@ -18,17 +18,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.support.sport.sportsupport.Controller.ApiClient;
-import com.support.sport.sportsupport.Controller.ApiInterface;
-import com.support.sport.sportsupport.Controller.AppController;
-import com.support.sport.sportsupport.Controller.Key;
-import com.support.sport.sportsupport.Controller.UserController;
-
-import java.io.IOException;
-
-import de.greenrobot.event.EventBus;
 
 public class WelcomeScreen extends AppCompatActivity {
 

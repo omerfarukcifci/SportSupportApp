@@ -3,11 +3,8 @@ package com.support.sport.sportsupport.ViewPackage;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
-
 import android.os.AsyncTask;
-
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -15,20 +12,14 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import com.support.sport.sportsupport.Controller.Key;
 import com.support.sport.sportsupport.Controller.UserController;
 import com.support.sport.sportsupport.Model.Member;
-import com.support.sport.sportsupport.Controller.ApiClient;
-import com.support.sport.sportsupport.Controller.ApiInterface;
-import com.support.sport.sportsupport.Controller.ProfileController;
 import com.support.sport.sportsupport.ViewPackage.Management.FragmentManagementPanel;
 import com.support.sport.sportsupport.ViewPackage.Menu.CustomerNavigationMenu;
-import com.support.sport.sportsupport.ViewPackage.Menu.CustomerNavigationMenu;
-
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 import java.util.List;
 
-import de.greenrobot.event.EventBus;
 
 /**
  * A login screen that offers login via email/password.
@@ -46,10 +37,10 @@ public class SignInScreen extends AppCompatActivity  {
     private Button signInButton;
     private CheckBox checkBoxMember,checkBoxManager,checkBoxOwner,checkBoxTrainer;
 
+    @Subscribe
     public void onEvent(RetrofitEvent event) {
 
         if(event.isRetrofitCompleted){
-            Toast.makeText(getApplicationContext(), Key.cMember.getId()+"",Toast.LENGTH_LONG).show();
             if(checkBoxManager.isChecked() || checkBoxTrainer.isChecked() || checkBoxOwner.isChecked()){
                 Intent intent = new Intent(SignInScreen.this,FragmentManagementPanel.class);
                 intent.putExtra("checkboxManager",checkBoxManager.isChecked());
@@ -67,20 +58,22 @@ public class SignInScreen extends AppCompatActivity  {
             Toast.makeText(getApplicationContext(), "Invalid",Toast.LENGTH_LONG).show();
         }
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
 
-    public void onDestroy() {
-
+    @Override
+    public void onStop() {
+        super.onStop();
         EventBus.getDefault().unregister(this);
-        super.onDestroy();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-        // Set up the login form.
-
-        EventBus.getDefault().register(this);
 
         mUsernameView= (EditText) findViewById(R.id.login_username);
         mPasswordView = (EditText) findViewById(R.id.login_password);

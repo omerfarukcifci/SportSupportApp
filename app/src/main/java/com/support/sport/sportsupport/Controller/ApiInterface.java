@@ -44,7 +44,7 @@ public interface ApiInterface {
     @GET("course/drop/{id}")
     Call<ClassMemberList> dropCourse(@Path("id") int courseId, @Query("memberId") int memberId);
 
-    
+
     //myprofile
     //class diagramdaki loadmemberinfo için retrofite gerek yok, loginde zaten biliglerini aldık, boş bir şey yazabilirisniz
     //viewbranchfullness i ben yaparım

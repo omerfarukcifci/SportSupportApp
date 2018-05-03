@@ -42,7 +42,7 @@
         <activity android:name=".Menu.PaymentScreen" />
         <activity android:name=".Menu.CancelMembershipScreen" />
         <activity android:name=".Menu.MyCoursesScreen" />
-        <activity android:name=".Menu.FragmentCourse"/>
+        <activity android:name=".Menu.FragmentCourse" />
         <activity android:name=".Management.FragmentManagementPanel" />
         <activity android:name=".Management.ManagerManagementScreen" />
         <activity android:name=".Management.UserManagementScreen" />
@@ -55,7 +55,7 @@
         <activity android:name=".Management.BranchAddScreen" />
         <activity android:name=".Management.CourseAddScreen" />
         <activity android:name=".Management.TrainerAddScreen" />
-        <activity android:name=".Adapter.UserAddScreen"></activity>
+        <activity android:name=".Adapter.UserAddScreen" />
     </application>
 
 </manifest>

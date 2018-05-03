@@ -6,10 +6,8 @@ import android.widget.Toast;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
 
-import java.io.IOException;
-import java.util.Date;
+import org.greenrobot.eventbus.EventBus;
 
-import de.greenrobot.event.EventBus;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -39,7 +37,7 @@ public class UserController extends AppController{
         });
     }
 
-    public void signIn(String name, String surname, String username, String password, String mail, Date age){
+    public void signIn(String name, String surname, String username, String password, String mail, String age){
         Call<Member> regCall = apiService.registerMember(name,surname,username, password,mail,age);
         regCall.enqueue(new Callback<Member>() {
             @Override

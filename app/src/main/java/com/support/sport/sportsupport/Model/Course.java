@@ -1,5 +1,7 @@
 package com.support.sport.sportsupport.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -11,15 +13,60 @@ import java.util.Date;
 @SuppressWarnings("serial")
 public class Course implements Serializable{
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setCurrentDate(String currentDate) {
+        this.currentDate = currentDate;
+    }
+
+    @SerializedName("id")
+    private int id;
+    @SerializedName("name")
     private String name;
+    @SerializedName("quota")
     private int quota;
+    @SerializedName("branchId")
     private int branchId;
-    private Date startDate;
-    private Date endDate;
+    @SerializedName("startDate")
+    private String startDate;
+    @SerializedName("endDate")
+    private String endDate;
+    @SerializedName("trainerId")
     private int trainerId;
+    @SerializedName("species")
     private String species;
-    private Date currentDate;
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public String getCurrentDate() {
+        return currentDate;
+    }
+
+    @SerializedName("cDate")
+    private String currentDate;
+    @SerializedName("description")
     private String description;
+    @SerializedName("availableQuota")
     private int availableQuota;
 
     public String getDeleteDate() {
@@ -70,18 +117,6 @@ public class Course implements Serializable{
     public void setBranchId(int branchId) {
         this.branchId = branchId;
     }
-    public Date getStartDate() {
-        return startDate;
-    }
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
-    }
-    public Date getEndDate() {
-        return endDate;
-    }
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
     public int getTrainerId() {
         return trainerId;
     }
@@ -93,12 +128,6 @@ public class Course implements Serializable{
     }
     public void setSpecies(String species) {
         this.species = species;
-    }
-    public Date getCurrentDate() {
-        return currentDate;
-    }
-    public void setCurrentDate(Date currentDate) {
-        this.currentDate = currentDate;
     }
     public String getDescription() {
         return description;
@@ -123,7 +152,7 @@ public class Course implements Serializable{
         this.description=text;
     }
 
-    public Course(String name, int quota, int branchId, Date startDate, Date endDate, int trainerId, String species, Date currentDate, String description, int availableQuota){
+    public Course(String name, int quota, int branchId, String startDate, String endDate, int trainerId, String species, String currentDate, String description, int availableQuota){
         this.name = name;
         this.quota = quota;
         this.branchId = branchId;
