@@ -1,5 +1,6 @@
 package com.support.sport.sportsupport.Controller;
 
+import com.support.sport.sportsupport.Model.ActivityPlan;
 import com.support.sport.sportsupport.Model.ClassMemberList;
 import com.support.sport.sportsupport.Model.Course;
 import com.support.sport.sportsupport.Model.Manager;
@@ -22,6 +23,7 @@ public class Key {
     public Member getCMember(){
         return cMember;
     }
+    public void setcMember(Member member){cMember=member;}
     public Course getOneCourse(){
         return oneCourse;
     }
@@ -30,6 +32,9 @@ public class Key {
         return newManager;
     }
 
+    public static List<ActivityPlan> memberSchedule=null;
+    public static Member updatedMember=null;
+    public static Member cancelledMember=null;
     public static ClassMemberList enrolledClassMemberList =null;
     public static List<Course> allClist = null;
     public static List<Course> myClist = null;

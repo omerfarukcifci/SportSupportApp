@@ -1,14 +1,19 @@
 package com.support.sport.sportsupport.Model;
 
 
-public class ActivityPlan {
-	
+import com.google.gson.annotations.SerializedName;
 
+public class ActivityPlan {
+
+	@SerializedName("id")
 	private int id;
-	
+	@SerializedName("moveId")
 	private int moveId;
+	@SerializedName("memberId")
 	private int memberId;
+	@SerializedName("sets")
 	private int sets;
+	@SerializedName("status")
 	private boolean status;
 	
 	

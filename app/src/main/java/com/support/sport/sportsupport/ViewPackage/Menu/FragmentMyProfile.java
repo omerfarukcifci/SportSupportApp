@@ -8,7 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
+import com.support.sport.sportsupport.Controller.Key;
+import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.ViewPackage.R;
 
 /**
@@ -18,11 +21,18 @@ import com.support.sport.sportsupport.ViewPackage.R;
 public class FragmentMyProfile extends Fragment {
 
     Button buttonMySchedule,buttonMyCourses,buttonBecomeMember,buttonCancelMembership;
+    TextView profileName,memberStatus;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_my_profile,container,false);
+
+        profileName = rootView.findViewById(R.id.myprofile_name);
+        memberStatus = rootView.findViewById(R.id.myprofile_status);
+        Member member = Key.cMember;
+        profileName.setText("WELCOME "+member.getName().toUpperCase()+" "+member.getSurname().toUpperCase());
+        memberStatus.setText("MEMBERSHIP STATUS : "+member.getStatus().toUpperCase());
 
         buttonMySchedule = (Button) rootView.findViewById(R.id.my_schedule_button);
         buttonMySchedule.setOnClickListener(new View.OnClickListener() {
