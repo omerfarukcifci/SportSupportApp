@@ -44,7 +44,7 @@ public class UpdateProfileScreen extends AppCompatActivity {
         if(event.isRetrofitCompleted){
 
             Toast.makeText(this, "Profile information updated ! ",Toast.LENGTH_LONG).show();
-            //startActivity(new Intent(UpdateProfileScreen.this, SignInScreen.class));
+            startActivity(new Intent(UpdateProfileScreen.this, CustomerNavigationMenu.class));
 
         }else{
             Toast.makeText(this, "Error ! Profile hasn't updated. Try again.",Toast.LENGTH_LONG).show();

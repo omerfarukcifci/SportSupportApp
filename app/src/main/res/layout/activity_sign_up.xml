@@ -136,7 +136,7 @@
                 android:layout_margin="30dp"
                 android:layout_marginTop="16dp"
                 android:background="@color/colorPrimary"
-                android:text="UPDATE"
+                android:text="SIGN UP"
                 android:textStyle="bold" />
 
         </LinearLayout>

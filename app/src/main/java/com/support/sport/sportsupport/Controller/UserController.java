@@ -37,16 +37,20 @@ public class UserController extends AppController{
         });
     }
 
-    public void signIn(String name, String surname, String username, String password, String mail, String age){
+    public void signUp(String name, String surname, String username, String password, String mail, String age){
         Call<Member> regCall = apiService.registerMember(name,surname,username, password,mail,age);
         regCall.enqueue(new Callback<Member>() {
             @Override
             public void onResponse(Call<Member> call, Response<Member> response) {
                 Key.cMember = response.body();
+                Log.d("success","Spring success");
+                EventBus.getDefault().post(new RetrofitEvent(true));
             }
             @Override
             public void onFailure(Call<Member> call, Throwable t) {
                 //Toast.makeText("Spring Error",Toast.LENGTH_LONG).show();
+                Log.d("failure","Spring error");
+                EventBus.getDefault().post(new RetrofitEvent(false));
             }
         });
     }

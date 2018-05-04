@@ -25,6 +25,9 @@ import android.widget.Toast;
 import com.support.sport.sportsupport.ViewPackage.R;
 import com.support.sport.sportsupport.ViewPackage.WelcomeScreen;
 
+import java.text.DecimalFormat;
+import java.util.Random;
+
 public class CustomerNavigationMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -155,7 +158,7 @@ public class CustomerNavigationMenu extends AppCompatActivity
                 viewIsAtHome = false;
                 break;
             case R.id.nav_fullness:
-                fullnessDialog(45.5);
+                fullnessDialog();
                 viewIsAtHome = false;
                 break;
 
@@ -177,7 +180,14 @@ public class CustomerNavigationMenu extends AppCompatActivity
 
     }
 
-    private void fullnessDialog(double ratio){
+    private void fullnessDialog(){
+        double rangeMin=0;
+        double rangeMax=100;
+        Random r = new Random();
+        double ratio = rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+        DecimalFormat df = new DecimalFormat();
+        df.setMaximumFractionDigits(1);
+
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this)
                 .setCancelable(true);
         LayoutInflater inflater = this.getLayoutInflater();
@@ -186,7 +196,7 @@ public class CustomerNavigationMenu extends AppCompatActivity
         dialogBuilder.setCancelable(true);
 
         TextView textView = dialogView.findViewById(R.id.txt_full_ratio);
-        textView.setText(ratio+"%");
+        textView.setText(df.format(ratio)+"%");
         ProgressBar progressBar = dialogView.findViewById(R.id.fullness_bar_progress);
         progressBar.setProgress((int)ratio);
         Button button = dialogView.findViewById(R.id.full_dialog_ok);

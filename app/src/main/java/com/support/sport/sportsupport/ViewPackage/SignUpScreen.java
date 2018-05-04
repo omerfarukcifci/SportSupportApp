@@ -18,9 +18,15 @@ import android.widget.Toast;
 
 import com.support.sport.sportsupport.Controller.ApiClient;
 import com.support.sport.sportsupport.Controller.ApiInterface;
+import com.support.sport.sportsupport.Controller.Key;
 import com.support.sport.sportsupport.Controller.ProfileController;
+import com.support.sport.sportsupport.Controller.UserController;
 import com.support.sport.sportsupport.ViewPackage.Menu.CustomerNavigationMenu;
 import com.support.sport.sportsupport.ViewPackage.Menu.PaymentScreen;
+import com.support.sport.sportsupport.ViewPackage.Menu.UpdateProfileScreen;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 /**
  * A login screen that offers login via email/password.
@@ -36,6 +42,37 @@ public class SignUpScreen extends AppCompatActivity {
     private View mLoginFormView;
     Button signUp;
     final Context context = this;
+
+    @Subscribe
+    public void onEvent(RetrofitEvent event) {
+
+        if(event.isRetrofitCompleted){
+
+            Toast.makeText(this, "New profile created ! ",Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(SignUpScreen.this, CustomerNavigationMenu.class);
+            startActivity(intent);
+
+        }else{
+            Toast.makeText(this, "Error ! New profile hasn't created . Try again.",Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,9 +113,10 @@ public class SignUpScreen extends AppCompatActivity {
                 //cr.addMember(0,0,usernameStr,passwordStr,"active","standard",mailStr,nameStr,surnameStr);
              //   Toast.makeText(SignUpScreen.this,"Registration Completed!",Toast.LENGTH_LONG).show();
             //    Toast.makeText(SignUpScreen.this,"Succesfully Updated!",Toast.LENGTH_LONG).show();
+                    UserController controller = new UserController();
+                    controller.signUp(nameStr,surnameStr,usernameStr,passwordStr,mailStr,birtdateStr);
+                    Key.updatedProfile = true;
 
-                    Intent intent = new Intent(SignUpScreen.this, CustomerNavigationMenu.class);
-                  startActivity(intent);
                 } else {
                     spaceController = 0;
                 }

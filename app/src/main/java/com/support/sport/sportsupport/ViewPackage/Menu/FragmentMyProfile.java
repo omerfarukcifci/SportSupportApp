@@ -36,8 +36,11 @@ public class FragmentMyProfile extends Fragment {
         member = Key.cMember;
         profileName = rootView.findViewById(R.id.myprofile_name);
         memberStatus = rootView.findViewById(R.id.myprofile_status);
-        profileName.setText("WELCOME "+member.getName().toUpperCase()+" "+member.getSurname().toUpperCase());
-        memberStatus.setText("MEMBERSHIP STATUS : "+member.getStatus().toUpperCase());
+        if(!Key.updatedProfile){
+            profileName.setText("WELCOME "+member.getName().toUpperCase()+" "+member.getSurname().toUpperCase());
+            memberStatus.setText("MEMBERSHIP STATUS : "+member.getStatus().toUpperCase());
+        }
+
 
         buttonMySchedule = (Button) rootView.findViewById(R.id.my_schedule_button);
         buttonMySchedule.setOnClickListener(new View.OnClickListener() {
