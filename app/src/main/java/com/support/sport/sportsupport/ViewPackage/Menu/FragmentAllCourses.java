@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.support.sport.sportsupport.Controller.CourseController;
 import com.support.sport.sportsupport.Controller.Key;
+import com.support.sport.sportsupport.Controller.UserController;
 import com.support.sport.sportsupport.Model.Course;
 import com.support.sport.sportsupport.ViewPackage.Adapter.CourseAdapter;
 import com.support.sport.sportsupport.ViewPackage.R;
@@ -40,33 +41,38 @@ public class FragmentAllCourses extends Fragment {
     @Subscribe
     public void onEvent(RetrofitEvent event) {
 
-        if(event.isRetrofitCompleted){
-
-            RecyclerView recyclerView = v.findViewById(R.id.courses_list);
-            coursesm = new Course[Key.allClist.size()];
-            coursesm = Key.allClist.toArray(coursesm);
-            CourseAdapter mAdapter = new CourseAdapter(coursesm);
-            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
-            recyclerView.setLayoutManager(mLayoutManager);
-            recyclerView.setAdapter(mAdapter);
-
-            recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
-                @Override
-                public void onClick(View view, int position) {
-                    Intent intent = new Intent(getContext(),FragmentCourse.class);
-                    intent.putExtra("MyCourse",coursesm[position]);
-                    intent.putExtra("category",0);
-                    startActivity(intent);
-                }
-                @Override
-                public void onLongClick(View view, int position) {
-
-                }
-            }));
-
+        if (event.pID == 1){
+            CourseController courseController = new CourseController();
+            courseController.showCourses(Key.cMemberList.getBranchId());
         }else{
-            Toast.makeText(getContext(), "Invalid",Toast.LENGTH_LONG).show();
+            if(event.isRetrofitCompleted){
+                RecyclerView recyclerView = v.findViewById(R.id.courses_list);
+                coursesm = new Course[Key.allClist.size()];
+                coursesm = Key.allClist.toArray(coursesm);
+                CourseAdapter mAdapter = new CourseAdapter(coursesm);
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
+                recyclerView.setLayoutManager(mLayoutManager);
+                recyclerView.setAdapter(mAdapter);
+
+                recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+                    @Override
+                    public void onClick(View view, int position) {
+                        Intent intent = new Intent(getContext(),FragmentCourse.class);
+                        intent.putExtra("MyCourse",coursesm[position]);
+                        intent.putExtra("category",0);
+                        startActivity(intent);
+                    }
+                    @Override
+                    public void onLongClick(View view, int position) {
+
+                    }
+                }));
+
+            }else{
+                Toast.makeText(getContext(), "Invalid",Toast.LENGTH_LONG).show();
+            }
         }
+
 
     }
 
@@ -87,8 +93,7 @@ public class FragmentAllCourses extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_all_courses,container,false);
-        CourseController courseController = new CourseController();
-        courseController.showCourses(2);
+        new UserController().getBranchId(Key.cMember.getId());
         return v;
 
     }

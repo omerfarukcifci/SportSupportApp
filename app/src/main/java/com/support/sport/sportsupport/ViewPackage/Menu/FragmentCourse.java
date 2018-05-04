@@ -92,11 +92,11 @@ public class FragmentCourse extends AppCompatActivity {
         desc = findViewById(R.id.spec_course_text);
         quota = findViewById(R.id.spec_course_quota);
 
-        title.setText(c.getName()+" CLASS");
+        title.setText(c.getName()+" Class");
 
-        date.setText("Ends at: "+c.getEndDate());
+        date.setText("Ends at: "+(c.getEndDate().split("T"))[0]);
         trainer.setText("Trainer: "+c.getTrainerId());
-        freq.setText("Every "+c.getDeleteDay());
+        freq.setText("Every Week");
         desc.setText(c.getDescription());
         quota.setText("Available Quota: "+c.getAvailableQuota()+"/"+c.getQuota());
       /*  if(c.getAvailableQuota()==0) {

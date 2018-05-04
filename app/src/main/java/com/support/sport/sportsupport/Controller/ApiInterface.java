@@ -11,6 +11,7 @@ import com.support.sport.sportsupport.Model.ClassMemberList;
 import com.support.sport.sportsupport.Model.Course;
 import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.Model.Member;
+import com.support.sport.sportsupport.Model.MemberList;
 import com.support.sport.sportsupport.ViewPackage.Menu.CancelMembershipScreen;
 
 import java.util.Date;
@@ -76,6 +77,11 @@ public interface ApiInterface {
     Call<Branch> createBranch(@Query("name") String name, @Query("quota") int quota,
                               @Query("telephoneNumber") long phoneNumber, @Query("city") String city,
                               @Query("district") String district, @Query("address") String address);
+
+    @GET("memberlist/get/memberlist/{id}")
+    Call<MemberList> getBranchId(@Path("id") int id);
+    //@GET("enrolledcourses/is/enrolled")
+    //Call<boolean> getEnrolled(@Query("memberId") int mId, @Query("courseId") int cId);
 
 
 }

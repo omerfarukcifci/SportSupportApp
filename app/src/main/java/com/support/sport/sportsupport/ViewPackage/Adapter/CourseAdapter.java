@@ -59,10 +59,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         Course c = courses[position];
-        holder.name.setText(c.getName()+" CLASS");
+        holder.name.setText(c.getName()+" Class");
         holder.quota.setText("Quota: "+c.getAvailableQuota()+"/"+c.getQuota());
-        holder.lecdayfreq.setText("Every "+c.getDeleteDay());
-        holder.enddate.setText("Ends at: "+c.getDeleteDate());
+        holder.lecdayfreq.setText("Every Week");
+        holder.enddate.setText("Ends at: "+(c.getEndDate().split("T"))[0]);
 
 
     }

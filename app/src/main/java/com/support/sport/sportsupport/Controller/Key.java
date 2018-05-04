@@ -6,6 +6,7 @@ import com.support.sport.sportsupport.Model.ClassMemberList;
 import com.support.sport.sportsupport.Model.Course;
 import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.Model.Member;
+import com.support.sport.sportsupport.Model.MemberList;
 
 import java.util.List;
 
@@ -16,6 +17,7 @@ import java.util.List;
 public class Key {
 
     public static Member cMember = null;
+    public static MemberList cMemberList = null;
     public static Manager newManager = null;
     public static List<Manager> allManagers = null;
 
@@ -24,6 +26,7 @@ public class Key {
     }
 
     public static Course oneCourse = null;
+
 
     public Member getCMember(){
         return cMember;

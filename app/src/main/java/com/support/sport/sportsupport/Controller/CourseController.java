@@ -27,12 +27,12 @@ public class CourseController extends AppController{
             public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
                 Key.allClist = response.body();
                 Log.d("success","Spring success");
-                EventBus.getDefault().post(new RetrofitEvent(true));
+                EventBus.getDefault().post(new RetrofitEvent(true,0));
             }
             @Override
             public void onFailure(Call<List<Course>> call, Throwable t) {
                 Log.d("failure","Spring error");
-                EventBus.getDefault().post(new RetrofitEvent(false));
+                EventBus.getDefault().post(new RetrofitEvent(false,0));
             }
         });
         return Key.allClist;

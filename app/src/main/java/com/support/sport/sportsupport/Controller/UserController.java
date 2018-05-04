@@ -4,6 +4,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.support.sport.sportsupport.Model.Member;
+import com.support.sport.sportsupport.Model.MemberList;
 import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -51,6 +52,21 @@ public class UserController extends AppController{
                 //Toast.makeText("Spring Error",Toast.LENGTH_LONG).show();
                 Log.d("failure","Spring error");
                 EventBus.getDefault().post(new RetrofitEvent(false));
+            }
+        });
+    }
+
+    public void getBranchId(int id){
+        Call<MemberList> regCall = apiService.getBranchId(id);
+        regCall.enqueue(new Callback<MemberList>() {
+            @Override
+            public void onResponse(Call<MemberList> call, Response<MemberList> response) {
+                Key.cMemberList = response.body();
+                EventBus.getDefault().post(new RetrofitEvent(true,1));
+            }
+            @Override
+            public void onFailure(Call<MemberList> call, Throwable t) {
+                EventBus.getDefault().post(new RetrofitEvent(false,1));
             }
         });
     }
