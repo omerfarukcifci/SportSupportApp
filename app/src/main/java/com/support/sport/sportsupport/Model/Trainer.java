@@ -1,15 +1,23 @@
 package com.support.sport.sportsupport.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by Faruk on 2.05.2018.
  */
 
 public class Trainer {
 
+    @SerializedName("name")
     private String name;
+    @SerializedName("surname")
     private String surname;
+    @SerializedName("username")
     private String username;
+    @SerializedName("password")
     private String password;
+    @SerializedName("id")
+    private int branchId;
 
     public Trainer(String name, String surname, String username, String password) {
         this.name = name;

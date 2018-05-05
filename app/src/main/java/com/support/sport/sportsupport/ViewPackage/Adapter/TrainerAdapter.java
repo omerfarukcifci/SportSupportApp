@@ -55,6 +55,7 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.ViewHold
         holder.trainerName.setText(t.getName());
         holder.trainerSurname.setText(t.getSurname());
         holder.trainerUsername.setText("Username: "+t.getUsername());
+
     }
 
     @Override

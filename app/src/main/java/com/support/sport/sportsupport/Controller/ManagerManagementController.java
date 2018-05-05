@@ -36,6 +36,21 @@ public class ManagerManagementController extends AppController{
     }
 
 
+    public void deleteManager(String managerId){
+        Call<Manager> regCall = apiService.deleteManager(managerId);
+        regCall.enqueue(new Callback<Manager>() {
+            @Override
+            public void onResponse(Call<Manager> call, Response<Manager> response) {
+                Key.deletedManager = response.body();
+            }
+            @Override
+            public void onFailure(Call<Manager> call, Throwable t) {
+                Log.d("failure","Spring error Delete Manager Delete Manager");
+            }
+        });
+    }
+
+
     public void allManagers(){
 
         Call<List<Manager>> managers = apiService.allManagers();

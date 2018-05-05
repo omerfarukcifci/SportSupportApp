@@ -11,11 +11,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.support.sport.sportsupport.Controller.TrainerManagementController;
 import com.support.sport.sportsupport.ViewPackage.Adapter.UserAddScreen;
 import com.support.sport.sportsupport.ViewPackage.R;
 
 public class TrainerAddScreen extends AppCompatActivity {
-    EditText trainerName, trainerSurname, trainerUsername, trainerPassword;
+    EditText trainerName, trainerSurname, trainerUsername, trainerPassword,trainerBranchId;
     Button createTrainerBTN;
     final Context context = this;
     @Override
@@ -27,6 +28,7 @@ public class TrainerAddScreen extends AppCompatActivity {
         trainerSurname = findViewById(R.id.trainer_surname_M);
         trainerUsername = findViewById(R.id.trainer_username_M);
         trainerPassword = findViewById(R.id.trainer_password_M);
+        trainerBranchId = findViewById(R.id.trainer_branchId_M);
 
         createTrainerBTN = findViewById(R.id.createTrainer_button);
 
@@ -39,8 +41,15 @@ public class TrainerAddScreen extends AppCompatActivity {
                 spaceController += controlBlank(trainerSurname);
                 spaceController += controlBlank(trainerUsername);
                 spaceController += controlBlank(trainerPassword);
+                spaceController += controlBlank(trainerBranchId);
 
                 if(spaceController == 0){
+
+                    final String traName = trainerName.getText().toString();
+                    final   String traSurname = trainerSurname.getText().toString();
+                    final   String traUsername = trainerUsername.getText().toString();
+                    final   String traPassword = trainerPassword.getText().toString();
+                    final   int traBranchId = Integer.valueOf(trainerBranchId.getText().toString());
 
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
@@ -58,7 +67,8 @@ public class TrainerAddScreen extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
 
                                     Toast.makeText(TrainerAddScreen.this, "The Trainer Successfully Created" , Toast.LENGTH_LONG).show();
-
+                                    TrainerManagementController tmController = new TrainerManagementController();
+                                    tmController.createTrainer(traName,traSurname,traUsername,traPassword,traBranchId);
 
                                 }
                             })

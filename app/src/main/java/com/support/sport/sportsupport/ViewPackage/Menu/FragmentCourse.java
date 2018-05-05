@@ -67,20 +67,20 @@ public class FragmentCourse extends AppCompatActivity {
         final Course c = (Course) i.getSerializableExtra("MyCourse");
         final  int category = i.getIntExtra("category",-1);
         //  int category =0;
-        int find = 0;
+         Key.isAv = 0;
 
         if(Key.myClist!=null)
         for(int l = 0 ; l < Key.myClist.size(); l++){
             if(Key.myClist.get(l).getId()==c.getId()){
-                find =1;
+                Key.isAv =1;
             }
 
         }
-        final int cat = find;
+       // final int cat = find;
 
         enrolldrop = findViewById(R.id.spec_course_drop);
-        if (cat==0) enrolldrop.setText("ENROLL");
-        if (cat==1) {
+        if (Key.isAv==0) enrolldrop.setText("ENROLL");
+        if (Key.isAv==1) {
             enrolldrop.setText("DROP");
             enrolldrop.setBackgroundColor(Color.RED);
         }
@@ -125,11 +125,11 @@ public class FragmentCourse extends AppCompatActivity {
                     */
 
                 }else{
-                    if(cat==0) {
+                    if(Key.isAv==0) {
                         CourseController courseC = new CourseController();
                         courseC.enrollCourse(c.getId(),Key.cMember.getId());
                         Key.courseUpdated = true;
-                      //  courseC.getMyCourses(Key.cMember.getId());
+                        courseC.getMyCourses(Key.cMember.getId());
                         //       Toast.makeText(FragmentCourse.this, "Succesfully Dropped!", Toast.LENGTH_LONG).show();
 
                         Toast.makeText(FragmentCourse.this, "Enrollment Completed!", Toast.LENGTH_LONG).show();
@@ -141,7 +141,7 @@ public class FragmentCourse extends AppCompatActivity {
                         CourseController courseC = new CourseController();
                         courseC.dropCourse(c.getId(), Key.cMember.getId());
                         Key.courseUpdated = true;
-                   //     courseC.getMyCourses(Key.cMember.getId());
+                        courseC.getMyCourses(Key.cMember.getId());
                         Toast.makeText(FragmentCourse.this, "Succesfully Dropped!", Toast.LENGTH_LONG).show();
                         enrolldrop.setText("ENROLL");
                         enrolldrop.setBackgroundColor(Color.parseColor("#3395ff"));

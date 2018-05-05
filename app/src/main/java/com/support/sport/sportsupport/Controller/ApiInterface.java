@@ -12,6 +12,7 @@ import com.support.sport.sportsupport.Model.Course;
 import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.Model.MemberList;
+import com.support.sport.sportsupport.Model.Trainer;
 import com.support.sport.sportsupport.ViewPackage.Menu.CancelMembershipScreen;
 
 import java.util.Date;
@@ -72,6 +73,21 @@ public interface ApiInterface {
 
     @GET("manager/all")
     Call<List<Manager>> allManagers();
+
+    @GET("trainer/all/{id}")
+    Call<List<Trainer>> allTrainers(@Path("id") int branchId);
+
+
+    @GET("manager/delete/{id}")
+    Call<Manager> deleteManager(@Path("id") String managerId);
+
+
+
+    @GET("trainer/add")
+    Call<Trainer> registerTrainer(@Query("name") String name, @Query("surname") String surname, @Query("username") String username,
+                                  @Query("password") String password, @Query("id") int branchId);
+
+
 
     @GET("branch/add")
     Call<Branch> createBranch(@Query("name") String name, @Query("quota") int quota,

@@ -59,7 +59,7 @@ public class FragmentAllCourses extends Fragment {
                     public void onClick(View view, int position) {
                         Intent intent = new Intent(getContext(),FragmentCourse.class);
                         intent.putExtra("MyCourse",coursesm[position]);
-                        intent.putExtra("category",0);
+                      ///  intent.putExtra("category",0);
                         startActivity(intent);
                     }
                     @Override

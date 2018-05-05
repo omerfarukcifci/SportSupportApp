@@ -80,17 +80,22 @@ public class ManagerAddScreen extends AppCompatActivity {
 
                 if(spaceController == 0){
 
+                    final String manName = managerName.getText().toString();
+                    final   String manSurname = managerSurname.getText().toString();
+                    final   String manUsername = managerUsername.getText().toString();
+                    final   String manPassword = managerPassword.getText().toString();
+                    final   int manBranchId = Integer.valueOf(ManagerBranchID.getText().toString());
 
 
 
-                    ManagerManagementController managerMC = new ManagerManagementController();
+               //     ManagerManagementController managerMC = new ManagerManagementController();
 
-                    managerMC.createManager(managerName.getText().toString(),
+                 /*   managerMC.createManager(managerName.getText().toString(),
                             managerSurname.getText().toString(),
                             managerUsername.getText().toString(),
                             managerPassword.getText().toString(),
                             Integer.valueOf(ManagerBranchID.getText().toString()));
-
+*/
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
                     // alert dialog başlığını tanımlıyoruz.
@@ -108,7 +113,8 @@ public class ManagerAddScreen extends AppCompatActivity {
 
                                     Toast.makeText(ManagerAddScreen.this, "The Manager Successfully Created" , Toast.LENGTH_LONG).show();
 
-
+                                    ManagerManagementController managerMC = new ManagerManagementController();
+                                    managerMC.createManager(manName,manSurname,manUsername,manPassword,manBranchId);
 
 
 

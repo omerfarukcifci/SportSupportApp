@@ -7,6 +7,8 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Manager {
+    @SerializedName("id")
+    private String id;
     @SerializedName("name")
     private String name;
     @SerializedName("surname")
@@ -71,5 +73,13 @@ public class Manager {
 
     public void setBranchId(int branchId) {
         this.branchId = branchId;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

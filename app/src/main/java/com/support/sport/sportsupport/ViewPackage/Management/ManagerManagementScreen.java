@@ -59,8 +59,6 @@ public class ManagerManagementScreen extends AppCompatActivity {
                     startActivity(i);
                 }
             });
-        }else{
-
         }
 
     }

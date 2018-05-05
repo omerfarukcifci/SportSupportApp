@@ -7,6 +7,7 @@ import com.support.sport.sportsupport.Model.Course;
 import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.Model.MemberList;
+import com.support.sport.sportsupport.Model.Trainer;
 
 import java.util.List;
 
@@ -19,10 +20,23 @@ public class Key {
     public static Member cMember = null;
     public static MemberList cMemberList = null;
     public static Manager newManager = null;
+    public static Manager deletedManager = null;
+
+    public static Manager getDeletedManager() {
+        return deletedManager;
+    }
+
+    public static Trainer newTrainer = null;
     public static List<Manager> allManagers = null;
 
     public static List<Manager> getAllManagers() {
         return allManagers;
+    }
+
+    public static List<Trainer> allTrainers = null;
+
+    public static List<Trainer> getAllTrainers() {
+        return allTrainers;
     }
 
     public static Course oneCourse = null;
@@ -36,7 +50,9 @@ public class Key {
         return oneCourse;
     }
 
-
+    public static Trainer getNewTrainer() {
+        return newTrainer;
+    }
 
     public static Manager getNewManager() {
         return newManager;
@@ -55,7 +71,7 @@ public class Key {
 
     public static boolean courseUpdated = false;
 
-
+    public static int isAv = 0;
 
 
     public  List<Course> getMyClist() {
