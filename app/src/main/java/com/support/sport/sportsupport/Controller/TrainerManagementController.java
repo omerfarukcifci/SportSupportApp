@@ -61,5 +61,19 @@ public class TrainerManagementController extends AppController {
 
     }
 
+    public void deleteTrainer(String trainerId){
+        Call<Trainer> regCall = apiService.deleteTrainer(trainerId);
+        regCall.enqueue(new Callback<Trainer>() {
+            @Override
+            public void onResponse(Call<Trainer> call, Response<Trainer> response) {
+                Key.deletedTrainer = response.body();
+            }
+            @Override
+            public void onFailure(Call<Trainer> call, Throwable t) {
+                Log.d("failure","Spring error Delete Manager Delete Manager");
+            }
+        });
+    }
+
 
 }

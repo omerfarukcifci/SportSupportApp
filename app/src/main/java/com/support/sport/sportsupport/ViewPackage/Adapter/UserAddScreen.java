@@ -11,13 +11,46 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.support.sport.sportsupport.Controller.UserController;
 import com.support.sport.sportsupport.ViewPackage.Management.CourseAddScreen;
 import com.support.sport.sportsupport.ViewPackage.R;
+import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 public class UserAddScreen extends AppCompatActivity {
     private EditText name,surname,username,birtdate,mail,password;
     private Button addNewUser;
     final Context context = this;
+
+
+    @Subscribe
+    public void onEvent(RetrofitEvent event) {
+
+        if(event.isRetrofitCompleted){
+
+            Toast.makeText(this, "User created ! ",Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(this, "User hasn't created ! Try again.",Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -44,12 +77,12 @@ public class UserAddScreen extends AppCompatActivity {
                 spaceController += controlBlank(mail);
                 spaceController += controlBlank(password);
 
-                String nameStr = name.getText().toString();
-                String surnameStr = surname.getText().toString();
-                String usernameStr = username.getText().toString();
-                String birtdateStr = birtdate.getText().toString();
-                String mailStr = mail.getText().toString();
-                String passwordStr = password.getText().toString();
+                final String nameStr = name.getText().toString();
+                final String surnameStr = surname.getText().toString();
+                final String usernameStr = username.getText().toString();
+                final String birtdateStr = birtdate.getText().toString();
+                final String mailStr = mail.getText().toString();
+                final String passwordStr = password.getText().toString();
 
                 if(spaceController == 0){
 
@@ -69,6 +102,9 @@ public class UserAddScreen extends AppCompatActivity {
                             .setPositiveButton("Apply", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+
+                                    UserController userController = new UserController();
+                                    userController.signUp(nameStr,surnameStr,usernameStr,passwordStr,mailStr,birtdateStr);
 
                                     Toast.makeText(UserAddScreen.this, "The User Successfully Created" , Toast.LENGTH_LONG).show();
 

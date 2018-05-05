@@ -79,7 +79,18 @@ public interface ApiInterface {
 
 
     @GET("manager/delete/{id}")
-    Call<Manager> deleteManager(@Path("id") String managerId);
+    Call<Manager> deleteManager(@Path("idm") String managerId);
+
+    @GET("trainer/delete/{id}")
+    Call<Trainer> deleteTrainer(@Path("id") String trainerId);
+
+    @GET("member/delete/{id}")
+    Call<Member> deleteMember(@Path("id") String memberId);
+
+    @GET("member/all/{id}")
+    Call<List<Member>> allMembers(@Path("id") int branchId);
+
+
 
 
 

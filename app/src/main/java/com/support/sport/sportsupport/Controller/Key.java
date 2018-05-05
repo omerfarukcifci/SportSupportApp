@@ -18,9 +18,23 @@ import java.util.List;
 public class Key {
 
     public static Member cMember = null;
+    public static Member newMember = null;
     public static MemberList cMemberList = null;
     public static Manager newManager = null;
     public static Manager deletedManager = null;
+    public static Trainer deletedTrainer = null;
+    public static Member deletedMember = null;
+
+    public static Member getNewMember() {
+        return newMember;
+    }
+
+    public Trainer getDeletedTrainer(){
+        return deletedTrainer;
+    }
+    public Member getDeletedMember(){
+        return deletedMember;
+    }
 
     public static Manager getDeletedManager() {
         return deletedManager;
@@ -28,6 +42,11 @@ public class Key {
 
     public static Trainer newTrainer = null;
     public static List<Manager> allManagers = null;
+    public static List<Member> allMembers = null;
+
+    public static List<Member> getAllMembers() {
+        return allMembers;
+    }
 
     public static List<Manager> getAllManagers() {
         return allManagers;
