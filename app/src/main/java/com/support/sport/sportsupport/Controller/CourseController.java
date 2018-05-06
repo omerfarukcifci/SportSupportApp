@@ -117,4 +117,38 @@ public class CourseController extends AppController{
         });
     }
 
+    public void addNewCourse(String name,int quota,int traninerId,
+                             int branchId,String startDate,String endDate,
+                             String description,String species){
+        Call<Course> courseCall = apiService.addCourse(name,quota,traninerId,branchId,startDate,endDate,null,description,species);
+        courseCall.enqueue(new Callback<Course>() {
+            @Override
+            public void onResponse(Call<Course> call, Response<Course> response) {
+                Log.d("success","Spring success");
+                EventBus.getDefault().post(new RetrofitEvent(true,1));
+            }
+            @Override
+            public void onFailure(Call<Course> call, Throwable t) {
+                Log.d("failure","Spring error");
+                EventBus.getDefault().post(new RetrofitEvent(false,1));
+            }
+        });
+    }
+
+    public void deleteCourse(int id){
+        Call<Course> courseCall = apiService.deleteCourse(id);
+        courseCall.enqueue(new Callback<Course>() {
+            @Override
+            public void onResponse(Call<Course> call, Response<Course> response) {
+                Log.d("success","Spring success");
+                EventBus.getDefault().post(new RetrofitEvent(true,-1));
+            }
+            @Override
+            public void onFailure(Call<Course> call, Throwable t) {
+                Log.d("failure","Spring error");
+                EventBus.getDefault().post(new RetrofitEvent(false,-1));
+            }
+        });
+    }
+
 }

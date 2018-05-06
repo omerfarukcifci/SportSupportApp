@@ -27,6 +27,10 @@ public interface ApiInterface {
     //user controller
     @GET("member/get")
     Call<Member> getMemberWithUsernamePassword(@Query("username") String username, @Query("password") String password);
+    @GET("manager/get")
+    Call<Manager> getManagerWithUsernamePassword(@Query("username") String username, @Query("password") String password);
+    @GET("trainer/get")
+    Call<Trainer> getTrainerWithUsernamePassword(@Query("username") String username, @Query("password") String password);
 
     @GET("member/add")
     Call<Member> registerMember(@Query("name") String name, @Query("surname") String surname, @Query("username") String username,
@@ -49,6 +53,14 @@ public interface ApiInterface {
     @GET("course/drop/{id}")
     Call<ClassMemberList> dropCourse(@Path("id") int courseId, @Query("memberId") int memberId);
 
+    @GET("course/add")
+    Call<Course> addCourse(@Query("name") String name, @Query("quota") int quota, @Query("trainerId") int traninerId,
+                           @Query("branchId") int branchId, @Query("startDate") String startDate, @Query("endDate") String endDate, @Query("cDate") String cDate,
+                           @Query("description") String description, @Query("species") String species);
+
+
+    @GET("course/delete/{id}")
+    Call<Course> deleteCourse(@Path("id") int id);
 
     //myprofile
     //class diagramdaki loadmemberinfo için retrofite gerek yok, loginde zaten biliglerini aldık, boş bir şey yazabilirisniz
@@ -74,15 +86,11 @@ public interface ApiInterface {
     @GET("manager/all")
     Call<List<Manager>> allManagers();
 
-    @GET("trainer/all/{id}")
-    Call<List<Trainer>> allTrainers(@Path("id") int branchId);
-
-
     @GET("manager/delete/{id}")
     Call<Manager> deleteManager(@Path("idm") String managerId);
 
     @GET("trainer/delete/{id}")
-    Call<Trainer> deleteTrainer(@Path("id") String trainerId);
+    Call<Trainer> deleteTrainer(@Path("id") int trainerId);
 
     @GET("member/delete/{id}")
     Call<Member> deleteMember(@Path("id") String memberId);
@@ -97,6 +105,9 @@ public interface ApiInterface {
     @GET("trainer/add")
     Call<Trainer> registerTrainer(@Query("name") String name, @Query("surname") String surname, @Query("username") String username,
                                   @Query("password") String password, @Query("id") int branchId);
+
+    @GET("trainer/all/{id}")
+    Call<List<Trainer>> findTrainerWithBranchId(@Path("id") int branchId);
 
 
 

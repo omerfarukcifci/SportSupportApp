@@ -40,13 +40,8 @@ public class ManagerManagementScreen extends AppCompatActivity {
     public void onEvent(RetrofitEvent event) {
 
         if(event.isRetrofitCompleted){
-            final Manager[] managers = new Manager[Key.allManagers.size()];
-
-            for(int i = 0; i < Key.allManagers.size();i++){
-                managers[i] = Key.allManagers.get(i);
-            }
             RecyclerView recyclerView = findViewById(R.id.managers_list);
-            ManagerAdapter managerAdapter = new ManagerAdapter(managers);
+            ManagerAdapter managerAdapter = new ManagerAdapter(Key.allManagers);
 
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
             recyclerView.setLayoutManager(mLayoutManager);
@@ -59,6 +54,8 @@ public class ManagerManagementScreen extends AppCompatActivity {
                     startActivity(i);
                 }
             });
+        }else{
+            Toast.makeText(this,"No managers to display",Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -81,37 +78,7 @@ public class ManagerManagementScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manager_management_screen);
-
-
-      //  RecyclerView recyclerView = findViewById(R.id.managers_list);
-
         ManagerManagementController mngrC = new ManagerManagementController();
         mngrC.allManagers();
-
-
-
-/*
-        Manager m1 = new Manager("Ömer","Çifci","mr123",12);
-        Manager m2 = new Manager("Ali","Balıkçı","ali234",5);
-        Manager m3 = new Manager("Merve","Kantarcı","merve2",6);
-        Manager m4 = new Manager("Baran","Sönmez","baran1",12);
-        Manager m5 = new Manager("Sena","Ceylan","senaa",14);
-
-        Manager[] managerlist = new Manager[5];
-        managerlist[0] = m1;
-        managerlist[1] = m2;
-        managerlist[2] = m3;
-        managerlist[3] = m4;
-        managerlist[4] = m5;
-
-        ManagerAdapter managerAdapter = new ManagerAdapter(managerlist);
-
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(managerAdapter);
-
-
-
-*/
     }
 }

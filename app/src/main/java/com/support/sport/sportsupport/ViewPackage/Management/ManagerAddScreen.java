@@ -37,12 +37,10 @@ public class ManagerAddScreen extends AppCompatActivity {
     public void onEvent(RetrofitEvent event) {
 
         if(event.isRetrofitCompleted){
-
-            Toast.makeText(getApplicationContext(), "Valid kere Valid",Toast.LENGTH_LONG).show();
-
+            Toast.makeText(ManagerAddScreen.this, "The Manager Successfully Created" , Toast.LENGTH_LONG).show();
+            startActivity(new Intent(this,ManagerManagementScreen.class));
         }else{
-            Toast.makeText(getApplicationContext(), "Invalid",Toast.LENGTH_LONG).show();
-
+            Toast.makeText(getApplicationContext(), "Delete process failed!",Toast.LENGTH_LONG).show();
         }
 
     }
@@ -79,66 +77,34 @@ public class ManagerAddScreen extends AppCompatActivity {
 
 
                 if(spaceController == 0){
-
                     final String manName = managerName.getText().toString();
                     final   String manSurname = managerSurname.getText().toString();
                     final   String manUsername = managerUsername.getText().toString();
                     final   String manPassword = managerPassword.getText().toString();
                     final   int manBranchId = Integer.valueOf(ManagerBranchID.getText().toString());
 
-
-
-               //     ManagerManagementController managerMC = new ManagerManagementController();
-
-                 /*   managerMC.createManager(managerName.getText().toString(),
-                            managerSurname.getText().toString(),
-                            managerUsername.getText().toString(),
-                            managerPassword.getText().toString(),
-                            Integer.valueOf(ManagerBranchID.getText().toString()));
-*/
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-
-                    // alert dialog başlığını tanımlıyoruz.
                     alertDialogBuilder.setTitle("Are you sure?");
-
-                    // alert dialog özelliklerini oluşturuyoruz.
                     alertDialogBuilder
                             .setMessage("Do you want to create this manager?")
                             .setCancelable(false)
-                            //       .setIcon(R.mipmap.ic_launcher_round)
-
                             .setPositiveButton("Apply", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-
-                                    Toast.makeText(ManagerAddScreen.this, "The Manager Successfully Created" , Toast.LENGTH_LONG).show();
-
                                     ManagerManagementController managerMC = new ManagerManagementController();
                                     managerMC.createManager(manName,manSurname,manUsername,manPassword,manBranchId);
-
-
-
                                 }
                             })
-
                             .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-
                                     dialog.dismiss();
-
-
-
                                 }
                             });
-
-                    // alert dialog nesnesini oluşturuyoruz
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     spaceController = 0;
-                    // alerti gösteriyoruz
                     alertDialog.show();
                 }else{
-
                     spaceController =0;
                 }
             }

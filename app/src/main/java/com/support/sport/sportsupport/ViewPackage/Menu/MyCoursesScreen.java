@@ -45,7 +45,7 @@ public class MyCoursesScreen extends AppCompatActivity {
                 textView.setText("You have not enrolled to any courses yet.\nYou can see our open courses from Courses tab.");
             }else {
                 textView.setText("You have enrolled to "+courses.length+" courses so far.");
-                CourseAdapter mAdapter = new CourseAdapter(courses);
+                CourseAdapter mAdapter = new CourseAdapter(Key.myClist);
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setAdapter(mAdapter);

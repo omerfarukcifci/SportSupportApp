@@ -49,7 +49,7 @@ public class FragmentAllCourses extends Fragment {
                 RecyclerView recyclerView = v.findViewById(R.id.courses_list);
                 coursesm = new Course[Key.allClist.size()];
                 coursesm = Key.allClist.toArray(coursesm);
-                CourseAdapter mAdapter = new CourseAdapter(coursesm);
+                CourseAdapter mAdapter = new CourseAdapter(Key.allClist);
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setAdapter(mAdapter);

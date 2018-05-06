@@ -44,24 +44,24 @@ public class TrainerManagementController extends AppController {
 
     public void allTrainers(int branchId){
 
-        Call<List<Trainer>> trainers = apiService.allTrainers( branchId);
+        Call<List<Trainer>> trainers = apiService.findTrainerWithBranchId( branchId);
         trainers.enqueue(new Callback<List<Trainer>>() {
             @Override
             public void onResponse(Call<List<Trainer>> call, Response<List<Trainer>> response) {
                 Key.allTrainers = response.body();
-                EventBus.getDefault().post(new RetrofitEvent(true));
+                EventBus.getDefault().post(new RetrofitEvent(true,0));
             }
             @Override
             public void onFailure(Call<List<Trainer>> call, Throwable t) {
-                Log.d("failure","Spring error ALLL Trainers");
-                EventBus.getDefault().post(new RetrofitEvent(false));
+                Log.d("failure","Spring error All Trainers");
+                EventBus.getDefault().post(new RetrofitEvent(false,0));
             }
         });
 
 
     }
 
-    public void deleteTrainer(String trainerId){
+    public void deleteTrainer(int trainerId){
         Call<Trainer> regCall = apiService.deleteTrainer(trainerId);
         regCall.enqueue(new Callback<Trainer>() {
             @Override

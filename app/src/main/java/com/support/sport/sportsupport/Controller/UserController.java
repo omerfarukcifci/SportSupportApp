@@ -3,8 +3,10 @@ package com.support.sport.sportsupport.Controller;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.Model.MemberList;
+import com.support.sport.sportsupport.Model.Trainer;
 import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -19,7 +21,7 @@ import retrofit2.Response;
 
 public class UserController extends AppController{
 
-    public void login(String username, String password){
+    public void loginMember(String username, String password){
         //final Member[] m = new Member[1];
         Call<Member> memberCall = apiService.getMemberWithUsernamePassword(username, password);
         //Key.cMember = memberCall.execute().body();
@@ -32,6 +34,40 @@ public class UserController extends AppController{
             }
             @Override
             public void onFailure(Call<Member> call, Throwable t) {
+                Log.d("failure","Spring error");
+                EventBus.getDefault().post(new RetrofitEvent(false));
+            }
+        });
+    }
+    public void loginManager(String username, String password){
+        Call<Manager> memberCall = apiService.getManagerWithUsernamePassword(username, password);
+        memberCall.enqueue(new Callback<Manager>() {
+            @Override
+            public void onResponse(Call<Manager> call, Response<Manager> response) {
+                Key.cManager = response.body();
+                Log.d("success","Spring success");
+                EventBus.getDefault().post(new RetrofitEvent(true));
+            }
+            @Override
+            public void onFailure(Call<Manager> call, Throwable t) {
+                Log.d("failure","Spring error");
+                EventBus.getDefault().post(new RetrofitEvent(false));
+            }
+        });
+    }
+    public void loginTrainer(String username, String password){
+        //final Member[] m = new Member[1];
+        Call<Trainer> memberCall = apiService.getTrainerWithUsernamePassword(username, password);
+        //Key.cMember = memberCall.execute().body();
+        memberCall.enqueue(new Callback<Trainer>() {
+            @Override
+            public void onResponse(Call<Trainer> call, Response<Trainer> response) {
+                Key.cTrainer = response.body();
+                Log.d("success","Spring success");
+                EventBus.getDefault().post(new RetrofitEvent(true));
+            }
+            @Override
+            public void onFailure(Call<Trainer> call, Throwable t) {
                 Log.d("failure","Spring error");
                 EventBus.getDefault().post(new RetrofitEvent(false));
             }

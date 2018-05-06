@@ -15,13 +15,15 @@ import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.Model.SpecialOffer;
 import com.support.sport.sportsupport.ViewPackage.R;
 
+import java.util.List;
+
 /**
  * Created by Faruk on 27.04.2018.
  */
 
 public class ManagerAdapter extends RecyclerView.Adapter<ManagerAdapter.ViewHolder> {
 
-    private Manager[] managers;
+    private List<Manager> managers;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -45,7 +47,7 @@ public class ManagerAdapter extends RecyclerView.Adapter<ManagerAdapter.ViewHold
 
     }
 
-    public ManagerAdapter(Manager[] myDataset) {
+    public ManagerAdapter(List<Manager> myDataset) {
         managers = myDataset;
     }
 
@@ -63,7 +65,7 @@ public class ManagerAdapter extends RecyclerView.Adapter<ManagerAdapter.ViewHold
     @Override
     public void onBindViewHolder(ManagerAdapter.ViewHolder holder, int position) {
 
-       final Manager m = managers[position];
+       final Manager m = managers.get(position);
 
         holder.managerName.setText(m.getName());
         holder.managerSurname.setText(m.getSurname());
@@ -74,17 +76,18 @@ public class ManagerAdapter extends RecyclerView.Adapter<ManagerAdapter.ViewHold
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());
-                // Setting Dialog Title
                 alertDialog.setTitle("Delete Manager");
                 alertDialog.setCancelable(true);
-                // Setting Dialog Message
                 alertDialog.setMessage("This Manager will delete, Are you sure?");
-                // Setting Positive "Yes" Button
                 alertDialog.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-
-                        ManagerManagementController managerMC = new ManagerManagementController();
-                        managerMC.deleteManager(m.getId());
+                        new ManagerManagementController().deleteManager(m.getId());
+                        managers.remove(m);
+                        dialog.cancel();
+                    }
+                });
+                alertDialog.setNegativeButton("CANCEL",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }
                 });
@@ -97,6 +100,6 @@ public class ManagerAdapter extends RecyclerView.Adapter<ManagerAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return managers.length;
+        return managers.size();
     }
 }

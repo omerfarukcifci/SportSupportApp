@@ -43,7 +43,7 @@ public class SignInScreen extends AppCompatActivity  {
     public void onEvent(RetrofitEvent event) {
 
         if(event.isRetrofitCompleted){
-            if(checkBoxManager.isChecked() || checkBoxTrainer.isChecked() && !Key.cMember.getStatue().equals("owner")){
+            if(checkBoxManager.isChecked() || checkBoxTrainer.isChecked()){
                 Intent intent = new Intent(SignInScreen.this,FragmentManagementPanel.class);
                 intent.putExtra("checkboxManager",checkBoxManager.isChecked());
                 intent.putExtra("checkboxTrainer",checkBoxTrainer.isChecked());
@@ -65,7 +65,7 @@ public class SignInScreen extends AppCompatActivity  {
 
             }
         }else{
-            Toast.makeText(getApplicationContext(), "Invalid",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Invalid Username Password Combination",Toast.LENGTH_LONG).show();
         }
     }
     @Override
@@ -99,7 +99,13 @@ public class SignInScreen extends AppCompatActivity  {
                 String username = mUsernameView.getText().toString();
                 String password = mPasswordView.getText().toString();
                 UserController userController = new UserController();
-                userController.login(username,password);
+                if(checkBoxManager.isChecked()){
+                    userController.loginManager(username,password);
+                }
+                else if (checkBoxTrainer.isChecked()){
+                    userController.loginTrainer(username,password);
+                }
+                else userController.loginMember(username,password);
 
             }
         });

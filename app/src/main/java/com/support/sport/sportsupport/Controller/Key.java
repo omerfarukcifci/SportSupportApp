@@ -9,6 +9,7 @@ import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.Model.MemberList;
 import com.support.sport.sportsupport.Model.Trainer;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,6 +19,8 @@ import java.util.List;
 public class Key {
 
     public static Member cMember = null;
+    public static Manager cManager = null;
+    public static Trainer cTrainer = null;
     public static Member newMember = null;
     public static MemberList cMemberList = null;
     public static Manager newManager = null;
@@ -44,18 +47,14 @@ public class Key {
     public static List<Manager> allManagers = null;
     public static List<Member> allMembers = null;
 
-    public static List<Member> getAllMembers() {
-        return allMembers;
-    }
-
-    public static List<Manager> getAllManagers() {
-        return allManagers;
-    }
-
     public static List<Trainer> allTrainers = null;
 
-    public static List<Trainer> getAllTrainers() {
-        return allTrainers;
+    public static ArrayList<String> getAllTrainersName() {
+        ArrayList<String> trainerName = new ArrayList<String>();
+        for (Trainer t : allTrainers){
+            trainerName.add(t.getName()+" "+t.getSurname());
+        }
+        return trainerName;
     }
 
     public static Course oneCourse = null;

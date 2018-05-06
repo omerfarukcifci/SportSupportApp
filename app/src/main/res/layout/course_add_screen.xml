@@ -34,35 +34,22 @@
                 android:hint="Quota"
                 android:maxLines="1"
                 android:singleLine="true" />
-
             <EditText
-                android:id="@+id/branch_name_M"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Branch Name"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/trainer_name_M"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Trainer Name"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/speciesM"
+                android:id="@+id/course_species_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Species"
                 android:maxLines="1"
                 android:singleLine="true" />
+            <Spinner
+                android:id="@+id/add_course_trainer_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </Spinner>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
                 <EditText
                     android:id="@+id/start_date_course"
                     android:layout_width="match_parent"
