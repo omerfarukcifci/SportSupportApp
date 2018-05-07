@@ -14,13 +14,15 @@ import com.support.sport.sportsupport.Controller.TrainerManagementController;
 import com.support.sport.sportsupport.Model.Trainer;
 import com.support.sport.sportsupport.ViewPackage.R;
 
+import java.util.List;
+
 /**
  * Created by Faruk on 2.05.2018.
  */
 
 public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.ViewHolder> {
 
-    private Trainer[] trainers;
+    private List<Trainer> trainers;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -40,10 +42,13 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.ViewHold
 
     }
 
-    public TrainerAdapter(Trainer[] myDataset) {
+    public TrainerAdapter(List<Trainer> myDataset) {
         trainers = myDataset;
     }
 
+    public void setList(List<Trainer> myDataset) {
+        trainers = myDataset;
+    }
 
 
     @Override
@@ -58,7 +63,7 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.ViewHold
     @Override
     public void onBindViewHolder(TrainerAdapter.ViewHolder holder, int position) {
 
-        final Trainer t = trainers[position];
+        final Trainer t = trainers.get(position);
 
         holder.trainerName.setText(t.getName());
         holder.trainerSurname.setText(t.getSurname());
@@ -68,7 +73,6 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.ViewHold
                     @Override
                     public void onClick(View v) {
                         AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());
-                        // Setting Dialog Title
                         alertDialog.setTitle("Delete Trainer");
                         alertDialog.setCancelable(true);
                         // Setting Dialog Message
@@ -76,24 +80,22 @@ public class TrainerAdapter extends RecyclerView.Adapter<TrainerAdapter.ViewHold
                         // Setting Positive "Yes" Button
                         alertDialog.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-
                                 TrainerManagementController trainerMC = new TrainerManagementController();
                                 trainerMC.deleteTrainer(t.getId());
+                                trainers.remove(t);
                                 dialog.cancel();
                             }
                         });
                         alertDialog.show();
                     }
                 }
-
-
         );
 
     }
 
     @Override
     public int getItemCount() {
-        return trainers.length;
+        return trainers.size();
     }
 
 

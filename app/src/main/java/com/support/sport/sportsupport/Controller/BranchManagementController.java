@@ -8,6 +8,8 @@ import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -31,12 +33,49 @@ public class BranchManagementController extends AppController {
             }
             @Override
             public void onFailure(Call<Branch> call, Throwable t) {
-
                 Log.d("failure","Spring error ADDBRANCH");
                 EventBus.getDefault().post(new RetrofitEvent(false));
             }
         });
         return Key.addedBranch;
+    }
+
+    public Branch deleteBranch(int id){
+
+        Call<Branch> regCall = apiService.deleteBranch(id);
+        regCall.enqueue(new Callback<Branch>() {
+            @Override
+            public void onResponse(Call<Branch> call, Response<Branch> response) {
+                Key.deletedBranch = response.body();
+                Log.d("success","Spring succes ADDBRANCH");
+                EventBus.getDefault().post(new RetrofitEvent(true,1));
+            }
+            @Override
+            public void onFailure(Call<Branch> call, Throwable t) {
+
+                Log.d("failure","Spring error ADDBRANCH");
+                EventBus.getDefault().post(new RetrofitEvent(false,1));
+            }
+        });
+        return Key.deletedBranch;
+    }
+
+    public List<Branch> showAllBranch(){
+        Call<List<Branch>> regCall = apiService.showBranches();
+        regCall.enqueue(new Callback<List<Branch>>() {
+            @Override
+            public void onResponse(Call<List<Branch>> call, Response<List<Branch>> response) {
+                Key.allBranches = response.body();
+                EventBus.getDefault().post(new RetrofitEvent(true,0));
+            }
+            @Override
+            public void onFailure(Call<List<Branch>> call, Throwable t) {
+
+                Log.d("failure","Spring error ADDBRANCH");
+                EventBus.getDefault().post(new RetrofitEvent(false,0));
+            }
+        });
+        return Key.allBranches;
     }
 
 

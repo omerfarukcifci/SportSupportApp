@@ -86,8 +86,14 @@ public interface ApiInterface {
     @GET("manager/all")
     Call<List<Manager>> allManagers();
 
+    @GET("manager/allWithBranchNames")
+    Call<List<Manager>> allManagersWithBranchNames();
+
     @GET("manager/delete/{id}")
-    Call<Manager> deleteManager(@Path("idm") String managerId);
+    Call<Manager> deleteManager(@Path("id") String managerId);
+
+    @GET("branch/all")
+    Call<List<Branch>> showBranches();
 
     @GET("trainer/delete/{id}")
     Call<Trainer> deleteTrainer(@Path("id") int trainerId);
@@ -118,8 +124,9 @@ public interface ApiInterface {
 
     @GET("memberlist/get/memberlist/{id}")
     Call<MemberList> getBranchId(@Path("id") int id);
-    //@GET("enrolledcourses/is/enrolled")
-    //Call<boolean> getEnrolled(@Query("memberId") int mId, @Query("courseId") int cId);
+
+    @GET("branch/delete/{id}")
+    Call<Branch> deleteBranch(@Path("id") int id);
 
 
 }

@@ -29,7 +29,7 @@ import org.greenrobot.eventbus.Subscribe;
 public class ManagerManagementScreen extends AppCompatActivity {
 
     FloatingActionButton fab ;
-
+    ManagerAdapter managerAdapter;
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -39,24 +39,34 @@ public class ManagerManagementScreen extends AppCompatActivity {
     @Subscribe
     public void onEvent(RetrofitEvent event) {
 
-        if(event.isRetrofitCompleted){
-            RecyclerView recyclerView = findViewById(R.id.managers_list);
-            ManagerAdapter managerAdapter = new ManagerAdapter(Key.allManagers);
-
-            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-            recyclerView.setLayoutManager(mLayoutManager);
-            recyclerView.setAdapter(managerAdapter);
-            fab = (FloatingActionButton) findViewById(R.id.floatingActionButtonManager);
-            fab.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent i = new Intent(ManagerManagementScreen.this,ManagerAddScreen.class);
-                    startActivity(i);
-                }
-            });
+        if (event.pID==0){
+            if(event.isRetrofitCompleted){
+                RecyclerView recyclerView = findViewById(R.id.managers_list);
+                managerAdapter = new ManagerAdapter(Key.allManagers);
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
+                recyclerView.setLayoutManager(mLayoutManager);
+                recyclerView.setAdapter(managerAdapter);
+                fab = (FloatingActionButton) findViewById(R.id.floatingActionButtonManager);
+                fab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent i = new Intent(ManagerManagementScreen.this,ManagerAddScreen.class);
+                        startActivity(i);
+                    }
+                });
+            }else{
+                Toast.makeText(this,"No managers to display",Toast.LENGTH_SHORT).show();
+            }
         }else{
-            Toast.makeText(this,"No managers to display",Toast.LENGTH_SHORT).show();
+            if(event.isRetrofitCompleted){
+                managerAdapter.notifyDataSetChanged();
+                Toast.makeText(this,"Successfully Deleted!",Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(this,"Delete process failed!",Toast.LENGTH_SHORT).show();
+            }
         }
+
+
 
     }
 
@@ -79,6 +89,18 @@ public class ManagerManagementScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manager_management_screen);
         ManagerManagementController mngrC = new ManagerManagementController();
-        mngrC.allManagers();
+        mngrC.allManagersWithBNames();
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (Key.manSetChanged){
+            managerAdapter.setList(Key.allManagers);
+            managerAdapter.notifyDataSetChanged();
+            Key.manSetChanged = false;
+        }
+
     }
 }
