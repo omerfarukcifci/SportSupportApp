@@ -34,7 +34,7 @@
                 android:id="@+id/soffer_branch_name_M"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Branch Name"
+                android:hint="Discount Amount"
                 android:maxLines="1"
                 android:singleLine="true" />
 

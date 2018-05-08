@@ -7,6 +7,7 @@ import com.support.sport.sportsupport.Model.Course;
 import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.Model.MemberList;
+import com.support.sport.sportsupport.Model.SpecialOffer;
 import com.support.sport.sportsupport.Model.Trainer;
 
 import java.util.ArrayList;
@@ -46,6 +47,29 @@ public class Key {
     public static Trainer newTrainer = null;
     public static List<Manager> allManagers = null;
     public static List<Member> allMembers = null;
+
+    public static SpecialOffer newSpecialOffer = null;
+    public static SpecialOffer appliedSpecialOffer = null;
+
+    public static SpecialOffer getAppliedSpecialOffer() {
+        return appliedSpecialOffer;
+    }
+
+    public static SpecialOffer getNewSpecialOffer() {
+        return newSpecialOffer;
+    }
+    public static SpecialOffer deletedSpecialOffer = null;
+
+    public static SpecialOffer getDeletedSpecialOffer() {
+        return deletedSpecialOffer;
+    }
+
+    public static List<SpecialOffer> allSpecialOffers = null;
+
+
+    public static List<SpecialOffer> getAllSpecialOffers() {
+        return allSpecialOffers;
+    }
 
     public static List<Trainer> allTrainers = null;
 

@@ -102,7 +102,7 @@ public class FragmentManagementPanel extends AppCompatActivity {
         offerManagement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FragmentManagementPanel.this,SpecialOfferManagementScreen.class);
+                Intent intent = new Intent(FragmentManagementPanel.this,SofferManagementScreen.class);
                 startActivity(intent);
             }
         });

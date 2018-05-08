@@ -15,6 +15,7 @@ import com.support.sport.sportsupport.Controller.Key;
 import com.support.sport.sportsupport.Controller.UserController;
 import com.support.sport.sportsupport.Model.Course;
 import com.support.sport.sportsupport.ViewPackage.Adapter.CourseAdapter;
+import com.support.sport.sportsupport.ViewPackage.Adapter.UserCourseAdapter;
 import com.support.sport.sportsupport.ViewPackage.Management.FragmentManagementPanel;
 import com.support.sport.sportsupport.ViewPackage.R;
 import com.support.sport.sportsupport.ViewPackage.Adapter.RecyclerTouchListener;
@@ -45,7 +46,7 @@ public class MyCoursesScreen extends AppCompatActivity {
                 textView.setText("You have not enrolled to any courses yet.\nYou can see our open courses from Courses tab.");
             }else {
                 textView.setText("You have enrolled to "+courses.length+" courses so far.");
-                CourseAdapter mAdapter = new CourseAdapter(Key.myClist);
+                UserCourseAdapter mAdapter = new UserCourseAdapter(Key.myClist);
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setAdapter(mAdapter);
