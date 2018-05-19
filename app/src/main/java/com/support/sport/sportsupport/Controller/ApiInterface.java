@@ -99,10 +99,10 @@ public interface ApiInterface {
     Call<Trainer> deleteTrainer(@Path("id") int trainerId);
 
     @GET("member/delete/{id}")
-    Call<Member> deleteMember(@Path("id") String memberId);
+    Call<Member> deleteMember(@Path("id") int memberId);
 
     @GET("member/all/{id}")
-    Call<List<Member>> allMembers(@Path("id") int branchId);
+    Call<List<Member>> allMembers(@Path("id") int id);
 
 
 

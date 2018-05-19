@@ -34,6 +34,7 @@ public class Key {
     public static boolean manSetChanged = false;
     public static Branch deletedBranch = null;
     public static boolean branchSetChanged = false;
+    public static boolean memberSetChanged = false;
     public static boolean courseSetChanged = false;
     public static boolean trainerSetChanged = false;
     public static ArrayList<String> getAllTrainersName() {
@@ -57,6 +58,7 @@ public class Key {
     public static List<Branch> allBranches = null;
     public static List<ActivityPlan> memberSchedule=null;
     public static Member updatedMember=null;
+    public static Member addedMember=null;
     public static Member cancelledMember=null;
     public static ClassMemberList enrolledClassMemberList =null;
     public static List<Course> allClist = null;

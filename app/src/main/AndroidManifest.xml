@@ -57,7 +57,7 @@
         <activity android:name=".Management.BranchAddScreen" android:noHistory="true"/>
         <activity android:name=".Management.CourseAddScreen" android:noHistory="true" />
         <activity android:name=".Management.TrainerAddScreen" android:noHistory="true"/>
-        <activity android:name=".Adapter.UserAddScreen" />
+        <activity android:name=".Management.UserAddScreen" android:noHistory="true"/>
     </application>
 
 </manifest>

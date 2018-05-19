@@ -58,7 +58,7 @@ public class TrainerManagementScreen extends AppCompatActivity {
                 Toast.makeText(this, "The Trainer Successfully Deleted!" , Toast.LENGTH_LONG).show();
             }
             else {
-                Toast.makeText(this, "The Trainer Successfully Deleted!" , Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Delete Process Failed!" , Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -93,6 +93,5 @@ public class TrainerManagementScreen extends AppCompatActivity {
             trainerAdapter.notifyDataSetChanged();
             Key.trainerSetChanged = false;
         }
-
     }
 }

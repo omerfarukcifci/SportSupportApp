@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.support.sport.sportsupport.Controller.Key;
 import com.support.sport.sportsupport.Controller.TrainerManagementController;
-import com.support.sport.sportsupport.ViewPackage.Adapter.UserAddScreen;
 import com.support.sport.sportsupport.ViewPackage.R;
 import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
 
