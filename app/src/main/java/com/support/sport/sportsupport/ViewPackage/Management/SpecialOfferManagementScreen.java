@@ -11,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.support.sport.sportsupport.ViewPackage.Adapter.UserAddScreen;
 import com.support.sport.sportsupport.ViewPackage.R;
 
 public class SpecialOfferManagementScreen extends AppCompatActivity {

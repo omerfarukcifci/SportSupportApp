@@ -1,14 +1,21 @@
 package com.support.sport.sportsupport.ViewPackage.Adapter;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.support.sport.sportsupport.Controller.BranchManagementController;
+import com.support.sport.sportsupport.Controller.ManagerManagementController;
 import com.support.sport.sportsupport.Model.Branch;
 import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.ViewPackage.R;
+
+import java.util.List;
 
 /**
  * Created by Faruk on 2.05.2018.
@@ -16,7 +23,7 @@ import com.support.sport.sportsupport.ViewPackage.R;
 
 public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.ViewHolder> {
 
-    private Branch[] branches;
+    private List<Branch> branches;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -24,8 +31,8 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.ViewHolder
         public TextView branchQuota;
         public TextView branchPhone;
         public TextView branchCity;
-        public TextView branchDistrict;
         public TextView branchAdress;
+        public ImageButton deletebutton;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -33,13 +40,17 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.ViewHolder
             branchQuota = (TextView) itemView.findViewById(R.id.branch_quota);
             branchPhone = (TextView) itemView.findViewById(R.id.branch_phone);
             branchCity = (TextView) itemView.findViewById(R.id.branch_city);
-            branchDistrict = (TextView) itemView.findViewById(R.id.branch_district);
             branchAdress = (TextView) itemView.findViewById(R.id.branch_adress);
+            deletebutton = itemView.findViewById(R.id.branch_delete_button);
         }
 
     }
 
-    public BranchAdapter(Branch[] myDataset) {
+    public BranchAdapter(List<Branch> myDataset) {
+        branches = myDataset;
+    }
+
+    public void setList(List<Branch> myDataset) {
         branches = myDataset;
     }
 
@@ -56,21 +67,41 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.ViewHolder
     @Override
     public void onBindViewHolder(BranchAdapter.ViewHolder holder, int position) {
 
-        Branch b = branches[position];
+        final Branch b = branches.get(position);
 
         holder.branchName.setText(b.getName());
         holder.branchQuota.setText("Quota : " + b.getQuota());
-        holder.branchPhone.setText("Phone: "+((int) b.getPhoneNumber()));
-        holder.branchCity.setText(b.getCity());
-        holder.branchDistrict.setText(b.getDistrict());
-        holder.branchAdress.setText(b.getAdress());
+        holder.branchPhone.setText("Phone: "+(b.getPhoneNumber()));
+        holder.branchCity.setText(b.getDistrict()+"/"+b.getCity());
+        holder.branchAdress.setText("Address: "+b.getAdress());
 
-
+        holder.deletebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());
+                alertDialog.setTitle("Delete Manager");
+                alertDialog.setCancelable(true);
+                alertDialog.setMessage("This Manager will delete, Are you sure?");
+                alertDialog.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        new BranchManagementController().deleteBranch(b.getId());
+                        branches.remove(b);
+                        dialog.cancel();
+                    }
+                });
+                alertDialog.setNegativeButton("CANCEL",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                alertDialog.show();
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        return branches.length;
+        return branches.size();
     }
 }

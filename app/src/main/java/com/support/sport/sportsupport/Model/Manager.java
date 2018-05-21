@@ -20,6 +20,8 @@ public class Manager {
     @SerializedName("branchId")
     private int branchId;
 
+    private String branchName;
+
     public Manager(String name, String surname, String username, String password, int branchId) {
         this.name = name;
         this.surname = surname;
@@ -81,5 +83,13 @@ public class Manager {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getBrancName() {
+        return branchName;
+    }
+
+    public void setBrancName(String brancName) {
+        this.branchName = brancName;
     }
 }

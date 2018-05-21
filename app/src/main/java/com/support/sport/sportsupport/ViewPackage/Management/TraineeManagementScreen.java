@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.ViewPackage.Adapter.TraineeAdapter;
-import com.support.sport.sportsupport.ViewPackage.Adapter.UserAdapter;
 import com.support.sport.sportsupport.ViewPackage.R;
 
 public class TraineeManagementScreen extends AppCompatActivity {

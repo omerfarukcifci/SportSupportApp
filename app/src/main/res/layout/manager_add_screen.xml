@@ -44,13 +44,11 @@
                 android:maxLines="1"
                 android:singleLine="true" />
 
-            <EditText
-                android:id="@+id/manager_branchID_M"
+            <Spinner
+                android:id="@+id/add_man_branch_spinner"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Manager's Branch Id"
-                android:maxLines="1"
-                android:singleLine="true" />
+                android:layout_height="wrap_content">
+            </Spinner>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"

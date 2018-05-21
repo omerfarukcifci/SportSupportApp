@@ -117,13 +117,14 @@ public class CourseController extends AppController{
         });
     }
 
-    public void addNewCourse(String name,int quota,int traninerId,
+    public Course addNewCourse(String name,int quota,int traninerId,
                              int branchId,String startDate,String endDate,
                              String description,String species){
         Call<Course> courseCall = apiService.addCourse(name,quota,traninerId,branchId,startDate,endDate,null,description,species);
         courseCall.enqueue(new Callback<Course>() {
             @Override
             public void onResponse(Call<Course> call, Response<Course> response) {
+                Key.addedCourse = response.body();
                 Log.d("success","Spring success");
                 EventBus.getDefault().post(new RetrofitEvent(true,1));
             }
@@ -133,6 +134,7 @@ public class CourseController extends AppController{
                 EventBus.getDefault().post(new RetrofitEvent(false,1));
             }
         });
+        return Key.addedCourse;
     }
 
     public void deleteCourse(int id){

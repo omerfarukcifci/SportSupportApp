@@ -22,32 +22,15 @@ public class Key {
     public static Member cMember = null;
     public static Manager cManager = null;
     public static Trainer cTrainer = null;
-    public static Member newMember = null;
     public static MemberList cMemberList = null;
     public static Manager newManager = null;
     public static Manager deletedManager = null;
     public static Trainer deletedTrainer = null;
     public static Member deletedMember = null;
-
-    public static Member getNewMember() {
-        return newMember;
-    }
-
-    public Trainer getDeletedTrainer(){
-        return deletedTrainer;
-    }
-    public Member getDeletedMember(){
-        return deletedMember;
-    }
-
-    public static Manager getDeletedManager() {
-        return deletedManager;
-    }
-
     public static Trainer newTrainer = null;
+    public static Course addedCourse = null;
     public static List<Manager> allManagers = null;
     public static List<Member> allMembers = null;
-
     public static SpecialOffer newSpecialOffer = null;
     public static SpecialOffer appliedSpecialOffer = null;
 
@@ -81,9 +64,13 @@ public class Key {
     public static List<SpecialOffer> getAllSpecialOffers() {
         return allSpecialOffers;
     }
-
     public static List<Trainer> allTrainers = null;
-
+    public static boolean manSetChanged = false;
+    public static Branch deletedBranch = null;
+    public static boolean branchSetChanged = false;
+    public static boolean memberSetChanged = false;
+    public static boolean courseSetChanged = false;
+    public static boolean trainerSetChanged = false;
     public static ArrayList<String> getAllTrainersName() {
         ArrayList<String> trainerName = new ArrayList<String>();
         for (Trainer t : allTrainers){
@@ -92,45 +79,26 @@ public class Key {
         return trainerName;
     }
 
+    public static ArrayList<String> getAllBranchesName() {
+        ArrayList<String> branchName = new ArrayList<String>();
+        for (Branch t : allBranches){
+            branchName.add(t.getName());
+        }
+        return branchName;
+    }
+
     public static Course oneCourse = null;
-
-
-    public Member getCMember(){
-        return cMember;
-    }
-    public void setcMember(Member member){cMember=member;}
-    public Course getOneCourse(){
-        return oneCourse;
-    }
-
-    public static Trainer getNewTrainer() {
-        return newTrainer;
-    }
-
-    public static Manager getNewManager() {
-        return newManager;
-    }
-
-    public static Branch addedBranch=null;
-
+    public static Branch addedBranch = null;
+    public static List<Branch> allBranches = null;
     public static List<ActivityPlan> memberSchedule=null;
     public static Member updatedMember=null;
+    public static Member addedMember=null;
     public static Member cancelledMember=null;
     public static ClassMemberList enrolledClassMemberList =null;
     public static List<Course> allClist = null;
     public static List<Course> myClist = null;
-
     public static boolean updatedProfile = false;
-
     public static boolean courseUpdated = false;
-
     public static int isAv = 0;
 
-
-    public  List<Course> getMyClist() {
-        return myClist;
-    }
-    public  ClassMemberList getEnrolledClassMemberList() {
-        return enrolledClassMemberList;
-    }
 }
