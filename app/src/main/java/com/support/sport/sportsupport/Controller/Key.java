@@ -64,8 +64,19 @@ public class Key {
         return deletedSpecialOffer;
     }
 
-    public static List<SpecialOffer> allSpecialOffers = null;
 
+    public static List<SpecialOffer> allSpecialOffers = null;
+    public static List<SpecialOffer> membersSpecialOffer = null;
+
+    public static List<SpecialOffer> getMembersSpecialOffer() {
+        return membersSpecialOffer;
+    }
+
+    public static  Boolean controlSpecialOffer ;
+
+    public static Boolean getControlSpecialOffer() {
+        return controlSpecialOffer;
+    }
 
     public static List<SpecialOffer> getAllSpecialOffers() {
         return allSpecialOffers;

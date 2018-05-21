@@ -37,6 +37,32 @@ public class SpecialOfferController extends AppController {
     }
 
 
+
+
+    public void membersSpecialOffer(int memberId){
+
+        Call<List<SpecialOffer>> soffers = apiService.getMembersSpecialOffer( memberId);
+        soffers.enqueue(new Callback<List<SpecialOffer>>() {
+            @Override
+            public void onResponse(Call<List<SpecialOffer>> call, Response<List<SpecialOffer>> response) {
+                Key.membersSpecialOffer = response.body();
+                EventBus.getDefault().post(new RetrofitEvent(true,0));
+            }
+            @Override
+            public void onFailure(Call<List<SpecialOffer>> call, Throwable t) {
+                Log.d("failure","Spring error All Special Offers");
+                EventBus.getDefault().post(new RetrofitEvent(false,0));
+            }
+        });
+
+
+    }
+
+
+
+
+
+
     public void createSpecialOffer(String name, String branchId, String startDate, String finishDate, String discountAmount, String referenceNumberLimit, String atttendanceLimit){
         Call<SpecialOffer> regCall = apiService.registerSpecialOffer(name,branchId,startDate, finishDate,discountAmount,referenceNumberLimit,atttendanceLimit);
         regCall.enqueue(new Callback<SpecialOffer>() {
@@ -77,6 +103,20 @@ public class SpecialOfferController extends AppController {
             }
             @Override
             public void onFailure(Call<SpecialOffer> call, Throwable t) {
+                Log.d("failure","Spring error Applied SPecial OFfer");
+            }
+        });
+    }
+
+    public void controlSpecialOffer(int specialOfferId, int memberId){
+        Call<Boolean> regCall = apiService.controlSpecialOffer(specialOfferId,memberId);
+        regCall.enqueue(new Callback<Boolean>() {
+            @Override
+            public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                Key.controlSpecialOffer = response.body();
+            }
+            @Override
+            public void onFailure(Call<Boolean> call, Throwable t) {
                 Log.d("failure","Spring error Applied SPecial OFfer");
             }
         });

@@ -47,12 +47,12 @@ public class FragmentSpecialOffer extends Fragment {
 
         if (event.pID == 1) {
             SpecialOfferController soController = new SpecialOfferController();
-            soController.allSpecialOffers(Key.cMemberList.getBranchId());
+            soController.membersSpecialOffer(Key.cMemberList.getMemberId());
         } else {
             if (event.isRetrofitCompleted) {
                 RecyclerView recyclerView = v.findViewById(R.id.special_offers_list);
-                soffers = new SpecialOffer[Key.allSpecialOffers.size()];
-                soffers = Key.allSpecialOffers.toArray(soffers);
+                soffers = new SpecialOffer[Key.membersSpecialOffer.size()];
+                soffers = Key.membersSpecialOffer.toArray(soffers);
                 SpecialOfferAdapter mAdapter = new SpecialOfferAdapter(soffers);
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
                 recyclerView.setLayoutManager(mLayoutManager);

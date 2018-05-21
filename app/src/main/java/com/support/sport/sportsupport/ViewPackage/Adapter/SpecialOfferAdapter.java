@@ -2,6 +2,7 @@ package com.support.sport.sportsupport.ViewPackage.Adapter;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,6 +76,20 @@ public class SpecialOfferAdapter extends RecyclerView.Adapter<SpecialOfferAdapte
         holder.offerName.setText(c.getName());
         holder.startDate.setText("Starts at: "+start.substring(0,10));
         holder.endDate.setText("Ends at: "+end.substring(0,10));
+        holder.limit.setText("Attendance Limit: " + c.getAttendanceLimit());
+        SpecialOfferController soController = new SpecialOfferController();
+        soController.controlSpecialOffer(c.getId(),Key.cMember.getId());
+     /*   boolean control = Key.getControlSpecialOffer();
+
+        if(control == true){
+            holder.apply.setBackgroundColor(Color.BLACK);
+
+        }
+*/
+
+
+
+
         holder.apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -125,6 +125,9 @@ public interface ApiInterface {
     @GET("offer/all/branch/{id}")
     Call<List<SpecialOffer>> getSpecialOffers(@Path("id") int id);
 
+    @GET("offer/canApply/member/{id}")
+    Call<List<SpecialOffer>> getMembersSpecialOffer(@Path("id") int id);
+
     @GET("offer/add")
     Call<SpecialOffer> registerSpecialOffer(@Query("name") String name, @Query("branchId") String branchId, @Query("startDate") String startDate,
                                   @Query("finishDate") String finishDate, @Query("discountAmount") String discountAmount,  @Query("referenceNumberLimit") String referenceNumberLimit, @Query("attendanceLimit") String attendanceLimit);
@@ -134,4 +137,7 @@ public interface ApiInterface {
 
     @GET("offer/apply")
     Call<SpecialOffer> applySpecialOffer(@Query("offerId") int offerId, @Query("memberId") int memberId);
+
+    @GET("offerlist/check")
+    Call<Boolean> controlSpecialOffer(@Query("offerId") int offerId, @Query("memberId") int memberId);
 }
