@@ -2,14 +2,20 @@ package com.support.sport.sportsupport.ViewPackage.Adapter;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.support.sport.sportsupport.Controller.Key;
+import com.support.sport.sportsupport.Controller.ManagerManagementController;
+import com.support.sport.sportsupport.Controller.SpecialOfferController;
 import com.support.sport.sportsupport.Model.SpecialOffer;
+import com.support.sport.sportsupport.ViewPackage.Management.TrainerAddScreen;
 import com.support.sport.sportsupport.ViewPackage.R;
 
 import java.text.SimpleDateFormat;
@@ -22,6 +28,8 @@ public class SpecialOfferAdapter extends RecyclerView.Adapter<SpecialOfferAdapte
 
 
     private SpecialOffer[] offers;
+
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -37,7 +45,7 @@ public class SpecialOfferAdapter extends RecyclerView.Adapter<SpecialOfferAdapte
             limit = itemView.findViewById(R.id.offer_limit);
             startDate = itemView.findViewById(R.id.offer_start_date);
             endDate = itemView.findViewById(R.id.offer_end_date);
-            apply = itemView.findViewById(R.id.offer_apply);
+            apply = itemView.findViewById(R.id.offer_apply_but);
         }
 
     }
@@ -60,38 +68,44 @@ public class SpecialOfferAdapter extends RecyclerView.Adapter<SpecialOfferAdapte
     public void onBindViewHolder(SpecialOfferAdapter.ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        SpecialOffer c = offers[position];
+      final  SpecialOffer c = offers[position];
         SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
-        String start = dateformat.format(c.getStartDate());
-        String end = dateformat.format(c.getFinishDate());
+        String start =c.getStartDate();
+        String end = c.getFinishDate();
 
         holder.offerName.setText(c.getName());
-        holder.startDate.setText("Starts at: "+start);
-        holder.endDate.setText("Ends at: "+end);
+        holder.startDate.setText("Starts at: "+start.substring(0,10));
+        holder.endDate.setText("Ends at: "+end.substring(0,10));
+        holder.limit.setText("Attendance Limit: " + c.getAttendanceLimit());
+        SpecialOfferController soController = new SpecialOfferController();
+        soController.controlSpecialOffer(c.getId(),Key.cMember.getId());
+     /*   boolean control = Key.getControlSpecialOffer();
+
+        if(control == true){
+            holder.apply.setBackgroundColor(Color.BLACK);
+
+        }
+*/
+
+
+
+
         holder.apply.setOnClickListener(new View.OnClickListener() {
-           /* @Override
-            public void onClick(View v) {
-                final Snackbar mySnackbar = Snackbar.make(v, "You applied the offer successfully!", Snackbar.LENGTH_LONG);
-                mySnackbar.setAction("OK!", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        mySnackbar.dismiss();
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(view.getContext());
+                alertDialog.setTitle("Apply Special Offer");
+                alertDialog.setCancelable(true);
+                alertDialog.setMessage("Do you want to  apply this special offer ?");
+                alertDialog.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        SpecialOfferController soController = new SpecialOfferController();
+                        soController.applySpecialOffer(c.getId(),Key.cMember.getId());
+
+                        dialog.cancel();
                     }
                 });
-                mySnackbar.show();
-            }
-        });*/
-
-       @Override
-            public void onClick(View v) {
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());
-                // Setting Dialog Title
-                alertDialog.setTitle("Special Offer");
-                alertDialog.setCancelable(true);
-                // Setting Dialog Message
-                alertDialog.setMessage("This offer is not available for you. Visit here later for more!");
-                // Setting Positive "Yes" Button
-                alertDialog.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+                alertDialog.setNegativeButton("CANCEL",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                     }

@@ -12,6 +12,7 @@ import com.support.sport.sportsupport.Model.Course;
 import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.Model.MemberList;
+import com.support.sport.sportsupport.Model.SpecialOffer;
 import com.support.sport.sportsupport.Model.Trainer;
 import com.support.sport.sportsupport.ViewPackage.Menu.CancelMembershipScreen;
 
@@ -128,5 +129,22 @@ public interface ApiInterface {
     @GET("branch/delete/{id}")
     Call<Branch> deleteBranch(@Path("id") int id);
 
+    @GET("offer/all/branch/{id}")
+    Call<List<SpecialOffer>> getSpecialOffers(@Path("id") int id);
 
+    @GET("offer/canApply/member/{id}")
+    Call<List<SpecialOffer>> getMembersSpecialOffer(@Path("id") int id);
+
+    @GET("offer/add")
+    Call<SpecialOffer> registerSpecialOffer(@Query("name") String name, @Query("branchId") String branchId, @Query("startDate") String startDate,
+                                  @Query("finishDate") String finishDate, @Query("discountAmount") String discountAmount,  @Query("referenceNumberLimit") String referenceNumberLimit, @Query("attendanceLimit") String attendanceLimit);
+
+    @GET("offer/delete/{id}")
+    Call<SpecialOffer> deleteSpecialOffer(@Path("id") int id);
+
+    @GET("offer/apply")
+    Call<SpecialOffer> applySpecialOffer(@Query("offerId") int offerId, @Query("memberId") int memberId);
+
+    @GET("offerlist/check")
+    Call<Boolean> controlSpecialOffer(@Query("offerId") int offerId, @Query("memberId") int memberId);
 }

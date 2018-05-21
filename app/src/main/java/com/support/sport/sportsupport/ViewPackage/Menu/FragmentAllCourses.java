@@ -17,6 +17,7 @@ import com.support.sport.sportsupport.Controller.Key;
 import com.support.sport.sportsupport.Controller.UserController;
 import com.support.sport.sportsupport.Model.Course;
 import com.support.sport.sportsupport.ViewPackage.Adapter.CourseAdapter;
+import com.support.sport.sportsupport.ViewPackage.Adapter.UserCourseAdapter;
 import com.support.sport.sportsupport.ViewPackage.R;
 import com.support.sport.sportsupport.ViewPackage.Adapter.RecyclerTouchListener;
 import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
@@ -49,7 +50,7 @@ public class FragmentAllCourses extends Fragment {
                 RecyclerView recyclerView = v.findViewById(R.id.courses_list);
                 coursesm = new Course[Key.allClist.size()];
                 coursesm = Key.allClist.toArray(coursesm);
-                CourseAdapter mAdapter = new CourseAdapter(Key.allClist);
+                UserCourseAdapter mAdapter = new UserCourseAdapter(Key.allClist);
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setAdapter(mAdapter);
