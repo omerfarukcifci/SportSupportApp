@@ -1,4 +1,4 @@
-package com.support.sport.sportsupport.ViewPackage.Adapter;
+package com.support.sport.sportsupport.ViewPackage.Management;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,8 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.support.sport.sportsupport.Controller.Key;
 import com.support.sport.sportsupport.Controller.UserController;
-import com.support.sport.sportsupport.ViewPackage.Management.CourseAddScreen;
 import com.support.sport.sportsupport.ViewPackage.R;
 import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
 
@@ -29,10 +29,12 @@ public class UserAddScreen extends AppCompatActivity {
     public void onEvent(RetrofitEvent event) {
 
         if(event.isRetrofitCompleted){
-
-            Toast.makeText(this, "User created ! ",Toast.LENGTH_LONG).show();
+            Toast.makeText(UserAddScreen.this, "User Successfully Created" , Toast.LENGTH_LONG).show();
+            Key.allMembers.add(0,Key.addedMember);
+            Key.memberSetChanged = true;
+            finish();
         }else{
-            Toast.makeText(this, "User hasn't created ! Try again.",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "User is not created ! Try again.",Toast.LENGTH_LONG).show();
         }
 
     }
@@ -85,55 +87,31 @@ public class UserAddScreen extends AppCompatActivity {
                 final String passwordStr = password.getText().toString();
 
                 if(spaceController == 0){
-
-
-
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-
-
                     alertDialogBuilder.setTitle("Are you sure?");
-
-
                     alertDialogBuilder
                             .setMessage("Do you want to create this user?")
                             .setCancelable(false)
-                            //       .setIcon(R.mipmap.ic_launcher_round)
-
                             .setPositiveButton("Apply", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-
-                                    UserController userController = new UserController();
-                                    userController.signUp(nameStr,surnameStr,usernameStr,passwordStr,mailStr,birtdateStr);
-
-                                    Toast.makeText(UserAddScreen.this, "The User Successfully Created" , Toast.LENGTH_LONG).show();
-
-
+                                    new UserController().addUser(nameStr,surnameStr,usernameStr,passwordStr,mailStr,birtdateStr);
                                 }
                             })
-
                             .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-
                                     dialog.dismiss();
-
-
-
                                 }
                             });
 
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     spaceController = 0;
-
                     alertDialog.show();
 
                 }else{
-
                     spaceController =0;
                 }
-
-
             }
         });
 

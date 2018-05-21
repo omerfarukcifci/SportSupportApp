@@ -34,10 +34,12 @@ public class TrainerManagementController extends AppController {
             @Override
             public void onResponse(Call<Trainer> call, Response<Trainer> response) {
                 Key.newTrainer = response.body();
+                EventBus.getDefault().post(new RetrofitEvent(true));
             }
             @Override
             public void onFailure(Call<Trainer> call, Throwable t) {
                 Log.d("failure","Spring error Trainnneeeer");
+                EventBus.getDefault().post(new RetrofitEvent(false));
             }
         });
     }
@@ -67,10 +69,13 @@ public class TrainerManagementController extends AppController {
             @Override
             public void onResponse(Call<Trainer> call, Response<Trainer> response) {
                 Key.deletedTrainer = response.body();
+                EventBus.getDefault().post(new RetrofitEvent(true,1));
+
             }
             @Override
             public void onFailure(Call<Trainer> call, Throwable t) {
                 Log.d("failure","Spring error Delete Manager Delete Manager");
+                EventBus.getDefault().post(new RetrofitEvent(false,1));
             }
         });
     }

@@ -50,6 +50,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         courses = myDataset;
     }
 
+    public void setList(List<Course> myDataset) {
+        courses = myDataset;
+    }
+
     // Create new views (invoked by the layout manager)
     @Override
     public CourseAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
@@ -80,7 +84,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
                 alertDialog.setTitle("Delete Manager");
                 alertDialog.setCancelable(true);
                 // Setting Dialog Message
-                alertDialog.setMessage("This Manager will delete, Are you sure?");
+                alertDialog.setMessage("This will delete the course, Are you sure?");
                 // Setting Positive "Yes" Button
                 alertDialog.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
@@ -97,8 +101,6 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
                 alertDialog.show();
             }
         });
-
-
     }
 
     // Return the size of your dataset (invoked by the layout manager)

@@ -17,23 +17,21 @@ import retrofit2.Response;
 
 public class UserManagementController extends AppController{
 
-    public void deleteMember(String memberId){
+    public void deleteMember(int memberId){
         Call<Member> regCall = apiService.deleteMember(memberId);
         regCall.enqueue(new Callback<Member>() {
             @Override
             public void onResponse(Call<Member> call, Response<Member> response) {
                 Key.deletedMember = response.body();
+                EventBus.getDefault().post(new RetrofitEvent(true,1));
             }
             @Override
             public void onFailure(Call<Member> call, Throwable t) {
                 Log.d("failure","Spring error Delete Manager Delete Manager");
+                EventBus.getDefault().post(new RetrofitEvent(false,1));
             }
         });
     }
-
-
-
-
     public void allMembers(int branchId){
 
         Call<List<Member>> managers = apiService.allMembers(branchId);
@@ -41,12 +39,12 @@ public class UserManagementController extends AppController{
             @Override
             public void onResponse(Call<List<Member>> call, Response<List<Member>> response) {
                 Key.allMembers = response.body();
-                EventBus.getDefault().post(new RetrofitEvent(true));
+                EventBus.getDefault().post(new RetrofitEvent(true,0));
             }
             @Override
             public void onFailure(Call<List<Member>> call, Throwable t) {
                 Log.d("failure","Spring error ALLL MANAGERSSS");
-                EventBus.getDefault().post(new RetrofitEvent(false));
+                EventBus.getDefault().post(new RetrofitEvent(false,0));
             }
         });
 

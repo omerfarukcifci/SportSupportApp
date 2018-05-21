@@ -20,9 +20,11 @@
             android:label="Main"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity
+            android:noHistory="true"
             android:name=".SignInScreen"
             android:label="@string/title_activity_sign_in" />
         <activity
+            android:noHistory="true"
             android:name=".SignUpScreen"
             android:label="@string/title_activity_sign_up" />
         <activity android:name=".WelcomeScreen">
@@ -48,14 +50,14 @@
         <activity android:name=".Management.UserManagementScreen" />
         <activity android:name=".Management.TrainerManagementScreen" />
         <activity android:name=".Management.TraineeManagementScreen" />
-        <activity android:name=".Management.CourseManagementScreen" android:noHistory="true" />
+        <activity android:name=".Management.CourseManagementScreen" />
         <activity android:name=".Management.BranchManagementScreen" />
         <activity android:name=".Management.SpecialOfferManagementScreen" />
         <activity android:name=".Management.ManagerAddScreen" android:noHistory="true" />
-        <activity android:name=".Management.BranchAddScreen" />
+        <activity android:name=".Management.BranchAddScreen" android:noHistory="true"/>
         <activity android:name=".Management.CourseAddScreen" android:noHistory="true" />
-        <activity android:name=".Management.TrainerAddScreen" />
-        <activity android:name=".Adapter.UserAddScreen" />
+        <activity android:name=".Management.TrainerAddScreen" android:noHistory="true"/>
+        <activity android:name=".Management.UserAddScreen" android:noHistory="true"/>
     </application>
 
 </manifest>

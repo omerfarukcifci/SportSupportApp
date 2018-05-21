@@ -92,6 +92,24 @@ public class UserController extends AppController{
         });
     }
 
+    public void addUser(String name, String surname, String username, String password, String mail, String age){
+        Call<Member> regCall = apiService.registerMember(name,surname,username, password,mail,age);
+        regCall.enqueue(new Callback<Member>() {
+            @Override
+            public void onResponse(Call<Member> call, Response<Member> response) {
+                Key.addedMember = response.body();
+                Log.d("success","Spring success");
+                EventBus.getDefault().post(new RetrofitEvent(true));
+            }
+            @Override
+            public void onFailure(Call<Member> call, Throwable t) {
+                //Toast.makeText("Spring Error",Toast.LENGTH_LONG).show();
+                Log.d("failure","Spring error");
+                EventBus.getDefault().post(new RetrofitEvent(false));
+            }
+        });
+    }
+
     public void getBranchId(int id){
         Call<MemberList> regCall = apiService.getBranchId(id);
         regCall.enqueue(new Callback<MemberList>() {

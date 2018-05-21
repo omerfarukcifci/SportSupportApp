@@ -32,10 +32,12 @@ public class BranchAddScreen extends AppCompatActivity {
     public void onEvent(RetrofitEvent event) {
 
         if(event.isRetrofitCompleted){
-
             Toast.makeText(this, "Branch created ! ",Toast.LENGTH_LONG).show();
+            Key.allBranches.add(0,Key.addedBranch);
+            Key.branchSetChanged = true;
+            finish();
         }else{
-            Toast.makeText(this, "Branch hasn't created ! Try again.",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Create process failed! Try again.",Toast.LENGTH_LONG).show();
         }
 
     }
@@ -68,9 +70,6 @@ public class BranchAddScreen extends AppCompatActivity {
 
         openNewBranch = findViewById(R.id.open_new_branch_button);
 
-
-
-
         openNewBranch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,60 +82,33 @@ public class BranchAddScreen extends AppCompatActivity {
                 spaceController += controlBlank(branchAddress);
 
                 if(spaceController == 0) {
-
-
-
-
-
-
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-
-                    // alert dialog başlığını tanımlıyoruz.
                     alertDialogBuilder.setTitle("Are you sure?");
-
-                    // alert dialog özelliklerini oluşturuyoruz.
                     alertDialogBuilder
                             .setMessage("Do you want to create this branch?")
                             .setCancelable(false)
-                            //       .setIcon(R.mipmap.ic_launcher_round)
-
                             .setPositiveButton("Apply", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    long phone = 03121244123;
                                     BranchManagementController controller = new BranchManagementController();
                                     controller.addBranch(branchName.getText().toString(),Integer.valueOf(branchQuota.getText().toString()), Long.valueOf(branchPhoneNumber.getText().toString()),
                                             branchCity.getText().toString(),branchDistrict.getText().toString(),branchAddress.getText().toString());
-                                    //Toast.makeText(BranchAddScreen.this, "The Branch Successfully Created" , Toast.LENGTH_LONG).show();
-                                    //Toast.makeText(BranchAddScreen.this, "Branch created ! ",Toast.LENGTH_LONG).show();
                                 }
                             })
 
                             .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-
                                     dialog.dismiss();
-
-
-
-                                }
+                               }
                             });
-
-                    // alert dialog nesnesini oluşturuyoruz
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     spaceController = 0;
-                    // alerti gösteriyoruz
                     alertDialog.show();
-
-
                 }else{
-
                     spaceController =0;
                 }
-
-
-            }
+           }
         });
 
 

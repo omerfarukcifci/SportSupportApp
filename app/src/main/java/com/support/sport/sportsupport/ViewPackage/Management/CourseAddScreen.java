@@ -94,7 +94,9 @@ public class CourseAddScreen extends AppCompatActivity {
         }else{
             if (event.isRetrofitCompleted){
                 Toast.makeText(CourseAddScreen.this, "The Course Is Successfully Created" , Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this,CourseManagementScreen.class));
+                Key.allClist.add(0,Key.addedCourse);
+                Key.courseSetChanged = true;
+                finish();
             }else {
                 Toast.makeText(getApplicationContext(), "An error occurred during adding new course!",Toast.LENGTH_LONG).show();
             }

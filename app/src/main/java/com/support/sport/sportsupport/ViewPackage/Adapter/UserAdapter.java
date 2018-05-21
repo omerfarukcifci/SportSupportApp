@@ -15,13 +15,15 @@ import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.ViewPackage.R;
 
+import java.util.List;
+
 /**
  * Created by Faruk on 2.05.2018.
  */
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
-    private Member[] members;
+    private List<Member> members;
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -45,10 +47,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     }
 
-    public UserAdapter(Member[] myDataset) {
+    public UserAdapter(List<Member> myDataset) {
         members = myDataset;
     }
 
+    public void setList(List<Member> myDataset) {
+        members = myDataset;
+    }
 
 
     @Override
@@ -63,7 +68,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(UserAdapter.ViewHolder holder, int position) {
 
-       final Member m = members[position];
+       final Member m = members.get(position);
 
         holder.memberName.setText(m.getName());
         holder.memberSurname.setText(m.getSurname());
@@ -75,17 +80,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(v.getContext());
-                // Setting Dialog Title
                 alertDialog.setTitle("Delete Member");
                 alertDialog.setCancelable(true);
-                // Setting Dialog Message
                 alertDialog.setMessage("This Member will delete, Are you sure?");
-                // Setting Positive "Yes" Button
                 alertDialog.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-
-                        UserManagementController userMController = new UserManagementController();
-                        userMController.deleteMember(Integer.toString(m.getId()));
+                        new UserManagementController().deleteMember(m.getId());
+                        members.remove(m);
                         dialog.cancel();
                     }
                 });
@@ -96,7 +97,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return members.length;
+        return members.size();
     }
 
 

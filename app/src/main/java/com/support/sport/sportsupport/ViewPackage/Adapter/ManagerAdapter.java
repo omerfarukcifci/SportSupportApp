@@ -51,6 +51,10 @@ public class ManagerAdapter extends RecyclerView.Adapter<ManagerAdapter.ViewHold
         managers = myDataset;
     }
 
+    public void setList(List<Manager> myDataset) {
+        managers = myDataset;
+    }
+
 
 
     @Override
@@ -70,7 +74,7 @@ public class ManagerAdapter extends RecyclerView.Adapter<ManagerAdapter.ViewHold
         holder.managerName.setText(m.getName());
         holder.managerSurname.setText(m.getSurname());
         holder.managerUsername.setText("Username: "+m.getUsername());
-        holder.managerBranchId.setText("Branch Id :"+m.getBranchId());
+        holder.managerBranchId.setText("Branch: "+m.getBrancName());
 
         holder.deleteManagerButton.setOnClickListener(new View.OnClickListener() {
             @Override
