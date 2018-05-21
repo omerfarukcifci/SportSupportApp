@@ -76,7 +76,7 @@ public class SofferManagementScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.soffer_management_screen);
         SpecialOfferController soController = new SpecialOfferController();
-        soController.allSpecialOffers(159);
+        soController.allSpecialOffers(Key.cManager.getBranchId());
     }
 
 }
