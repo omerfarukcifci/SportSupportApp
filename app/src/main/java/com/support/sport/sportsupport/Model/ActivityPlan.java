@@ -5,29 +5,21 @@ import com.google.gson.annotations.SerializedName;
 
 public class ActivityPlan {
 
-	@SerializedName("id")
-	private int id;
-	@SerializedName("moveId")
-	private int moveId;
+	@SerializedName("name")
+	private String name;
 	@SerializedName("memberId")
 	private int memberId;
 	@SerializedName("sets")
 	private int sets;
 	@SerializedName("status")
 	private boolean status;
-	
-	
-	public int getId() {
-		return id;
+
+
+	public String getName() {
+		return name;
 	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public int getMoveId() {
-		return moveId;
-	}
-	public void setMoveId(int moveId) {
-		this.moveId = moveId;
+	public void setId(String name) {
+		this.name = name;
 	}
 	public int getMemberId() {
 		return memberId;
@@ -47,15 +39,16 @@ public class ActivityPlan {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-	
-	ActivityPlan(){}
-	
-	ActivityPlan(int moveId, int memberId, int sets, boolean status){
-		this.moveId = moveId;
+
+
+
+	public ActivityPlan(String name, int memberId, int sets, boolean status){
+		this.name = name;
 		this.memberId = memberId;
 		this.sets = sets;
 		this.status = status;
 	}
+	public ActivityPlan(){}
 
 
 }

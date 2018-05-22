@@ -7,6 +7,7 @@ import com.support.sport.sportsupport.Model.Course;
 import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.Model.MemberList;
+import com.support.sport.sportsupport.Model.Move;
 import com.support.sport.sportsupport.Model.Trainer;
 
 import java.util.ArrayList;
@@ -78,6 +79,9 @@ public class Key {
 
     public static Branch addedBranch=null;
 
+    public static List<Member> allTrainees=null;
+    public static List<Move> allMovements=null;
+    public static List<Move> selectedMovements=null;
     public static List<ActivityPlan> memberSchedule=null;
     public static Member updatedMember=null;
     public static Member cancelledMember=null;
