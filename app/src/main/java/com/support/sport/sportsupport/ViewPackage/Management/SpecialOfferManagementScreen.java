@@ -1,5 +1,5 @@
 package com.support.sport.sportsupport.ViewPackage.Management;
-
+/*
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
@@ -174,3 +174,4 @@ public class SpecialOfferManagementScreen extends AppCompatActivity {
         return 0;
     }
 }
+*/
