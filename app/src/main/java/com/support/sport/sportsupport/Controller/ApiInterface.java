@@ -111,8 +111,6 @@ public interface ApiInterface {
     Call<BranchStats> viewBranchStats(@Path("id") int branchId);
 
 
-
-
     @GET("member/delete/{id}")
     Call<Member> deleteMember(@Path("id") int memberId);
 

@@ -1,7 +1,11 @@
 package com.support.sport.sportsupport.ViewPackage;
 
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
@@ -12,6 +16,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -21,12 +26,16 @@ import com.support.sport.sportsupport.Controller.ApiInterface;
 import com.support.sport.sportsupport.Controller.Key;
 import com.support.sport.sportsupport.Controller.ProfileController;
 import com.support.sport.sportsupport.Controller.UserController;
+import com.support.sport.sportsupport.ViewPackage.Management.UserAddScreen;
 import com.support.sport.sportsupport.ViewPackage.Menu.CustomerNavigationMenu;
 import com.support.sport.sportsupport.ViewPackage.Menu.PaymentScreen;
 import com.support.sport.sportsupport.ViewPackage.Menu.UpdateProfileScreen;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import java.net.InetAddress;
+import java.util.Calendar;
 
 /**
  * A login screen that offers login via email/password.
@@ -37,11 +46,52 @@ public class SignUpScreen extends AppCompatActivity {
     private UserLoginTask mAuthTask = null;
 
     // UI references.
-    private EditText name,surname,username,birtdate,mail,password;
+    private EditText name,surname,username,mail,password;
     private View mProgressView;
     private View mLoginFormView;
-    Button signUp;
+    Button signUp,setBDate;
+    public static EditText birtdate;
     final Context context = this;
+
+
+    public static class DatePickerFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener {
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+            // Create a new instance of DatePickerDialog and return it
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+            //  birtdate.setText("Selected Date: " + (month + 1) + "-" + day + "-" + year);
+            birtdate.setText( year +"-"+(month + 1)+"-"+day);
+        }
+    }
+
+
+
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new SignUpScreen.DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
+    }
+
+
+
+
 
     @Subscribe
     public void onEvent(RetrofitEvent event) {
@@ -53,7 +103,10 @@ public class SignUpScreen extends AppCompatActivity {
             startActivity(intent);
 
         }else{
-            Toast.makeText(this, "Error ! New profile hasn't created . Try again.",Toast.LENGTH_LONG).show();
+            if(isNetworkConnected() )
+                Toast.makeText(this, "Error ! This Username is already taken.",Toast.LENGTH_LONG).show();
+            else
+            Toast.makeText(this, "Error ! Please check your internet connection",Toast.LENGTH_LONG).show();
         }
 
     }
@@ -86,6 +139,10 @@ public class SignUpScreen extends AppCompatActivity {
         mail = findViewById(R.id.signup_email);
         password = findViewById(R.id.signup_password);
         signUp = findViewById(R.id.sign_up_button);
+        setBDate = findViewById(R.id.BTN_M_BDate);
+
+
+
 
 
         signUp.setOnClickListener(new OnClickListener() {
@@ -138,10 +195,7 @@ public class SignUpScreen extends AppCompatActivity {
 
         String strUserName = edt.getText().toString();
 
-        if(strUserName.equals("alisahin")){
-            edt.setError("This username is already taken.");
-            return 1;
-        }
+
 
         if(TextUtils.isEmpty(strUserName)) {
             edt.setError("This field cannot be empty.");
@@ -151,35 +205,7 @@ public class SignUpScreen extends AppCompatActivity {
     }
 
 
-    public void showDialog(){
-        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-        alertDialog.setTitle("Successfully Deleted!");
-        //alertDialog.setMessage("Message");
 
-        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Okay",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-    /*    alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });*/
-        alertDialog.show();
-
-        Button btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
-      //  Button btnNegative = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
-
-        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
-        layoutParams.weight = 10;
-        btnPositive.setLayoutParams(layoutParams);
-     //   btnNegative.setLayoutParams(layoutParams);
-        alertDialog.show();
-    }
 
 
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {

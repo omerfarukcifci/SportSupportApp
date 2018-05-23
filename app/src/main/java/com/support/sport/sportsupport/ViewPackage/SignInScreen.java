@@ -1,10 +1,14 @@
 package com.support.sport.sportsupport.ViewPackage;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -57,17 +61,54 @@ public class SignInScreen extends AppCompatActivity  {
                 startActivity(intent);
             }
             else if(checkBoxMember.isChecked() && !Key.cMember.getStatue().equals("owner")){
-                Intent intent2 = new Intent(SignInScreen.this,CustomerNavigationMenu.class);
-                startActivity(intent2);
-            }else{
+                if (Key.cMember.getStatue().equals("banned")){
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SignInScreen.this);
+                    alertDialogBuilder.setTitle("Entry");
+                    alertDialogBuilder
+                            .setMessage("You are banned from this branch. You can not login.")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    onBackPressed();
+                                }
+                            });
+
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                }else{
+                    Intent intent2 = new Intent(SignInScreen.this,CustomerNavigationMenu.class);
+                    startActivity(intent2);
+                }
+
+            }
+
+
+
+
+            else{
                 // Handle checkbox selections.
                 Toast.makeText(getApplicationContext(), "Please Pick Correct Membertype",Toast.LENGTH_LONG).show();
 
             }
         }else{
-            Toast.makeText(getApplicationContext(), "Invalid Username Password Combination",Toast.LENGTH_LONG).show();
+            if(isNetworkConnected() )
+                Toast.makeText(getApplicationContext(), "Invalid Username Password Combination",Toast.LENGTH_LONG).show();
+              else
+                Toast.makeText(this, "Error ! Please check your internet connection",Toast.LENGTH_LONG).show();
         }
     }
+
+
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
+    }
+
+
+
     @Override
     public void onStart() {
         super.onStart();
@@ -98,18 +139,42 @@ public class SignInScreen extends AppCompatActivity  {
             public void onClick(View view) {
                 String username = mUsernameView.getText().toString();
                 String password = mPasswordView.getText().toString();
-                UserController userController = new UserController();
-                if(checkBoxManager.isChecked()){
-                    userController.loginManager(username,password);
-                }
-                else if (checkBoxTrainer.isChecked()){
-                    userController.loginTrainer(username,password);
-                }
-                else userController.loginMember(username,password);
+                int spaceController = 0;
+                spaceController = controlBlank(mUsernameView);
+                spaceController += controlBlank(mPasswordView);
 
+             if(!checkBoxOwner.isChecked() && !checkBoxMember.isChecked() && !checkBoxTrainer.isChecked() && !checkBoxManager.isChecked()){
+                    Toast.makeText(getApplicationContext(), "Please Pick a your  Membertype",Toast.LENGTH_LONG).show();
+                 spaceController = 0;
+                }else if (spaceController == 0) {
+
+                    UserController userController = new UserController();
+                    if (checkBoxManager.isChecked()) {
+                        userController.loginManager(username, password);
+                    } else if (checkBoxTrainer.isChecked()) {
+                        userController.loginTrainer(username, password);
+                    } else userController.loginMember(username, password);
+
+                }else {
+                    spaceController = 0;
+                }
             }
         });
     }
+
+    public int controlBlank(EditText edt){
+
+        String strUserName = edt.getText().toString();
+
+
+
+        if(TextUtils.isEmpty(strUserName)) {
+            edt.setError("This field cannot be empty.");
+            return 1;
+        }
+        return 0;
+    }
+
 
     private void ControlCheckBoxes(){
         checkBoxMember = (CheckBox) findViewById(R.id.checkBox_member_login);

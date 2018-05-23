@@ -31,12 +31,12 @@ import org.greenrobot.eventbus.Subscribe;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class FragmentSpecialOffer extends Fragment {
 
 
     View v;
-    SpecialOffer[] soffers ;
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -71,9 +71,7 @@ public class FragmentSpecialOffer extends Fragment {
                 }
 
                 RecyclerView recyclerView = v.findViewById(R.id.special_offers_list);
-                soffers = new SpecialOffer[Key.membersSpecialOffer.size()];
-                soffers = Key.membersSpecialOffer.toArray(soffers);
-                SpecialOfferAdapter mAdapter = new SpecialOfferAdapter(soffers);
+                SpecialOfferAdapter mAdapter = new SpecialOfferAdapter(Key.membersSpecialOffer);
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setAdapter(mAdapter);

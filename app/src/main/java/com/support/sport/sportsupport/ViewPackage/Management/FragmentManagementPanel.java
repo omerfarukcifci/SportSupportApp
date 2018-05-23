@@ -1,17 +1,24 @@
 package com.support.sport.sportsupport.ViewPackage.Management;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.support.sport.sportsupport.Controller.Key;
+import com.support.sport.sportsupport.ViewPackage.Menu.CustomerNavigationMenu;
 import com.support.sport.sportsupport.ViewPackage.R;
+import com.support.sport.sportsupport.ViewPackage.WelcomeScreen;
 
 public class FragmentManagementPanel extends AppCompatActivity {
 
     private Button userManagement,managerManagement,trainerManagement,traineeManagement,courseManagement,branchManagement,offerManagement;
-
+    private Button logout, viewBranchStats;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +37,11 @@ public class FragmentManagementPanel extends AppCompatActivity {
         courseManagement = (Button) findViewById(R.id.courses_management_button);
         offerManagement = (Button) findViewById(R.id.offers_management_button);
         branchManagement = (Button) findViewById(R.id.branch_management_button);
+        logout = (Button) findViewById(R.id.management_panel_logout_button);
+        viewBranchStats= (Button) findViewById(R.id.manager_view_branch_stats);
 
         if(manager==true){
+            viewBranchStats.setVisibility(View.VISIBLE);
             userManagement.setEnabled(true);
             managerManagement.setEnabled(false);
             trainerManagement.setEnabled(true);
@@ -58,6 +68,15 @@ public class FragmentManagementPanel extends AppCompatActivity {
             offerManagement.setEnabled(false);
             branchManagement.setEnabled(false);
         }
+
+        viewBranchStats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent( FragmentManagementPanel.this ,FragmentBranchStats.class);
+                intent.putExtra("SelectedBranch", Key.cManager.getBranchId());
+                startActivity(intent);
+            }
+        });
 
         userManagement.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,8 +131,37 @@ public class FragmentManagementPanel extends AppCompatActivity {
         });
 
 
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(FragmentManagementPanel.this);
+                // Setting Dialog Title
+                alertDialog.setTitle("Confirm Logout");
+                alertDialog.setCancelable(true);
+                // Setting Dialog Message
+                alertDialog.setMessage("Are you sure you want to log out?");
+                // Setting Positive "Yes" Button
+                alertDialog.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int which) {
+                        Intent intent3 = new Intent(FragmentManagementPanel.this,WelcomeScreen.class);
+                        startActivity(intent3);
+                    }
+                });
+                alertDialog.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Write your code here to invoke NO event
+                        dialog.cancel();
+                    }
+                });
+                alertDialog.show();
+            }
+        });
 
 
+    }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);  //If view is in News fragment, exit application
     }
 }

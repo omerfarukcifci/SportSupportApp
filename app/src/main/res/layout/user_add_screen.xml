@@ -60,6 +60,17 @@
                 <EditText
                     android:id="@+id/birthdate_M"
                     android:layout_width="match_parent"
+                    android:id="@+id/BTN_set_Birth_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:onClick="showDatePickerDialog"
+                    android:text="Set Birth Date" />
+
+                <EditText
+                    android:id="@+id/birthdate_M"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:enabled="false"

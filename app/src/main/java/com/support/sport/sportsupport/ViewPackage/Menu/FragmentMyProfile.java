@@ -47,11 +47,14 @@ public class FragmentMyProfile extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), MyScheduleScreen.class);
+                intent.putExtra("id",Key.cMember.getId());
                 startActivity(intent);
             }
         });
 
         buttonBecomeMember = (Button) rootView.findViewById(R.id.become_upgrade_membership_button);
+        if (Key.cMember.getStatue().equals("inactive")) buttonBecomeMember.setText("BECOME MEMBER");
+        else buttonBecomeMember.setText("UPGRADE MEMBERSHIP");
         buttonBecomeMember.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

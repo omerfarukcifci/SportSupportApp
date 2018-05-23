@@ -78,6 +78,7 @@ public class ActivityPlanAdapter extends RecyclerView.Adapter<ActivityPlanAdapte
         this.layouts = new int[3];
         this.layouts[0]=R.layout.activity_plan_item;
         this.layouts[1]=R.layout.activity_plan_item_show;
+        this.layouts[2]=R.layout.activity_plan_item_show;
         this.targetLayout = this.layouts[pos];
     }
     public ActivityPlanAdapter(Move[] myDataset, int pos) {
@@ -87,6 +88,7 @@ public class ActivityPlanAdapter extends RecyclerView.Adapter<ActivityPlanAdapte
         this.layouts = new int[3];
         this.layouts[0]=R.layout.activity_plan_item;
         this.layouts[1]=R.layout.activity_plan_item_show;
+        this.layouts[2]=R.layout.activity_plan_item_show;
         this.targetLayout = this.layouts[pos];
     }
 
@@ -135,7 +137,7 @@ public class ActivityPlanAdapter extends RecyclerView.Adapter<ActivityPlanAdapte
                 }
             });
         }
-        if(layoutPosition==1){
+        if(layoutPosition==1||layoutPosition==2){
             ActivityPlan m = plans[position];
             holder.moveNameShow.setText(""+m.getName());
             holder.setNumShow.setText(""+m.getSets());

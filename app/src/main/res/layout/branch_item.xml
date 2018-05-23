@@ -69,6 +69,15 @@
             android:layout_gravity="center"
             android:src="@android:drawable/ic_menu_delete"
             android:backgroundTint="@color/colorPrimary"/>
+        <Button
+            android:id="@+id/branch_stats_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:text="Stats"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/colorPrimary"/>
 
 
     </LinearLayout>

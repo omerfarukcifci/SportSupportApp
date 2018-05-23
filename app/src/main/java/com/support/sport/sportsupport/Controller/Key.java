@@ -107,6 +107,7 @@ public class Key {
     public static boolean userCourseListChanged = false;
     public static boolean userMyCListChanged = false;
     public static Boolean isEnrolled = false;
+    public static boolean offerListChanged = false;
 
     public static Member getBannedMember() {
         return bannedMember;
