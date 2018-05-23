@@ -30,10 +30,6 @@ public class TraineeManagementScreen extends AppCompatActivity {
 
         TraineeManagementController controller = new TraineeManagementController();
         controller.getAllTrainee(Key.cTrainer.getId());
-        Log.d("onCreate","oncrete GET ALL TRAINEE");
-
-
-
     }
 
     @Subscribe
@@ -43,7 +39,6 @@ public class TraineeManagementScreen extends AppCompatActivity {
 
             RecyclerView recyclerView = findViewById(R.id.trainee_list);
 
-
             Member[] memberList = new Member[Key.allTrainees.size()];
 
             for(int i =0;i<Key.allTrainees.size();i++){
@@ -52,25 +47,16 @@ public class TraineeManagementScreen extends AppCompatActivity {
 
             if(Key.allTrainees.size()==0){
                 Snackbar.make(recyclerView,"Sorry! You have not any Trainee.",Snackbar.LENGTH_LONG).show();
-
             }
             else{
                 TraineeAdapter traineeAdapter = new TraineeAdapter(memberList);
-
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setAdapter(traineeAdapter);
             }
-
-
-
-        }else{
-
+      }else{
             Toast.makeText(this,"ERROR - TRAINE MANAGAMENT SCREEN",Toast.LENGTH_SHORT).show();
         }
-
-
-
     }
 
     @Override

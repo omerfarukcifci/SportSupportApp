@@ -45,12 +45,12 @@ public class ActivityPlanController extends AppController{
             public void onResponse(Call<List<Move>> call, Response<List<Move>> response) {
                 Key.allMovements=response.body();
                 Log.d("success","Spring success movements");
-                EventBus.getDefault().post(new RetrofitEvent(true));
+                EventBus.getDefault().post(new RetrofitEvent(true,0));
             }
             @Override
             public void onFailure(Call<List<Move>> call, Throwable t) {
                 Log.d("failure","Spring error GET ALL MOVE");
-                EventBus.getDefault().post(new RetrofitEvent(false));
+                EventBus.getDefault().post(new RetrofitEvent(false,0));
             }
         });
     }

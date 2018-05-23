@@ -107,7 +107,8 @@ public interface ApiInterface {
     @GET("member/delete/{id}")
     Call<Member> deleteMember(@Path("id") int memberId);
 
-    Call<List<Member>> allMembers(@Path("id") int id);
+    @GET("member/all/{id}")
+    Call<List<Member>> allMembersinBranch(@Path("id") int id);
 
     @GET("trainer/add")
     Call<Trainer> registerTrainer(@Query("name") String name, @Query("surname") String surname, @Query("username") String username,
@@ -134,6 +135,9 @@ public interface ApiInterface {
 
     @GET("branch/delete/{id}")
     Call<Branch> deleteBranch(@Path("id") int id);
+
+    @GET("activity/delete/all/{id}")
+    Call<ActivityPlan> deletePrevActivity(@Path("id") int memberId);
 
     @GET("offer/all/branch/{id}")
     Call<List<SpecialOffer>> getSpecialOffers(@Path("id") int id);

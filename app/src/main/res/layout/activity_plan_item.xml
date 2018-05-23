@@ -25,6 +25,7 @@
             android:layout_weight="1"/>
         <EditText
             android:id="@+id/add_schedule_set_number"
+            android:enabled="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Set Number"
