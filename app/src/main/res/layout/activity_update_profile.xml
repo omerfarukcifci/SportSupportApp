@@ -107,35 +107,18 @@
                     android:inputType="textPassword" />
             </android.support.design.widget.TextInputLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <Button
-                    android:id="@+id/buttonUpdate"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_weight="1"
-                    android:background="@color/colorPrimary"
-                    android:text="Update" />
-
-                <Button
-                    android:id="@+id/buttonDelete"
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="30dp"
-                    android:layout_weight="1"
-                    android:background="#de7979"
-                    android:text="Delete Account" />
-            </LinearLayout>
-
+            <Button
+                android:layout_gravity="center"
+                android:id="@+id/buttonUpdate"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorPrimary"
+                android:text="Update" />
 
 
         </LinearLayout>

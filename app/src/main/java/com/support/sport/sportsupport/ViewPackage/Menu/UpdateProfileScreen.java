@@ -34,7 +34,7 @@ public class UpdateProfileScreen extends AppCompatActivity {
 
     private EditText updateOldUsername,updateOldPassword,updateNewUsername,updateNewPassword,
             updateMail,updateBirthday,updateName,updateSurname;
-    private Button delete,update;
+    private Button update;
     final Context context = this;
 
 
@@ -42,12 +42,11 @@ public class UpdateProfileScreen extends AppCompatActivity {
     public void onEvent(RetrofitEvent event) {
 
         if(event.isRetrofitCompleted){
-
             Toast.makeText(this, "Profile information updated ! ",Toast.LENGTH_LONG).show();
-            startActivity(new Intent(UpdateProfileScreen.this, CustomerNavigationMenu.class));
-
+            //startActivity(new Intent(UpdateProfileScreen.this, CustomerNavigationMenu.class));
+            finish();
         }else{
-            Toast.makeText(this, "Error ! Profile hasn't updated. Try again.",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Error ! Profile isn't updated. Try again.",Toast.LENGTH_LONG).show();
         }
 
     }
@@ -80,39 +79,15 @@ public class UpdateProfileScreen extends AppCompatActivity {
         updateName = findViewById(R.id.editTextUpdate_newname);
         updateSurname = findViewById(R.id.editTextUpdate_newsurname);
         update =    findViewById(R.id.buttonUpdate);
-        delete = findViewById(R.id.buttonDelete);
 
         Member m1 = Key.cMember;
         fillpreform(m1);
 
 
         /**/
-
-        /*final ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
-        final ProfileController cr = new ProfileController();*/
-
-        delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int blankController = 0;
-
-                blankController = controlBlank(updateOldPassword);
-                blankController += controlBlank(updateOldUsername);
-
-                if(blankController == 0){
-                    showDialog();
-                }else{
-
-                    blankController =0;
-                }
-
-            }
-        });
         update.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
                 int blankController = 0;
                 blankController = controlBlank(updateOldPassword);
                 blankController += controlBlank(updateOldUsername);
@@ -120,17 +95,21 @@ public class UpdateProfileScreen extends AppCompatActivity {
                 if(blankController == 0){
                     Member m = Key.cMember;
                     String newpassword = null;
+                    String newusername = null;
                     if (updateNewPassword.length()==0){
                         newpassword = null;
                     }else newpassword = updateNewPassword.getText().toString();
 
+                    if(!Key.cMember.getUsername().equals(updateNewUsername.getText().toString())){
+                        newusername = updateNewUsername.getText().toString();
+                    }
+
                     MyProfile controller = new MyProfile();
                     controller.updateProfileInfo(m.getId(),updateName.getText().toString(),updateSurname.getText().toString(),
-                            updateNewUsername.getText().toString(),newpassword,
+                            newusername,newpassword,
                             updateMail.getText().toString(),updateBirthday.getText().toString());
                     Key.updatedProfile = true;
                }else{
-
                     blankController =0;
                 }
 
@@ -138,38 +117,7 @@ public class UpdateProfileScreen extends AppCompatActivity {
         });
 
     }
-    public void showDialog(){
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
 
-        // alert dialog başlığını tanımlıyoruz.
-      //  alertDialogBuilder.setTitle("Are you sure?");
-
-        // alert dialog özelliklerini oluşturuyoruz.
-        alertDialogBuilder
-                .setMessage("Deleting this account will cause information loss. Are you sure to continue?")
-                .setCancelable(false)
-                .setIcon(R.mipmap.ic_launcher_round)
-                // Evet butonuna tıklanınca yapılacak işlemleri buraya yazıyoruz.
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(UpdateProfileScreen.this, "Membership Deleted", Toast.LENGTH_LONG).show();
-                    }
-                })
-                // İptal butonuna tıklanınca yapılacak işlemleri buraya yazıyoruz.
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-        // alert dialog nesnesini oluşturuyoruz
-        AlertDialog alertDialog = alertDialogBuilder.create();
-
-        // alerti gösteriyoruz
-        alertDialog.show();
-    }
 
     public int controlBlank(EditText edt){
 

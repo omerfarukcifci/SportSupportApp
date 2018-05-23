@@ -34,9 +34,7 @@ public class CancelMembershipScreen extends AppCompatActivity {
         if(event.isRetrofitCompleted){
 
             Toast.makeText(this, "Membership cancelled successfully ! ",Toast.LENGTH_LONG).show();
-            //
-            //startActivity(new Intent(CancelMembershipScreen.this, CustomerNavigationMenu.class));
-
+            finish();
         }else{
             Toast.makeText(this, "Error ! Profile hasn't cancelled. Try again.",Toast.LENGTH_LONG).show();
         }

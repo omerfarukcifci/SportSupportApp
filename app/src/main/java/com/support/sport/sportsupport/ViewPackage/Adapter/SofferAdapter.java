@@ -31,7 +31,6 @@ public class SofferAdapter extends RecyclerView.Adapter<SofferAdapter.ViewHolder
         public TextView endDate;
         public TextView startDate;
         public TextView discount;
-        public TextView branchId;
         public TextView reference;
         public TextView attendance;
 
@@ -41,7 +40,6 @@ public class SofferAdapter extends RecyclerView.Adapter<SofferAdapter.ViewHolder
             discount = itemView.findViewById(R.id.soffer_discount);
             endDate = itemView.findViewById(R.id.soffer_endDate);
             startDate = itemView.findViewById(R.id.soffer_startDate);
-            branchId = itemView.findViewById(R.id.soffer_branchId);
             reference = itemView.findViewById(R.id.soffer_referenceLimit);
             attendance = itemView.findViewById(R.id.soffer_attendanceLimit);
         }
@@ -81,7 +79,6 @@ public class SofferAdapter extends RecyclerView.Adapter<SofferAdapter.ViewHolder
         holder.endDate.setText("Ends at: "+ c.getFinishDate().substring(0,10));
         holder.startDate.setText("Starts at: "+ c.getStartDate().substring(0,10));
         holder.discount.setText("Discount : "+ c.getDiscount());
-        holder.branchId.setText("BranchId : "+ c.getBranchId());
         holder.reference.setText("Reference Limit : " + c.getReferenceNumberLimit());
         holder.attendance.setText("Attendance Limit : " + c.getAttendanceLimit());
     }
