@@ -82,8 +82,9 @@ public class SpecialOfferAdapter extends RecyclerView.Adapter<SpecialOfferAdapte
             if(timeStamp.before(new SimpleDateFormat("yyyy-MM-dd").parse(c.getFinishDate()))) {
                 holder.endDate.setText("Ends at: " + (c.getFinishDate().split("T"))[0]);
             }else{
-                holder.endDate.setText("Closed!");
-                holder.apply.setVisibility(View.INVISIBLE);
+                holder.endDate.setText("CLOSED!");
+                holder.apply.setEnabled(false);
+                holder.apply.setBackgroundColor(Color.GRAY);
             }
         } catch (ParseException e) {
             e.printStackTrace();

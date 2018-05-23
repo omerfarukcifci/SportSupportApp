@@ -68,14 +68,7 @@ public class SofferAdapter extends RecyclerView.Adapter<SofferAdapter.ViewHolder
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
      final   SpecialOffer c = offers.get(position);
-        SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
-        DateFormat format = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
-      //  Date date = format.parse(c.getFinishDate());
-        String start =c.getStartDate();
-        String end = c.getFinishDate();
-
         holder.offerName.setText(c.getName());
-      //  holder.startDate.setText("Starts at: "+start);StringUtils.substring( c.getFinishDate(), 0, 10)
         holder.endDate.setText("Ends at: "+ c.getFinishDate().substring(0,10));
         holder.startDate.setText("Starts at: "+ c.getStartDate().substring(0,10));
         holder.discount.setText("Discount : "+ c.getDiscount());

@@ -1,8 +1,10 @@
 package com.support.sport.sportsupport.ViewPackage;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -59,8 +61,26 @@ public class SignInScreen extends AppCompatActivity  {
                 startActivity(intent);
             }
             else if(checkBoxMember.isChecked() && !Key.cMember.getStatue().equals("owner")){
-                Intent intent2 = new Intent(SignInScreen.this,CustomerNavigationMenu.class);
-                startActivity(intent2);
+                if (Key.cMember.getStatue().equals("banned")){
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(SignInScreen.this);
+                    alertDialogBuilder.setTitle("Entry");
+                    alertDialogBuilder
+                            .setMessage("You are banned from this branch. You can not login.")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    onBackPressed();
+                                }
+                            });
+
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                }else{
+                    Intent intent2 = new Intent(SignInScreen.this,CustomerNavigationMenu.class);
+                    startActivity(intent2);
+                }
+
             }
 
 

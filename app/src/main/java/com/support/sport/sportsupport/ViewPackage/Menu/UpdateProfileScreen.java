@@ -103,12 +103,16 @@ public class UpdateProfileScreen extends AppCompatActivity {
                     if(!Key.cMember.getUsername().equals(updateNewUsername.getText().toString())){
                         newusername = updateNewUsername.getText().toString();
                     }
+                    if(updateOldUsername.getText().toString().compareTo(m.getUsername())==0 && updateOldPassword.getText().toString().compareTo(m.getPassword())==0) {
 
-                    MyProfile controller = new MyProfile();
-                    controller.updateProfileInfo(m.getId(),updateName.getText().toString(),updateSurname.getText().toString(),
-                            newusername,newpassword,
-                            updateMail.getText().toString(),updateBirthday.getText().toString());
-                    Key.updatedProfile = true;
+                        MyProfile controller = new MyProfile();
+                        controller.updateProfileInfo(m.getId(), updateName.getText().toString(), updateSurname.getText().toString(),
+                                newusername, newpassword,
+                                updateMail.getText().toString(), updateBirthday.getText().toString());
+                        Key.updatedProfile = true;
+                    }else{
+                        Toast.makeText(UpdateProfileScreen.this, "Username or password invalid ! ", Toast.LENGTH_LONG).show();
+                    }
                }else{
                     blankController =0;
                 }

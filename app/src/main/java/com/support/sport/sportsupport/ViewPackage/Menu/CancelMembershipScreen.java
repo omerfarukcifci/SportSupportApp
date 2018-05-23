@@ -1,6 +1,8 @@
 package com.support.sport.sportsupport.ViewPackage.Menu;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.support.sport.sportsupport.Controller.CourseController;
 import com.support.sport.sportsupport.Controller.Key;
 import com.support.sport.sportsupport.Controller.MyProfile;
 import com.support.sport.sportsupport.Controller.ProfileController;
@@ -32,7 +35,6 @@ public class CancelMembershipScreen extends AppCompatActivity {
     public void onEvent(RetrofitEvent event) {
 
         if(event.isRetrofitCompleted){
-
             Toast.makeText(this, "Membership cancelled successfully ! ",Toast.LENGTH_LONG).show();
             finish();
         }else{
@@ -62,6 +64,23 @@ public class CancelMembershipScreen extends AppCompatActivity {
         password = findViewById(R.id.editTextUpdate_oldpassword);
         cancel = findViewById(R.id.buttonDelete);
 
+        if (Key.cMember.getStatue().equals("inactive")){
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CancelMembershipScreen.this);
+            alertDialogBuilder.setTitle("Cancel Membership");
+            alertDialogBuilder
+                    .setMessage("You are not a member. This page will be active once you become a member.")
+                    .setCancelable(true)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            finish();
+                        }
+                    });
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+
+        }
 
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,25 +93,33 @@ public class CancelMembershipScreen extends AppCompatActivity {
                 if(blankController == 0){
 
                     Member m = Key.cMember;
-
-                    MyProfile controller = new MyProfile();
+                    final MyProfile controller = new MyProfile();
                     if(username.getText().toString().compareTo(m.getUsername())==0 && password.getText().toString().compareTo(m.getPassword())==0){
-                        controller.cancelMembership(username.getText().toString(),"2018-08-08");
-                        Key.updatedProfile = true;
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(CancelMembershipScreen.this);
+                        alertDialogBuilder.setTitle("Cancel Membership");
+                        alertDialogBuilder
+                                .setMessage("Are you sure you want to cancel your membership?")
+                                .setCancelable(true)
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        controller.cancelMembership(username.getText().toString(),"2018-08-08");
+                                        Key.updatedProfile = true;
+                                        dialog.dismiss();
+                                    }
+                                })
+                                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
+
                     }else{
                         Toast.makeText(CancelMembershipScreen.this, "Username or password invalid ! ", Toast.LENGTH_LONG).show();
                     }
-
-                   // Member temp = cr.readOne(username.getText().toString(), password.getText().toString());
-                //    if (temp != null) {
-                        //Toast.makeText(CancelMembershipScreen.this, "Successfully cancel membership", Toast.LENGTH_LONG).show();
-                  //      Toast.makeText(SignInActivity.this, "Hello " + temp.getName() + " :)", Toast.LENGTH_LONG).show();
-                  //      Intent intent = new Intent(SignInActivity.this, MenuActivity.class);
-                  //      startActivity(intent);
-                ///    } else {
-                ///        Toast.makeText(CancelMembershipScreen.this, "Password or Username invalid!", Toast.LENGTH_LONG).show();
-                //    }
-
                 }else{
 
                     blankController =0;
