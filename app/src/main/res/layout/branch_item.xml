@@ -75,6 +75,7 @@
             android:layout_height="match_parent"
             android:layout_marginTop="5dp"
             android:text="Stats"
+            android:textColor="@android:color/white"
             android:layout_gravity="center"
             android:backgroundTint="@color/colorPrimary"/>
 

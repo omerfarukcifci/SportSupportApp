@@ -10,8 +10,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_margin="5dp"
     android:gravity="center">
 
+    <Button
+        android:id="@+id/manager_view_branch_stats"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:textColor="@android:color/white"
+        android:text="View My Branch Stats"
+        android:backgroundTint="@color/colorPrimaryDark"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -30,7 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="User Management"
-            android:backgroundTint="@color/colorSecondary"
+            android:backgroundTint="@color/colorAccent"
             android:layout_weight="1"/>
 
     </LinearLayout>
@@ -52,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Trainer Management"
-            android:backgroundTint="@color/colorPrimaryDark"
+            android:backgroundTint="@color/colorPrimary"
             android:layout_weight="1"/>
 
     </LinearLayout>
@@ -74,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Special Offers Management"
-            android:backgroundTint="@color/colorSecondary"
+            android:backgroundTint="@color/colorAccent"
             android:layout_weight="1"/>
 
     </LinearLayout>
@@ -92,8 +102,18 @@
             android:backgroundTint="@color/colorAccent"
             android:layout_weight="1"/>
 
+        <Button
+            android:id="@+id/management_panel_logout_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Logout"
+            android:backgroundTint="@color/colorPrimary"
+            android:layout_weight="1"/>
+
 
     </LinearLayout>
+
+
 
 
 
