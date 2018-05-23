@@ -47,6 +47,7 @@ public class FragmentMyProfile extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), MyScheduleScreen.class);
+                intent.putExtra("id",Key.cMember.getId());
                 startActivity(intent);
             }
         });

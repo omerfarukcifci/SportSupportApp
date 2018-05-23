@@ -69,11 +69,11 @@ public class SpecialOfferController extends AppController {
             @Override
             public void onResponse(Call<SpecialOffer> call, Response<SpecialOffer> response) {
                 Key.newSpecialOffer = response.body();
-                Log.d("SUCCCCCCESSSSSSSSSSSSSS","Spring error Trainnneeeer");
+                EventBus.getDefault().post(new RetrofitEvent(true));
             }
             @Override
             public void onFailure(Call<SpecialOffer> call, Throwable t) {
-                Log.d("failure","Spring error Trainnneeeer");
+                EventBus.getDefault().post(new RetrofitEvent(false));
             }
         });
     }

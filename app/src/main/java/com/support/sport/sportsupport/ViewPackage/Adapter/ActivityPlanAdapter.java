@@ -1,6 +1,9 @@
 package com.support.sport.sportsupport.ViewPackage.Adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.support.sport.sportsupport.Controller.Key;
 import com.support.sport.sportsupport.Model.ActivityPlan;
@@ -29,7 +33,7 @@ public class ActivityPlanAdapter extends RecyclerView.Adapter<ActivityPlanAdapte
     private int targetLayout;
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements CompoundButton.OnCheckedChangeListener {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
 
         public CheckBox moveCheckbox;
         public TextView moveName;
@@ -44,7 +48,7 @@ public class ActivityPlanAdapter extends RecyclerView.Adapter<ActivityPlanAdapte
 
             Key.selectedMovements = new ArrayList<Move>();
             moveCheckbox = (CheckBox) itemView.findViewById(R.id.add_schedule_checkbox);
-            moveCheckbox.setOnCheckedChangeListener(this);
+            //moveCheckbox.setOnCheckedChangeListener(this);
             moveName = (TextView) itemView.findViewById(R.id.add_schedule_move_name);
             setNumber = (EditText) itemView.findViewById(R.id.add_schedule_set_number);
 
@@ -54,18 +58,17 @@ public class ActivityPlanAdapter extends RecyclerView.Adapter<ActivityPlanAdapte
         }
 
 
-        @Override
+        /*@Override
         public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
             int adapterPosition = getAdapterPosition();
             if(b==true){
                 Move m = new Move(Integer.valueOf(setNumber.getText().toString()),moveName.getText().toString());
-
                 Key.selectedMovements.add(m);
             }else {
                 //Key.selectedMovements.remove();
             }
 
-        }
+        }*/
     }
 
     public ActivityPlanAdapter(ActivityPlan[] myDataset,int pos) {
@@ -75,6 +78,7 @@ public class ActivityPlanAdapter extends RecyclerView.Adapter<ActivityPlanAdapte
         this.layouts = new int[3];
         this.layouts[0]=R.layout.activity_plan_item;
         this.layouts[1]=R.layout.activity_plan_item_show;
+        this.layouts[2]=R.layout.activity_plan_item_show;
         this.targetLayout = this.layouts[pos];
     }
     public ActivityPlanAdapter(Move[] myDataset, int pos) {
@@ -84,6 +88,7 @@ public class ActivityPlanAdapter extends RecyclerView.Adapter<ActivityPlanAdapte
         this.layouts = new int[3];
         this.layouts[0]=R.layout.activity_plan_item;
         this.layouts[1]=R.layout.activity_plan_item_show;
+        this.layouts[2]=R.layout.activity_plan_item_show;
         this.targetLayout = this.layouts[pos];
     }
 
@@ -99,18 +104,40 @@ public class ActivityPlanAdapter extends RecyclerView.Adapter<ActivityPlanAdapte
     }
 
     @Override
-    public void onBindViewHolder(ActivityPlanAdapter.ViewHolder holder, int position) {
-
-
+    public void onBindViewHolder(final ActivityPlanAdapter.ViewHolder holder, int position) {
 
         if(layoutPosition==0){
-            Move movement = moves[position];
+            final Move movement = moves[position];
+            movement.setPosition(position);
             holder.moveCheckbox.setChecked(false);
             holder.moveName.setText(""+movement.getName());
             holder.setNumber.setText("0");
+            if(!holder.moveCheckbox.isChecked())holder.setNumber.setVisibility(View.INVISIBLE);
+            holder.setNumber.addTextChangedListener(new TextWatcher() {
+                public void afterTextChanged(Editable s) {
+                    if (holder.setNumber.getText().toString().length() > 0) {
+                        movement.setSetNumber(Integer.valueOf(holder.setNumber.getText().toString()));
+                        Log.d("tag","heyyo "+movement.getSetNumber());
+                    }
+                }
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
+                public void onTextChanged(CharSequence s, int start, int before, int count) {}
+            });
+            holder.moveCheckbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked){
+                        Key.selectedMovements.add(movement);
+                        holder.setNumber.setVisibility(View.VISIBLE);
+                    }else{
+                        Key.selectedMovements.remove(movement);
+                        holder.setNumber.setVisibility(View.INVISIBLE);
+                    }
+                }
+            });
         }
-        if(layoutPosition==1){
+        if(layoutPosition==1||layoutPosition==2){
             ActivityPlan m = plans[position];
             holder.moveNameShow.setText(""+m.getName());
             holder.setNumShow.setText(""+m.getSets());

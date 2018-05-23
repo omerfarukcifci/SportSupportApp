@@ -22,6 +22,7 @@ import org.greenrobot.eventbus.Subscribe;
 public class SpecialOfferManagementScreen extends AppCompatActivity {
 
 
+    SofferAdapter soAdapter;
     FloatingActionButton fab ;
 
 
@@ -35,9 +36,7 @@ public class SpecialOfferManagementScreen extends AppCompatActivity {
 
         if(event.isRetrofitCompleted){
             RecyclerView recyclerView = findViewById(R.id.soffer_list);
-            SpecialOffer[] array = new SpecialOffer[Key.allSpecialOffers.size()];
-            SofferAdapter soAdapter = new SofferAdapter(Key.allSpecialOffers.toArray(array));
-
+            soAdapter = new SofferAdapter(Key.allSpecialOffers);
             RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
             recyclerView.setLayoutManager(mLayoutManager);
             recyclerView.setAdapter(soAdapter);
@@ -74,6 +73,16 @@ public class SpecialOfferManagementScreen extends AppCompatActivity {
         setContentView(R.layout.soffer_management_screen);
         SpecialOfferController soController = new SpecialOfferController();
         soController.allSpecialOffers(Key.cManager.getBranchId());
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (Key.offerListChanged){
+            soAdapter.setList(Key.allSpecialOffers);
+            soAdapter.notifyDataSetChanged();
+            Key.offerListChanged = false;
+        }
     }
 
 }

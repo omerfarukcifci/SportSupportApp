@@ -12,6 +12,7 @@ public class Move {
     @SerializedName("name")
     private String name;
     private int setNumber;
+    private int position;
 
     public int getSetNumber() {
         return setNumber;
@@ -46,4 +47,11 @@ public class Move {
         this.setNumber=setNumber;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
 }

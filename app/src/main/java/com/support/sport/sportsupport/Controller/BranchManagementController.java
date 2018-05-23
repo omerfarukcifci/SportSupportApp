@@ -3,6 +3,7 @@ package com.support.sport.sportsupport.Controller;
 import android.util.Log;
 
 import com.support.sport.sportsupport.Model.Branch;
+import com.support.sport.sportsupport.Model.BranchStats;
 import com.support.sport.sportsupport.Model.Fee;
 import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
@@ -93,5 +94,28 @@ public class BranchManagementController extends AppController {
         return Key.allBranches;
     }
 
+        public BranchStats viewBranchStats (int branchId) {
+
+
+            Call<BranchStats> regCall = apiService.viewBranchStats(branchId);
+            regCall.enqueue(new Callback<BranchStats>() {
+                @Override
+                public void onResponse(Call<BranchStats> call, Response<BranchStats> response) {
+                    Key.selectedBranchStats = response.body();
+                    Log.d("success","Spring succes view selected branch");
+                    EventBus.getDefault().post(new RetrofitEvent(true,3));
+                }
+                @Override
+                public void onFailure(Call<BranchStats> call, Throwable t) {
+
+                    Log.d("failure","Spring error ADDBRANCH");
+                    EventBus.getDefault().post(new RetrofitEvent(false,3));
+                }
+            });
+            return Key.selectedBranchStats;
+
+
+
+        }
 
 }

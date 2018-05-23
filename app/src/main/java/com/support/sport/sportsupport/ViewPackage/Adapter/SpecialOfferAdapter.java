@@ -18,7 +18,11 @@ import com.support.sport.sportsupport.Model.SpecialOffer;
 import com.support.sport.sportsupport.ViewPackage.Management.TrainerAddScreen;
 import com.support.sport.sportsupport.ViewPackage.R;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Faruk on 26.04.2018.
@@ -27,9 +31,8 @@ import java.text.SimpleDateFormat;
 public class SpecialOfferAdapter extends RecyclerView.Adapter<SpecialOfferAdapter.ViewHolder> {
 
 
-    private SpecialOffer[] offers;
-
-
+    private List<SpecialOffer> offers;
+    Date timeStamp = Calendar.getInstance().getTime();
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
@@ -50,7 +53,7 @@ public class SpecialOfferAdapter extends RecyclerView.Adapter<SpecialOfferAdapte
 
     }
 
-    public SpecialOfferAdapter(SpecialOffer[] myDataset) {
+    public SpecialOfferAdapter(List<SpecialOffer> myDataset) {
         offers = myDataset;
     }
 
@@ -68,55 +71,73 @@ public class SpecialOfferAdapter extends RecyclerView.Adapter<SpecialOfferAdapte
     public void onBindViewHolder(SpecialOfferAdapter.ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-      final  SpecialOffer c = offers[position];
+        final  SpecialOffer c = offers.get(position);
         SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
         String start =c.getStartDate();
         String end = c.getFinishDate();
 
         holder.offerName.setText(c.getName());
         holder.startDate.setText("Starts at: "+start.substring(0,10));
-        holder.endDate.setText("Ends at: "+end.substring(0,10));
+        try {
+            if(timeStamp.before(new SimpleDateFormat("yyyy-MM-dd").parse(c.getFinishDate()))) {
+                holder.endDate.setText("Ends at: " + (c.getFinishDate().split("T"))[0]);
+            }else{
+                holder.endDate.setText("Closed!");
+                holder.apply.setVisibility(View.INVISIBLE);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         holder.limit.setText("Attendance Limit: " + c.getAttendanceLimit());
         SpecialOfferController soController = new SpecialOfferController();
         soController.controlSpecialOffer(c.getId(),Key.cMember.getId());
-     /*   boolean control = Key.getControlSpecialOffer();
-
-        if(control == true){
-            holder.apply.setBackgroundColor(Color.BLACK);
-
-        }
-*/
-
-
-
 
         holder.apply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(view.getContext());
-                alertDialog.setTitle("Apply Special Offer");
-                alertDialog.setCancelable(true);
-                alertDialog.setMessage("Do you want to  apply this special offer ?");
-                alertDialog.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        SpecialOfferController soController = new SpecialOfferController();
-                        soController.applySpecialOffer(c.getId(),Key.cMember.getId());
+                try {
+                    if(timeStamp.before(new SimpleDateFormat("yyyy-MM-dd").parse(c.getStartDate()))) {
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(view.getContext());
+                        alertDialog.setTitle("Apply Special Offer");
+                        alertDialog.setCancelable(true);
+                        alertDialog.setMessage("This offer is not opened yet. Please come back at start date.");
+                        alertDialog.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        alertDialog.show();
+                    }else{
+                        AlertDialog.Builder alertDialog = new AlertDialog.Builder(view.getContext());
+                        alertDialog.setTitle("Apply Special Offer");
+                        alertDialog.setCancelable(true);
+                        alertDialog.setMessage("Do you want to  apply this special offer ?");
+                        alertDialog.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                SpecialOfferController soController = new SpecialOfferController();
+                                soController.applySpecialOffer(c.getId(),Key.cMember.getId());
+                                Key.membersSpecialOffer.remove(c);
+                                notifyDataSetChanged();
+                                dialog.cancel();
+                            }
+                        });
+                        alertDialog.setNegativeButton("CANCEL",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        alertDialog.show();
+                    }
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
-                        dialog.cancel();
-                    }
-                });
-                alertDialog.setNegativeButton("CANCEL",new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-                alertDialog.show();
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return offers.length;
+        return offers.size();
     }
 }

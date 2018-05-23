@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.support.sport.sportsupport.Controller.Key;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.ViewPackage.MainActivity;
 import com.support.sport.sportsupport.ViewPackage.Management.AddActivityPlanScreen;
@@ -55,12 +56,13 @@ public class TraineeAdapter extends RecyclerView.Adapter<TraineeAdapter.ViewHold
         public void onClick(View view) {
             if (view.getId() == updateScheduleButton.getId()){
                 Intent i = new Intent(view.getContext(), AddActivityPlanScreen.class);
+                i.putExtra("id",Key.allTrainees.get(getAdapterPosition()).getId());
                 view.getContext().startActivity(i);
 
             }else if(view.getId() == aboutTraineeButton.getId()){
                 Intent i = new Intent(view.getContext(), ShowActivityPlanScreen.class);
+                i.putExtra("id", Key.allTrainees.get(getAdapterPosition()).getId());
                 view.getContext().startActivity(i);
-
             }
         }
     }

@@ -9,6 +9,7 @@ import retrofit2.http.Query;
 import com.google.gson.JsonObject;
 import com.support.sport.sportsupport.Model.ActivityPlan;
 import com.support.sport.sportsupport.Model.Branch;
+import com.support.sport.sportsupport.Model.BranchStats;
 import com.support.sport.sportsupport.Model.ClassMemberList;
 import com.support.sport.sportsupport.Model.Course;
 import com.support.sport.sportsupport.Model.Fee;
@@ -104,10 +105,16 @@ public interface ApiInterface {
     @GET("trainer/delete/{id}")
     Call<Trainer> deleteTrainer(@Path("id") int trainerId);
 
+
+    @GET("branch/stat/{id}")
+    Call<BranchStats> viewBranchStats(@Path("id") int branchId);
+
+
     @GET("member/delete/{id}")
     Call<Member> deleteMember(@Path("id") int memberId);
 
-    Call<List<Member>> allMembers(@Path("id") int id);
+    @GET("member/all/{id}")
+    Call<List<Member>> allMembersinBranch(@Path("id") int id);
 
     @GET("trainer/add")
     Call<Trainer> registerTrainer(@Query("name") String name, @Query("surname") String surname, @Query("username") String username,
@@ -134,6 +141,9 @@ public interface ApiInterface {
 
     @GET("branch/delete/{id}")
     Call<Branch> deleteBranch(@Path("id") int id);
+
+    @GET("activity/delete/all/{id}")
+    Call<ActivityPlan> deletePrevActivity(@Path("id") int memberId);
 
     @GET("offer/all/branch/{id}")
     Call<List<SpecialOffer>> getSpecialOffers(@Path("id") int id);

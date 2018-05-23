@@ -14,6 +14,8 @@ import com.support.sport.sportsupport.Controller.Key;
 import com.support.sport.sportsupport.Model.Branch;
 import com.support.sport.sportsupport.ViewPackage.Adapter.BranchAdapter;
 import com.support.sport.sportsupport.ViewPackage.Adapter.ManagerAdapter;
+import com.support.sport.sportsupport.ViewPackage.Adapter.RecyclerTouchListener;
+import com.support.sport.sportsupport.ViewPackage.Menu.FragmentCourse;
 import com.support.sport.sportsupport.ViewPackage.R;
 import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
 
@@ -35,6 +37,16 @@ public class BranchManagementScreen extends AppCompatActivity {
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setAdapter(branchAdapter);
 
+                recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, new RecyclerTouchListener.ClickListener() {
+                    @Override
+                    public void onClick(View view, int position) {
+
+                    }
+                    @Override
+                    public void onLongClick(View view, int position) {
+
+                    }
+                }));
                 fab = (FloatingActionButton) findViewById(R.id.floatingActionButtonBranch);
                 fab.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -46,7 +58,7 @@ public class BranchManagementScreen extends AppCompatActivity {
             }else{
                 Toast.makeText(this,"No branches to display",Toast.LENGTH_SHORT).show();
             }
-        }else{
+        }else if (event.pID != 3){
             if(event.isRetrofitCompleted){
                 branchAdapter.notifyDataSetChanged();
                 Toast.makeText(this,"Successfully deleted!",Toast.LENGTH_SHORT).show();

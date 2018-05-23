@@ -33,17 +33,18 @@ import java.util.List;
 public class ShowActivityPlanScreen extends AppCompatActivity{
 
     private TextView memberName;
+    private int memberId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.show_member_plan_screen);
+        Intent i = getIntent();
+        memberId= i.getIntExtra("id",0);
 
         ActivityPlanController controller = new ActivityPlanController();
-        controller.getMySchedule(23); // Değişcek !!!!
+        controller.getMySchedule(memberId);
         Log.d("onCreate","oncreteGETMYSCHEDULEEEE");
-
-
 
     }
 

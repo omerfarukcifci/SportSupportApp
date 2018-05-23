@@ -2,17 +2,22 @@ package com.support.sport.sportsupport.ViewPackage.Adapter;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.support.sport.sportsupport.Controller.BranchManagementController;
+import com.support.sport.sportsupport.Controller.Key;
 import com.support.sport.sportsupport.Controller.ManagerManagementController;
 import com.support.sport.sportsupport.Model.Branch;
 import com.support.sport.sportsupport.Model.Manager;
+import com.support.sport.sportsupport.ViewPackage.Management.BranchManagementScreen;
+import com.support.sport.sportsupport.ViewPackage.Management.FragmentBranchStats;
 import com.support.sport.sportsupport.ViewPackage.R;
 
 import java.util.List;
@@ -33,6 +38,7 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.ViewHolder
         public TextView branchCity;
         public TextView branchAdress;
         public ImageButton deletebutton;
+        public Button statsButton;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -42,6 +48,7 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.ViewHolder
             branchCity = (TextView) itemView.findViewById(R.id.branch_city);
             branchAdress = (TextView) itemView.findViewById(R.id.branch_adress);
             deletebutton = itemView.findViewById(R.id.branch_delete_button);
+            statsButton = itemView.findViewById(R.id.branch_stats_button);
         }
 
     }
@@ -95,6 +102,15 @@ public class BranchAdapter extends RecyclerView.Adapter<BranchAdapter.ViewHolder
                     }
                 });
                 alertDialog.show();
+            }
+        });
+
+        holder.statsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(),FragmentBranchStats.class);
+                intent.putExtra("SelectedBranch",b.getId());
+                v.getContext().startActivity(intent);
             }
         });
 

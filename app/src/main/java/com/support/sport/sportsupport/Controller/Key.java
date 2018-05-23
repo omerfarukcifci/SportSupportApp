@@ -2,6 +2,7 @@ package com.support.sport.sportsupport.Controller;
 
 import com.support.sport.sportsupport.Model.ActivityPlan;
 import com.support.sport.sportsupport.Model.Branch;
+import com.support.sport.sportsupport.Model.BranchStats;
 import com.support.sport.sportsupport.Model.ClassMemberList;
 import com.support.sport.sportsupport.Model.Course;
 import com.support.sport.sportsupport.Model.Fee;
@@ -94,7 +95,7 @@ public class Key {
     public static List<Move> allMovements=null;
     public static List<Move> selectedMovements=null;
     public static Course oneCourse = null;
-   // public static Branch addedBranch = null;
+    public static Branch addedBranch = null;
     public static List<Branch> allBranches = null;
     public static List<ActivityPlan> memberSchedule=null;
     public static Member updatedMember=null;
@@ -106,5 +107,12 @@ public class Key {
     public static boolean userCourseListChanged = false;
     public static boolean userMyCListChanged = false;
     public static Boolean isEnrolled = false;
+    public static boolean offerListChanged = false;
 
+
+    public static BranchStats selectedBranchStats = null;
+
+    public static BranchStats getSelectedBranchStats() {
+        return selectedBranchStats;
+    }
 }

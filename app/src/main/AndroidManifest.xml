@@ -54,6 +54,7 @@
         <activity android:name=".Management.TraineeManagementScreen" />
         <activity android:name=".Management.CourseManagementScreen" />
         <activity android:name=".Management.BranchManagementScreen" />
+        <activity android:name=".Management.FragmentBranchStats" />
         <activity android:name=".Management.SpecialOfferManagementScreen" />
         <activity android:name=".Management.SpecialOfferAddScreen" android:noHistory="true" />
         <activity android:name=".Management.ManagerAddScreen" android:noHistory="true" />
@@ -61,8 +62,8 @@
         <activity android:name=".Management.CourseAddScreen" android:noHistory="true" />
         <activity android:name=".Management.TrainerAddScreen" android:noHistory="true"/>
         <activity android:name=".Management.UserAddScreen" android:noHistory="true"/>
-        <activity android:name=".Management.ShowActivityPlanScreen" />
-        <activity android:name=".Management.AddActivityPlanScreen"></activity>
+        <activity android:name=".Management.ShowActivityPlanScreen" android:noHistory="true" />
+        <activity android:name=".Management.AddActivityPlanScreen" android:noHistory="true" />
     </application>
 
 </manifest>
