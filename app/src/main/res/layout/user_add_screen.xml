@@ -44,13 +44,29 @@
                 android:maxLines="1"
                 android:singleLine="true" />
 
-            <EditText
-                android:id="@+id/birthdate_M"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Birth Date"
-                android:maxLines="1"
-                android:singleLine="true" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/setBTBTN"
+                    android:layout_width="317dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/colorPrimary"
+                    android:text="Set BIrth Date" />
+
+                <EditText
+                    android:id="@+id/birthdate_M"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:enabled="false"
+                    android:hint="Birth Date"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+            </LinearLayout>
 
             <EditText
                 android:id="@+id/email_M"

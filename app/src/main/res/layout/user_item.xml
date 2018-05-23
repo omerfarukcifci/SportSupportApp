@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="5dp"
@@ -62,12 +63,12 @@
         android:layout_gravity="center">
 
         <ImageButton
-            android:id="@+id/user_upgrade_button"
+            android:id="@+id/user_update_BTN"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             android:src="@android:drawable/ic_menu_edit"
-            android:backgroundTint="@color/colorPrimary"/>
+            android:backgroundTint="@color/colorPrimary" />
         <ImageButton
             android:id="@+id/user_delete_button"
             android:layout_width="match_parent"
@@ -75,6 +76,15 @@
             android:layout_gravity="center"
             android:src="@android:drawable/ic_menu_delete"
             android:backgroundTint="@color/colorPrimary"/>
+
+        <ImageButton
+            android:id="@+id/userBanUMBTN"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/colorPrimary"
+            android:src="@android:drawable/presence_busy"
+            tools:src="@android:drawable/ic_lock_lock" />
 
 
     </LinearLayout>

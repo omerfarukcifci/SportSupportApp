@@ -50,6 +50,7 @@
         <activity android:name=".Management.UserManagementScreen" />
         <activity android:name=".Management.TrainerManagementScreen" />
         <activity android:name=".Management.TraineeManagementScreen" />
+        <activity android:name=".Management.UserUpdateScreen" />
         <activity android:name=".Management.CourseManagementScreen" />
         <activity android:name=".Management.BranchManagementScreen" />
         <activity android:name=".Management.FragmentBranchStats" />
