@@ -45,15 +45,8 @@ public class BranchManagementScreen extends AppCompatActivity {
                     @Override
                     public void onLongClick(View view, int position) {
 
-                        Branch br = Key.allBranches.get(position);
-
-                        Intent intent = new Intent( BranchManagementScreen.this ,FragmentBranchStats.class);
-                        intent.putExtra("SelectedBranch",br.getId());
-                        startActivity(intent);
                     }
                 }));
-
-
                 fab = (FloatingActionButton) findViewById(R.id.floatingActionButtonBranch);
                 fab.setOnClickListener(new View.OnClickListener() {
                     @Override

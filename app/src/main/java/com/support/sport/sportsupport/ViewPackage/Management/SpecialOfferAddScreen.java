@@ -31,10 +31,12 @@ public class SpecialOfferAddScreen extends AppCompatActivity {
     public void onEvent(RetrofitEvent event) {
 
         if(event.isRetrofitCompleted){
-            Toast.makeText(SpecialOfferAddScreen.this, "The SO Successfully Created" , Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this,SpecialOfferManagementScreen.class));
+            Toast.makeText(SpecialOfferAddScreen.this, "The Special Offer Successfully Created" , Toast.LENGTH_LONG).show();
+            Key.offerListChanged = true;
+            Key.allSpecialOffers.add(0,Key.newSpecialOffer);
+            finish();
         }else{
-            Toast.makeText(getApplicationContext(), "Delete process failed!",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Process failed!",Toast.LENGTH_LONG).show();
         }
 
     }
@@ -61,10 +63,6 @@ public class SpecialOfferAddScreen extends AppCompatActivity {
 
 
         createNewSpecialOffer = findViewById(R.id.create_soffer_button);
-        deleteSpecialOffer = findViewById(R.id.soffer_delete_M);
-
-
-
         createNewSpecialOffer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,8 +90,6 @@ public class SpecialOfferAddScreen extends AppCompatActivity {
                                 public void onClick(DialogInterface dialog, int which) {
                                     SpecialOfferController specialOfferController = new SpecialOfferController();
                                     specialOfferController.createSpecialOffer(offerNameStr, Integer.toString(Key.cManager.getBranchId()),startDateStr,endDateStr,branchNameStr,referenceNumberLimitStr,attendanceLimitStr);
-                                    Toast.makeText(SpecialOfferAddScreen.this, "The Special Offer Successfully Created" , Toast.LENGTH_LONG).show();
-
                                 }
                             })
                             .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -110,65 +106,6 @@ public class SpecialOfferAddScreen extends AppCompatActivity {
 
                     spaceController =0;
                 }
-            }
-        });
-
-
-        deleteSpecialOffer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int spaceController = 0;
-
-                spaceController += controlBlank(deleteOfferName);
-                String deleteOfferNameStr = deleteOfferName.getText().toString();
-
-
-                if(spaceController == 0){
-
-
-
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-
-
-                    alertDialogBuilder.setTitle("Are you sure?");
-
-
-                    alertDialogBuilder
-                            .setMessage("Do you want to delete this special offer?")
-                            .setCancelable(false)
-                            //       .setIcon(R.mipmap.ic_launcher_round)
-
-                            .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                    Toast.makeText(SpecialOfferAddScreen.this, "The Special Offer Successfully Deleted" , Toast.LENGTH_LONG).show();
-
-
-                                }
-                            })
-
-                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                    dialog.dismiss();
-
-
-
-                                }
-                            });
-
-                    AlertDialog alertDialog = alertDialogBuilder.create();
-                    spaceController = 0;
-
-                    alertDialog.show();
-
-                }else{
-
-                    spaceController =0;
-                }
-
             }
         });
 
