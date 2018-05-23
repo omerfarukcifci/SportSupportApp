@@ -32,7 +32,7 @@ public class SpecialOfferAddScreen extends AppCompatActivity {
 
         if(event.isRetrofitCompleted){
             Toast.makeText(SpecialOfferAddScreen.this, "The SO Successfully Created" , Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this,SofferManagementScreen.class));
+            startActivity(new Intent(this,SpecialOfferManagementScreen.class));
         }else{
             Toast.makeText(getApplicationContext(), "Delete process failed!",Toast.LENGTH_LONG).show();
         }
@@ -75,56 +75,37 @@ public class SpecialOfferAddScreen extends AppCompatActivity {
                 spaceController += controlBlank(endDate);
                 spaceController += controlBlank(referenceNumberLimit);
                 spaceController += controlBlank(attendanceLimit);
-
                 final String offerNameStr = offerName.getText().toString();
                 final String branchNameStr = branchName.getText().toString();
                 final String startDateStr = startDate.getText().toString();
                 final String endDateStr = endDate.getText().toString();
                 final String referenceNumberLimitStr = referenceNumberLimit.getText().toString();
                 final String attendanceLimitStr = attendanceLimit.getText().toString();
-
                 if(spaceController == 0){
-
-
-
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-
-
                     alertDialogBuilder.setTitle("Are you sure?");
-
-
                     alertDialogBuilder
                             .setMessage("Do you want to create this special offer?")
                             .setCancelable(false)
-                            //       .setIcon(R.mipmap.ic_launcher_round)
-
                             .setPositiveButton("Apply", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
                                     SpecialOfferController specialOfferController = new SpecialOfferController();
                                     specialOfferController.createSpecialOffer(offerNameStr, Integer.toString(Key.cManager.getBranchId()),startDateStr,endDateStr,branchNameStr,referenceNumberLimitStr,attendanceLimitStr);
-
                                     Toast.makeText(SpecialOfferAddScreen.this, "The Special Offer Successfully Created" , Toast.LENGTH_LONG).show();
 
                                 }
                             })
-
                             .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-
                                     dialog.dismiss();
-
-
-
                                 }
                             });
 
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     spaceController = 0;
-
                     alertDialog.show();
-
                 }else{
 
                     spaceController =0;

@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:/Users/Merve/AndroidStudioProjects/SportSupportApp/SportSupport.iml" filepath="C:/Users/Merve/AndroidStudioProjects/SportSupportApp/SportSupport.iml" />
+      <module fileurl="file://C:\Users\Merve\AndroidStudioProjects\SportSupportApp\SportSupport.iml" filepath="C:\Users\Merve\AndroidStudioProjects\SportSupportApp\SportSupport.iml" />
       <module fileurl="file://$PROJECT_DIR$/SportSupportApp.iml" filepath="$PROJECT_DIR$/SportSupportApp.iml" />
-      <module fileurl="file://C:/Users/Faruk/AndroidStudioProjects/SportSupport/SportSupportApp.iml" filepath="C:/Users/Faruk/AndroidStudioProjects/SportSupport/SportSupportApp.iml" />
+      <module fileurl="file://C:\Users\Faruk\AndroidStudioProjects\SportSupport\SportSupportApp.iml" filepath="C:\Users\Faruk\AndroidStudioProjects\SportSupport\SportSupportApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

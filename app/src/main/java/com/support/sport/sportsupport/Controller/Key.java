@@ -4,6 +4,7 @@ import com.support.sport.sportsupport.Model.ActivityPlan;
 import com.support.sport.sportsupport.Model.Branch;
 import com.support.sport.sportsupport.Model.ClassMemberList;
 import com.support.sport.sportsupport.Model.Course;
+import com.support.sport.sportsupport.Model.Fee;
 import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.Model.MemberList;
@@ -33,6 +34,7 @@ public class Key {
     public static List<Member> allMembers = null;
     public static SpecialOffer newSpecialOffer = null;
     public static SpecialOffer appliedSpecialOffer = null;
+    public static Fee selectedBranchFee = null;
 
     public static SpecialOffer getAppliedSpecialOffer() {
         return appliedSpecialOffer;

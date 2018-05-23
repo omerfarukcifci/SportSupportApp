@@ -9,6 +9,7 @@ import com.support.sport.sportsupport.Model.ActivityPlan;
 import com.support.sport.sportsupport.Model.Branch;
 import com.support.sport.sportsupport.Model.ClassMemberList;
 import com.support.sport.sportsupport.Model.Course;
+import com.support.sport.sportsupport.Model.Fee;
 import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.Model.MemberList;
@@ -18,10 +19,6 @@ import com.support.sport.sportsupport.ViewPackage.Menu.CancelMembershipScreen;
 
 import java.util.Date;
 import java.util.List;
-
-/**
- * Created by Faruk on 13.04.2018.
- */
 
 public interface ApiInterface {
 
@@ -105,10 +102,6 @@ public interface ApiInterface {
     @GET("member/all/{id}")
     Call<List<Member>> allMembers(@Path("id") int id);
 
-
-
-
-
     @GET("trainer/add")
     Call<Trainer> registerTrainer(@Query("name") String name, @Query("surname") String surname, @Query("username") String username,
                                   @Query("password") String password, @Query("id") int branchId);
@@ -116,7 +109,11 @@ public interface ApiInterface {
     @GET("trainer/all/{id}")
     Call<List<Trainer>> findTrainerWithBranchId(@Path("id") int branchId);
 
+    @GET("fee/add")
+    Call<Fee> saveFeeList(@Query("weeklyClass") int weekly,@Query("oneTimeClass") int oneTime,@Query("poolMembership") int pool, @Query("standardMembership") int stand,@Query("goldMembership") int gold,@Query("platinumMembership") int platin, @Query("branchId") int branchId);
 
+    @GET("fee/get/{id}")
+    Call<Fee> showFeeList(@Path("id") int branchId);
 
     @GET("branch/add")
     Call<Branch> createBranch(@Query("name") String name, @Query("quota") int quota,
@@ -147,4 +144,12 @@ public interface ApiInterface {
 
     @GET("offerlist/check")
     Call<Boolean> controlSpecialOffer(@Query("offerId") int offerId, @Query("memberId") int memberId);
+
+    @GET("member/upgrade/membership/{id}")
+    Call<Fee> loadUpgradeFee(@Path("id") int id);
+
+    @GET("member/payment/membership")
+    Call<Member> makePayment(@Query("id") int id, @Query("startDate") String startDate, @Query("branchId") int branchId, @Query("status") String status);
+
+
 }
