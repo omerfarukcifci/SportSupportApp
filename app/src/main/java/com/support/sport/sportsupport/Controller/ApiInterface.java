@@ -1,28 +1,28 @@
 package com.support.sport.sportsupport.Controller;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
+import com.google.gson.JsonObject;
 import com.support.sport.sportsupport.Model.ActivityPlan;
 import com.support.sport.sportsupport.Model.Branch;
 import com.support.sport.sportsupport.Model.BranchStats;
 import com.support.sport.sportsupport.Model.ClassMemberList;
 import com.support.sport.sportsupport.Model.Course;
+import com.support.sport.sportsupport.Model.Fee;
 import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.Model.MemberList;
+import com.support.sport.sportsupport.Model.Move;
 import com.support.sport.sportsupport.Model.SpecialOffer;
 import com.support.sport.sportsupport.Model.Trainer;
-import com.support.sport.sportsupport.ViewPackage.Menu.CancelMembershipScreen;
 
-import java.util.Date;
+import org.json.JSONObject;
+
 import java.util.List;
-
-/**
- * Created by Faruk on 13.04.2018.
- */
 
 public interface ApiInterface {
 
@@ -69,6 +69,11 @@ public interface ApiInterface {
     //viewbranchfullness i ben yaparım
     @GET("activity/schedule/{id}")
     Call<List<ActivityPlan>> getMySchedule(@Path("id") int memberId);
+    @GET("move/all")
+    Call<List<Move>> getAllMoves();
+
+    @GET("activity/add")
+    Call<ActivityPlan> setMovementToTrainee(@Query("moveId") int moveId, @Query("memberId") int memberId, @Query("sets") int setNumber);
 
     @GET("member/update/personalinfo")
     Call<Member> updateProfile(@Query("id") int memberId, @Query("name") String name, @Query("surname") String surname,
@@ -111,11 +116,7 @@ public interface ApiInterface {
     Call<Member> deleteMember(@Path("id") int memberId);
 
     @GET("member/all/{id}")
-    Call<List<Member>> allMembers(@Path("id") int id);
-
-
-
-
+    Call<List<Member>> allMembersinBranch(@Path("id") int id);
 
     @GET("trainer/add")
     Call<Trainer> registerTrainer(@Query("name") String name, @Query("surname") String surname, @Query("username") String username,
@@ -124,7 +125,13 @@ public interface ApiInterface {
     @GET("trainer/all/{id}")
     Call<List<Trainer>> findTrainerWithBranchId(@Path("id") int branchId);
 
+    @GET("trainer/all/trainee/{id}")
+    Call<List<Member>> getAllTraineeWithTrainerId(@Path("id") int trainerId);
+    @GET("fee/add")
+    Call<Fee> saveFeeList(@Query("weeklyClass") int weekly,@Query("oneTimeClass") int oneTime,@Query("poolMembership") int pool, @Query("standardMembership") int stand,@Query("goldMembership") int gold,@Query("platinumMembership") int platin, @Query("branchId") int branchId);
 
+    @GET("fee/get/{id}")
+    Call<Fee> showFeeList(@Path("id") int branchId);
 
     @GET("branch/add")
     Call<Branch> createBranch(@Query("name") String name, @Query("quota") int quota,
@@ -136,6 +143,9 @@ public interface ApiInterface {
 
     @GET("branch/delete/{id}")
     Call<Branch> deleteBranch(@Path("id") int id);
+
+    @GET("activity/delete/all/{id}")
+    Call<ActivityPlan> deletePrevActivity(@Path("id") int memberId);
 
     @GET("offer/all/branch/{id}")
     Call<List<SpecialOffer>> getSpecialOffers(@Path("id") int id);
@@ -155,4 +165,14 @@ public interface ApiInterface {
 
     @GET("offerlist/check")
     Call<Boolean> controlSpecialOffer(@Query("offerId") int offerId, @Query("memberId") int memberId);
+
+    @GET("member/upgrade/membership/{id}")
+    Call<Fee> loadUpgradeFee(@Path("id") int id);
+
+    @GET("member/payment/membership")
+    Call<Member> makePayment(@Query("id") int id, @Query("startDate") String startDate, @Query("branchId") int branchId, @Query("status") String status);
+
+    @GET("enrolledcourses/is/enrolled")
+    Call<ResponseBody> isEnrolled(@Query("memberId") int memberId, @Query("courseId") int courseId);
+
 }

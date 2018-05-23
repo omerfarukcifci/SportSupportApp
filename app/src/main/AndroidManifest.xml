@@ -38,31 +38,30 @@
             android:name=".Menu.CustomerNavigationMenu"
             android:label="@string/title_activity_menu"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Menu.UpdateProfileScreen" />
-        <activity android:name=".Menu.MyScheduleScreen" />
+        <activity android:name=".Menu.UpdateProfileScreen" android:noHistory="true"/>
+        <activity android:name=".Menu.MyScheduleScreen" android:noHistory="true"/>
         <activity android:name=".Menu.MembershipOptionsScreen" />
-        <activity android:name=".Menu.PaymentScreen" />
-        <activity android:name=".Menu.CancelMembershipScreen" />
+        <activity android:name=".Menu.PaymentScreen" android:noHistory="true"/>
+        <activity android:name=".Menu.CancelMembershipScreen" android:noHistory="true"/>
         <activity android:name=".Menu.MyCoursesScreen" />
-        <activity android:name=".Menu.FragmentCourse" />
+        <activity android:name=".Menu.FragmentCourse" android:noHistory="true"/>
         <activity android:name=".Management.FragmentManagementPanel" />
         <activity android:name=".Management.ManagerManagementScreen" />
         <activity android:name=".Management.UserManagementScreen" />
         <activity android:name=".Management.TrainerManagementScreen" />
-
         <activity android:name=".Management.TraineeManagementScreen" />
         <activity android:name=".Management.CourseManagementScreen" />
         <activity android:name=".Management.BranchManagementScreen" />
-        <activity android:name=".Management.SofferManagementScreen" />
-        <activity android:name=".Management.SpecialOfferAddScreen" />
         <activity android:name=".Management.FragmentBranchStats" />
         <activity android:name=".Management.SpecialOfferManagementScreen" />
-
+        <activity android:name=".Management.SpecialOfferAddScreen" android:noHistory="true" />
         <activity android:name=".Management.ManagerAddScreen" android:noHistory="true" />
         <activity android:name=".Management.BranchAddScreen" android:noHistory="true"/>
         <activity android:name=".Management.CourseAddScreen" android:noHistory="true" />
         <activity android:name=".Management.TrainerAddScreen" android:noHistory="true"/>
         <activity android:name=".Management.UserAddScreen" android:noHistory="true"/>
+        <activity android:name=".Management.ShowActivityPlanScreen" android:noHistory="true" />
+        <activity android:name=".Management.AddActivityPlanScreen" android:noHistory="true" />
     </application>
 
 </manifest>

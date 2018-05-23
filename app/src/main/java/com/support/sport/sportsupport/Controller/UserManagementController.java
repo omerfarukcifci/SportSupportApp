@@ -34,7 +34,7 @@ public class UserManagementController extends AppController{
     }
     public void allMembers(int branchId){
 
-        Call<List<Member>> managers = apiService.allMembers(branchId);
+        Call<List<Member>> managers = apiService.allMembersinBranch(branchId);
         managers.enqueue(new Callback<List<Member>>() {
             @Override
             public void onResponse(Call<List<Member>> call, Response<List<Member>> response) {

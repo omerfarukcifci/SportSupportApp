@@ -1,5 +1,6 @@
 package com.support.sport.sportsupport.ViewPackage.Adapter;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,8 +11,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.support.sport.sportsupport.Controller.Key;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.ViewPackage.MainActivity;
+import com.support.sport.sportsupport.ViewPackage.Management.AddActivityPlanScreen;
+import com.support.sport.sportsupport.ViewPackage.Management.ShowActivityPlanScreen;
 import com.support.sport.sportsupport.ViewPackage.Management.TraineeManagementScreen;
 import com.support.sport.sportsupport.ViewPackage.R;
 
@@ -22,6 +26,7 @@ import com.support.sport.sportsupport.ViewPackage.R;
 public class TraineeAdapter extends RecyclerView.Adapter<TraineeAdapter.ViewHolder> {
 
     private Member[] members;
+
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
@@ -42,16 +47,22 @@ public class TraineeAdapter extends RecyclerView.Adapter<TraineeAdapter.ViewHold
             memberStatus = itemView.findViewById(R.id.trainee_status);
             updateScheduleButton = itemView.findViewById(R.id.trainee_update_schedule_button);
             updateScheduleButton.setOnClickListener(this);
+            aboutTraineeButton = itemView.findViewById(R.id.about_trainee_button);
+            aboutTraineeButton.setOnClickListener(this);
+
         }
 
         @Override
         public void onClick(View view) {
             if (view.getId() == updateScheduleButton.getId()){
-                Toast.makeText(view.getContext(),"Update Schedule will be change",Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(view.getContext(), AddActivityPlanScreen.class);
+                i.putExtra("id",Key.allTrainees.get(getAdapterPosition()).getId());
+                view.getContext().startActivity(i);
 
             }else if(view.getId() == aboutTraineeButton.getId()){
-                Toast.makeText(view.getContext(),"About Trainee will be change",Toast.LENGTH_SHORT).show();
-
+                Intent i = new Intent(view.getContext(), ShowActivityPlanScreen.class);
+                i.putExtra("id", Key.allTrainees.get(getAdapterPosition()).getId());
+                view.getContext().startActivity(i);
             }
         }
     }

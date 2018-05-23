@@ -1,5 +1,7 @@
 package com.support.sport.sportsupport.ViewPackage;
 
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -92,27 +94,11 @@ public class WelcomeScreen extends AppCompatActivity {
             }
         });
 
-        /*btnSkip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                launchHomeScreen();
-            }
-        });
+    }
 
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // checking for last page
-                // if last page home screen will be launched
-                int current = getItem(+1);
-                if (current < layouts.length) {
-                    // move to next screen
-                    viewPager.setCurrentItem(current);
-                } else {
-                    launchHomeScreen();
-                }
-            }
-        });*/
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);  //If view is in News fragment, exit application
     }
 
     private void addBottomDots(int currentPage) {

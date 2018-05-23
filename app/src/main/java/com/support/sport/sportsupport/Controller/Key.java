@@ -5,9 +5,11 @@ import com.support.sport.sportsupport.Model.Branch;
 import com.support.sport.sportsupport.Model.BranchStats;
 import com.support.sport.sportsupport.Model.ClassMemberList;
 import com.support.sport.sportsupport.Model.Course;
+import com.support.sport.sportsupport.Model.Fee;
 import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.Model.MemberList;
+import com.support.sport.sportsupport.Model.Move;
 import com.support.sport.sportsupport.Model.SpecialOffer;
 import com.support.sport.sportsupport.Model.Trainer;
 
@@ -34,6 +36,7 @@ public class Key {
     public static List<Member> allMembers = null;
     public static SpecialOffer newSpecialOffer = null;
     public static SpecialOffer appliedSpecialOffer = null;
+    public static Fee selectedBranchFee = null;
 
     public static SpecialOffer getAppliedSpecialOffer() {
         return appliedSpecialOffer;
@@ -87,20 +90,22 @@ public class Key {
         }
         return branchName;
     }
-
+    public static Branch addedBranch=null;
+    public static List<Member> allTrainees=null;
+    public static List<Move> allMovements=null;
+    public static List<Move> selectedMovements=null;
     public static Course oneCourse = null;
-    public static Branch addedBranch = null;
     public static List<Branch> allBranches = null;
     public static List<ActivityPlan> memberSchedule=null;
     public static Member updatedMember=null;
     public static Member addedMember=null;
     public static Member cancelledMember=null;
-    public static ClassMemberList enrolledClassMemberList =null;
     public static List<Course> allClist = null;
     public static List<Course> myClist = null;
     public static boolean updatedProfile = false;
-    public static boolean courseUpdated = false;
-    public static int isAv = 0;
+    public static boolean userCourseListChanged = false;
+    public static boolean userMyCListChanged = false;
+    public static Boolean isEnrolled = false;
 
 
     public static BranchStats selectedBranchStats = null;
