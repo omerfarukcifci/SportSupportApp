@@ -124,7 +124,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                 alertDialog.setPositiveButton("OKAY", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         new UserManagementController().banMember(m.getId());
-
+                        members.remove(m);
                         dialog.cancel();
                     }
                 });

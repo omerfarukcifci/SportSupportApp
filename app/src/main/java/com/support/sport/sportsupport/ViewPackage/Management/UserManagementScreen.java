@@ -55,7 +55,7 @@ public class UserManagementScreen extends AppCompatActivity {
             }
         }else{
             if (event.isRetrofitCompleted) {
-
+                userAdapter.notifyDataSetChanged();
                 Toast.makeText(this, "Member Successfully Banned!" , Toast.LENGTH_LONG).show();
             }else{
                 Toast.makeText(this, "Ban Process Failed!" , Toast.LENGTH_LONG).show();
