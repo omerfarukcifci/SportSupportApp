@@ -160,6 +160,7 @@ public class UserUpdateScreen extends AppCompatActivity {
         surname.setText(extras.getString("MemberSurname"));
         username.setText(extras.getString("MemberUsername"));
         mail.setText(extras.getString("MemberMail"));
+        birtdate.setText(extras.getString("MemberAge").substring(0,10));
 
 
 

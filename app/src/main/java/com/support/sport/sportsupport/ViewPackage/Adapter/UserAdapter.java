@@ -157,7 +157,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                         intent.putExtra("MemberMail",m.getMail() );
                         intent.putExtra("MemberPassword",m.getPassword() );
                         intent.putExtra("MemberUsername",m.getUsername() );
-                        intent.putExtra("MemberName",m.getName() );
+                        intent.putExtra("MemberAge",m.getAge() );
                         v.getContext().startActivity(intent);
 
                     }
