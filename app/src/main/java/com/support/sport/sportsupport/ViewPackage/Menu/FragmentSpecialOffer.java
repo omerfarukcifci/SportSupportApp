@@ -1,9 +1,11 @@
 package com.support.sport.sportsupport.ViewPackage.Menu;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -50,6 +52,24 @@ public class FragmentSpecialOffer extends Fragment {
             soController.membersSpecialOffer(Key.cMemberList.getMemberId());
         } else {
             if (event.isRetrofitCompleted) {
+                if (Key.membersSpecialOffer.size()==0){
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                    alertDialogBuilder.setTitle("Courses");
+                    alertDialogBuilder
+                            .setMessage("There is not any special offers announced in this branch currently.Please come back later.")
+                            .setCancelable(false)
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    getActivity().onBackPressed();
+                                }
+                            });
+
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                    return;
+                }
+
                 RecyclerView recyclerView = v.findViewById(R.id.special_offers_list);
                 soffers = new SpecialOffer[Key.membersSpecialOffer.size()];
                 soffers = Key.membersSpecialOffer.toArray(soffers);
@@ -95,52 +115,32 @@ public class FragmentSpecialOffer extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View specialOffer = inflater.inflate(R.layout.fragment_special_offer,container,false);
-
-      /*  RecyclerView recyclerView = specialOffer.findViewById(R.id.special_offers_list);
-
-        SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
-        Date d = null;
-        try {
-            d = dateformat.parse("27/05/2018");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        SpecialOffer s1 = new SpecialOffer("Platin membership is 100 ₺ special for you","27/05/2018","27/05/2018",25);
-        SpecialOffer s2 = new SpecialOffer("Standard membership is 50 ₺ special for you","27/05/2018","27/05/2018",15);
-        SpecialOffer s3 = new SpecialOffer("Gold membership is %25 off special for you","27/05/2018","27/05/2018",60);
-        SpecialOffer s4 = new SpecialOffer("Platin membership is %30 off special for you","27/05/2018","27/05/2018",50);
-
-        SpecialOffer[] specialOffers = new SpecialOffer[4];
-        specialOffers[0]=s1;
-        specialOffers[1]=s2;
-        specialOffers[2]=s3;
-        specialOffers[3]=s4;
-
-        SpecialOfferAdapter offerAdapter = new SpecialOfferAdapter(specialOffers);
-
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(offerAdapter);
-
-        return specialOffer;
-
-
-        */
-
-
         v = inflater.inflate(R.layout.fragment_special_offer,container,false);
+        if (Key.cMember.getStatue().equals("banned") || Key.cMember.getStatue().equals("inactive")){
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+            alertDialogBuilder.setTitle("Offers");
+            alertDialogBuilder
+                    .setMessage("You can't see offers since you are not a member. Please become a meember from profile page.")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            getActivity().onBackPressed();
+                            //startActivity(new Intent(getContext(),CustomerNavigationMenu.class));
+                            //new CustomerNavigationMenu().displayView(R.id.nav_my_profile);
+                            /*FragmentManager fm = getFragmentManager();
+                            FragmentTransaction ft = fm.beginTransaction();
+                            FragmentMyProfile llf = new FragmentMyProfile();
+                            ft.replace(R.id.layout_all_courses, llf);
+                            ft.commit();*/
+                        }
+                    });
 
-        //  UserController uCon = new UserController();
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+            return v;
+        }
         new UserController().getBranchId(Key.cMember.getId());
-         // uCon.getBranchId(Key.cMember.getId());
-
-
-
-      //  new SpecialOfferController().getBranchId(Key.cMember.getId());
         return v;
-
-        //return specialOffer;
     }
 }

@@ -39,7 +39,7 @@ public class PaymentController extends AppController{
 
     public Fee loadUpgradeOptions(int memberId){
 
-        Call<Fee> regCall = apiService.showFeeList(memberId);
+        Call<Fee> regCall = apiService.loadUpgradeFee(memberId);
         regCall.enqueue(new Callback<Fee>() {
             @Override
             public void onResponse(Call<Fee> call, Response<Fee> response) {

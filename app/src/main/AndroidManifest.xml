@@ -39,10 +39,10 @@
             android:label="@string/title_activity_menu"
             android:theme="@style/AppTheme" />
         <activity android:name=".Menu.UpdateProfileScreen" android:noHistory="true"/>
-        <activity android:name=".Menu.MyScheduleScreen" />
+        <activity android:name=".Menu.MyScheduleScreen" android:noHistory="true"/>
         <activity android:name=".Menu.MembershipOptionsScreen" />
-        <activity android:name=".Menu.PaymentScreen" />
-        <activity android:name=".Menu.CancelMembershipScreen" />
+        <activity android:name=".Menu.PaymentScreen" android:noHistory="true"/>
+        <activity android:name=".Menu.CancelMembershipScreen" android:noHistory="true"/>
         <activity android:name=".Menu.MyCoursesScreen" />
         <activity android:name=".Menu.FragmentCourse" />
         <activity android:name=".Management.FragmentManagementPanel" />

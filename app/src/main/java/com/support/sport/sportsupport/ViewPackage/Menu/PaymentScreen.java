@@ -38,7 +38,7 @@ public class PaymentScreen extends AppCompatActivity {
 
         if(event.isRetrofitCompleted){
             Toast.makeText(PaymentScreen.this, "Payment Successful", Toast.LENGTH_LONG).show();
-            finish();
+            startActivity(new Intent(PaymentScreen.this,CustomerNavigationMenu.class));
         }else{
             Toast.makeText(PaymentScreen.this, "Payment failed! Please try again.", Toast.LENGTH_LONG).show();
         }

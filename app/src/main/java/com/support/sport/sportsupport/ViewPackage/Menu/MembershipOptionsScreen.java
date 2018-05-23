@@ -81,53 +81,6 @@ public class MembershipOptionsScreen extends AppCompatActivity {
                 Snackbar mySnackbar = Snackbar.make(parentLayout, "Membership Options Refreshed!", Snackbar.LENGTH_SHORT);
                 mySnackbar.show();
 
-
-            /*feeGold.setText(Key.selectedBranchFee.getGoldMembership()+" TL");
-            feePlatin.setText(Key.selectedBranchFee.getPlatinumMembership()+" TL");
-            feeStand.setText(Key.selectedBranchFee.getStandardMembership()+" TL");
-            feePool.setText(Key.selectedBranchFee.getPoolMembership()+" TL");
-
-            View parentLayout = findViewById(android.R.id.content);
-            Snackbar mySnackbar = Snackbar.make(parentLayout, "Membership Options Refreshed!", Snackbar.LENGTH_SHORT);
-            mySnackbar.show();
-
-            buttonPayBecomeMemberPool.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(MembershipOptionsScreen.this,PaymentScreen.class);
-                    intent.putExtra("cost",Key.selectedBranchFee.getPoolMembership());
-                    intent.putExtra("product", branchName+" - Pool Membership");
-                    startActivity(intent);
-                }
-            });
-            buttonPayBecomeMemberGold.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(MembershipOptionsScreen.this,PaymentScreen.class);
-                    intent.putExtra("product", branchName+" - Gold Membership");
-                    intent.putExtra("cost", Key.selectedBranchFee.getGoldMembership());
-                    startActivity(intent);
-                }
-            });
-            buttonPayBecomeMemberStandart.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(MembershipOptionsScreen.this,PaymentScreen.class);
-                    intent.putExtra("product", branchName+" - Standard Membership");
-                    intent.putExtra("cost",Key.selectedBranchFee.getStandardMembership());
-                    startActivity(intent);
-                }
-            });
-            buttonPayBecomeMemberPlatin.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(MembershipOptionsScreen.this,PaymentScreen.class);
-                    intent.putExtra("product", branchName+" - Platin Membership");
-                    intent.putExtra("cost",Key.selectedBranchFee.getPlatinumMembership());
-                    startActivity(intent);
-                }
-            });*/
-
             }else{
                 ArrayList<Cost> costArrayList = makeCostList();
                 if (costArrayList==null){
@@ -201,6 +154,7 @@ public class MembershipOptionsScreen extends AppCompatActivity {
         }
         else if (Key.cMember.getStatus().equals("gold")){
             Cost c3 = new Cost("Platin","Yes","Yes","Yes");
+            c3.setTotalcost(Key.selectedBranchFee.getPlatinumMembership());
             costList.add(c3);
         }
         else if (Key.cMember.getStatus().equals("standard")){
