@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.support.sport.sportsupport.ViewPackage.Menu.MyScheduleScreen">
+
+
+    <TableLayout
+        android:layout_weight="4"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:padding="5dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Branch Statistics"
+                android:textSize="20dp"
+                android:layout_margin="1dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textSize="20dp"
+                android:layout_margin="1dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:layout_weight="1"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Branch Name"
+                android:padding="5dp"
+                android:layout_margin="1dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/stat_branchName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="branch name"
+                android:padding="5dp"
+                android:layout_margin="1dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Manager Count"
+                android:padding="5dp"
+                android:layout_margin="1dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/stat_manager_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="manager count"
+                android:layout_margin="1dp"
+                android:background="@android:color/white"
+                android:padding="5dp"
+                android:gravity="center"
+                android:layout_weight="1"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Trainer Count"
+                android:padding="5dp"
+                android:layout_margin="1dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/stat_trainer_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="trainer count"
+                android:padding="5dp"
+                android:layout_margin="1dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Standart Member Count"
+                android:padding="5dp"
+                android:layout_margin="1dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/stat_standarM_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="standart member"
+                android:padding="5dp"
+                android:layout_margin="1dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gold Member Count"
+                android:padding="5dp"
+                android:layout_margin="1dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/stat_goldM_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="gold member"
+                android:layout_margin="1dp"
+                android:background="@android:color/white"
+                android:padding="5dp"
+                android:gravity="center"
+                android:layout_weight="1"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Platinum Member Count"
+                android:padding="5dp"
+                android:layout_margin="1dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/stat_platinM_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="platin member count"
+                android:padding="5dp"
+                android:layout_margin="1dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorPrimary">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Course Student Count"
+                android:padding="5dp"
+                android:layout_margin="1dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+            <TextView
+                android:id="@+id/stat_course_student_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="course student count"
+                android:padding="5dp"
+                android:layout_margin="1dp"
+                android:background="@android:color/white"
+                android:gravity="center"
+                android:layout_weight="1"/>
+        </TableRow>
+
+    </TableLayout>
+</LinearLayout>

@@ -52,6 +52,7 @@
         <activity android:name=".Management.TraineeManagementScreen" />
         <activity android:name=".Management.CourseManagementScreen" />
         <activity android:name=".Management.BranchManagementScreen" />
+        <activity android:name=".Management.FragmentBranchStats" />
         <activity android:name=".Management.SpecialOfferManagementScreen" />
         <activity android:name=".Management.SpecialOfferAddScreen" android:noHistory="true" />
         <activity android:name=".Management.ManagerAddScreen" android:noHistory="true" />
