@@ -59,6 +59,8 @@
         <activity android:name=".Management.CourseAddScreen" android:noHistory="true" />
         <activity android:name=".Management.TrainerAddScreen" android:noHistory="true"/>
         <activity android:name=".Management.UserAddScreen" android:noHistory="true"/>
+        <activity android:name=".Management.ShowActivityPlanScreen" />
+        <activity android:name=".Management.AddActivityPlanScreen"></activity>
     </application>
 
 </manifest>

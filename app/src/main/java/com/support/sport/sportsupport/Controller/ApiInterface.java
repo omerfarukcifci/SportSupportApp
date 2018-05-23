@@ -15,6 +15,7 @@ import com.support.sport.sportsupport.Model.Fee;
 import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.Model.MemberList;
+import com.support.sport.sportsupport.Model.Move;
 import com.support.sport.sportsupport.Model.SpecialOffer;
 import com.support.sport.sportsupport.Model.Trainer;
 
@@ -67,6 +68,11 @@ public interface ApiInterface {
     //viewbranchfullness i ben yaparım
     @GET("activity/schedule/{id}")
     Call<List<ActivityPlan>> getMySchedule(@Path("id") int memberId);
+    @GET("move/all")
+    Call<List<Move>> getAllMoves();
+
+    @GET("activity/add")
+    Call<ActivityPlan> setMovementToTrainee(@Query("moveId") int moveId, @Query("memberId") int memberId, @Query("sets") int setNumber);
 
     @GET("member/update/personalinfo")
     Call<Member> updateProfile(@Query("id") int memberId, @Query("name") String name, @Query("surname") String surname,
@@ -101,7 +107,6 @@ public interface ApiInterface {
     @GET("member/delete/{id}")
     Call<Member> deleteMember(@Path("id") int memberId);
 
-    @GET("member/all/{id}")
     Call<List<Member>> allMembers(@Path("id") int id);
 
     @GET("trainer/add")
@@ -111,6 +116,8 @@ public interface ApiInterface {
     @GET("trainer/all/{id}")
     Call<List<Trainer>> findTrainerWithBranchId(@Path("id") int branchId);
 
+    @GET("trainer/all/trainee/{id}")
+    Call<List<Member>> getAllTraineeWithTrainerId(@Path("id") int trainerId);
     @GET("fee/add")
     Call<Fee> saveFeeList(@Query("weeklyClass") int weekly,@Query("oneTimeClass") int oneTime,@Query("poolMembership") int pool, @Query("standardMembership") int stand,@Query("goldMembership") int gold,@Query("platinumMembership") int platin, @Query("branchId") int branchId);
 

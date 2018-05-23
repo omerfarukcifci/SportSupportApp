@@ -38,7 +38,7 @@ public class MyScheduleScreen extends AppCompatActivity {
 
         if(event.isRetrofitCompleted){
             List<ActivityPlan> a = Key.memberSchedule;
-            moveName.setText(""+a.get(0).getMoveId());
+            moveName.setText(""+a.get(0).getName());
             moveSet.setText(""+a.get(0).getSets());
             Toast.makeText(this, "valid",Toast.LENGTH_LONG).show();
 

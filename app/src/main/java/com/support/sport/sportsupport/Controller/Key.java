@@ -8,6 +8,7 @@ import com.support.sport.sportsupport.Model.Fee;
 import com.support.sport.sportsupport.Model.Manager;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.Model.MemberList;
+import com.support.sport.sportsupport.Model.Move;
 import com.support.sport.sportsupport.Model.SpecialOffer;
 import com.support.sport.sportsupport.Model.Trainer;
 
@@ -88,7 +89,10 @@ public class Key {
         }
         return branchName;
     }
-
+    public static Branch addedBranch=null;
+    public static List<Member> allTrainees=null;
+    public static List<Move> allMovements=null;
+    public static List<Move> selectedMovements=null;
     public static Course oneCourse = null;
     public static Branch addedBranch = null;
     public static List<Branch> allBranches = null;
