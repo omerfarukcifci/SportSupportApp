@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.support.sport.sportsupport.Controller.BranchManagementController;
 import com.support.sport.sportsupport.Controller.Key;
 import com.support.sport.sportsupport.Model.ActivityPlan;
+import com.support.sport.sportsupport.Model.Fee;
 import com.support.sport.sportsupport.ViewPackage.Menu.PaymentScreen;
 import com.support.sport.sportsupport.ViewPackage.R;
 import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
@@ -25,17 +26,21 @@ import java.util.List;
 
 public class BranchAddScreen extends AppCompatActivity {
     EditText branchName,branchQuota,branchPhoneNumber,branchCity,branchDistrict,branchAddress;
+    EditText weekly,onetime,pool,stand,gold,platin;
     Button openNewBranch;
+    Fee fee;
     final Context context = this;
 
     @Subscribe
     public void onEvent(RetrofitEvent event) {
 
         if(event.isRetrofitCompleted){
-
             Toast.makeText(this, "Branch created ! ",Toast.LENGTH_LONG).show();
+            Key.allBranches.add(0,Key.addedBranch);
+            Key.branchSetChanged = true;
+            finish();
         }else{
-            Toast.makeText(this, "Branch hasn't created ! Try again.",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Create process failed! Try again.",Toast.LENGTH_LONG).show();
         }
 
     }
@@ -65,11 +70,14 @@ public class BranchAddScreen extends AppCompatActivity {
         branchCity = findViewById(R.id.branch_city_M);
         branchDistrict = findViewById(R.id.branch_district_M);
         branchAddress = findViewById(R.id.branch_address_M);
+        weekly = findViewById(R.id.branch_fee_weekly);
+        onetime = findViewById(R.id.branch_fee_one_time);
+        pool = findViewById(R.id.branch_pool_mem);
+        gold = findViewById(R.id.branch_gold_mem);
+        platin = findViewById(R.id.branch_platin_mem);
+        stand = findViewById(R.id.branch_sta_mem);
 
         openNewBranch = findViewById(R.id.open_new_branch_button);
-
-
-
 
         openNewBranch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,62 +89,42 @@ public class BranchAddScreen extends AppCompatActivity {
                 spaceController += controlBlank(branchCity);
                 spaceController += controlBlank(branchDistrict);
                 spaceController += controlBlank(branchAddress);
+                spaceController += controlBlank(stand);
+                spaceController += controlBlank(pool);
+                spaceController += controlBlank(gold);
+                spaceController += controlBlank(platin);
+                spaceController += controlBlank(weekly);
+                spaceController += controlBlank(onetime);
 
                 if(spaceController == 0) {
-
-
-
-
-
-
                     AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(context);
-
-                    // alert dialog başlığını tanımlıyoruz.
                     alertDialogBuilder.setTitle("Are you sure?");
-
-                    // alert dialog özelliklerini oluşturuyoruz.
                     alertDialogBuilder
                             .setMessage("Do you want to create this branch?")
                             .setCancelable(false)
-                            //       .setIcon(R.mipmap.ic_launcher_round)
-
                             .setPositiveButton("Apply", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    long phone = 03121244123;
                                     BranchManagementController controller = new BranchManagementController();
+                                    fee = new Fee(Integer.valueOf(weekly.getText().toString()),Integer.valueOf(onetime.getText().toString()),Integer.valueOf(pool.getText().toString()),Integer.valueOf(stand.getText().toString()),Integer.valueOf(gold.getText().toString()),Integer.valueOf(platin.getText().toString()));
                                     controller.addBranch(branchName.getText().toString(),Integer.valueOf(branchQuota.getText().toString()), Long.valueOf(branchPhoneNumber.getText().toString()),
-                                            branchCity.getText().toString(),branchDistrict.getText().toString(),branchAddress.getText().toString());
-                                    //Toast.makeText(BranchAddScreen.this, "The Branch Successfully Created" , Toast.LENGTH_LONG).show();
-                                    //Toast.makeText(BranchAddScreen.this, "Branch created ! ",Toast.LENGTH_LONG).show();
+                                            branchCity.getText().toString(),branchDistrict.getText().toString(),branchAddress.getText().toString(),fee);
                                 }
                             })
 
                             .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-
                                     dialog.dismiss();
-
-
-
-                                }
+                               }
                             });
-
-                    // alert dialog nesnesini oluşturuyoruz
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     spaceController = 0;
-                    // alerti gösteriyoruz
                     alertDialog.show();
-
-
                 }else{
-
                     spaceController =0;
                 }
-
-
-            }
+           }
         });
 
 

@@ -1,5 +1,7 @@
 package com.support.sport.sportsupport.Model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.Date;
 
 /**
@@ -8,14 +10,25 @@ import java.util.Date;
 
 public class SpecialOffer {
 
+
+    @SerializedName("id")
+    private int id;
+    @SerializedName("name")
     private String name;
+    @SerializedName("branchId")
     private int branchId;
-    private Date startDate;
-    private Date finishDate;
+    @SerializedName("startDate")
+    private String startDate;
+    @SerializedName("finishDate")
+    private String finishDate;
+    @SerializedName("referenceNumberLimit")
     private int referenceNumberLimit;
+    @SerializedName("attendanceLimit")
     private int attendanceLimit;
 
-    public SpecialOffer(String name, int branchId, Date startDate, Date finishDate, int referenceNumberLimit, int attendanceLimit) {
+    @SerializedName("discountAmount")
+    private String discount;
+    public SpecialOffer(String name, int branchId, String startDate, String finishDate, int referenceNumberLimit, int attendanceLimit) {
         this.name = name;
         this.branchId = branchId;
         this.startDate = startDate;
@@ -24,7 +37,7 @@ public class SpecialOffer {
         this.attendanceLimit = attendanceLimit;
     }
 
-    public SpecialOffer(String name, Date startDate, Date finishDate, int attendanceLimit) {
+    public SpecialOffer(String name, String startDate, String finishDate, int attendanceLimit) {
         this.name = name;
         this.startDate = startDate;
         this.finishDate = finishDate;
@@ -47,19 +60,19 @@ public class SpecialOffer {
         this.branchId = branchId;
     }
 
-    public Date getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public Date getFinishDate() {
+    public String getFinishDate() {
         return finishDate;
     }
 
-    public void setFinishDate(Date finishDate) {
+    public void setFinishDate(String finishDate) {
         this.finishDate = finishDate;
     }
 
@@ -77,5 +90,21 @@ public class SpecialOffer {
 
     public void setAttendanceLimit(int attendanceLimit) {
         this.attendanceLimit = attendanceLimit;
+    }
+
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
+    public String getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(String discount) {
+        this.discount = discount;
     }
 }

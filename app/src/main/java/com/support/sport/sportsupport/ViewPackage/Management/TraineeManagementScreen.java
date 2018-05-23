@@ -15,7 +15,6 @@ import com.support.sport.sportsupport.Model.ActivityPlan;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.ViewPackage.Adapter.ActivityPlanAdapter;
 import com.support.sport.sportsupport.ViewPackage.Adapter.TraineeAdapter;
-import com.support.sport.sportsupport.ViewPackage.Adapter.UserAdapter;
 import com.support.sport.sportsupport.ViewPackage.R;
 import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
 

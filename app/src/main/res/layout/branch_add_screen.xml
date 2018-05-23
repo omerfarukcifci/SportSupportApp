@@ -7,6 +7,7 @@
     tools:context="com.support.sport.sportsupport.ViewPackage.Management.BranchManagementScreen">
 
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -14,71 +15,127 @@
         android:layout_margin="10dp"
         android:gravity="center">
 
-        <LinearLayout
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_weight="1">
+
+                <EditText
+                    android:id="@+id/branch_name_M"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Branch Name"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/branch_quota_M"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Branch Quota"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/branch_phone_number_M"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Phone Number"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/branch_city_M"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="City"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/branch_district_M"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="District"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+                <EditText
+                    android:id="@+id/branch_address_M"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Address"
+                    android:maxLines="2"
+                    android:singleLine="false" />
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textSize="24dp"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="FEE TABLE" />
+
+                <EditText
+                    android:id="@+id/branch_fee_one_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="One Time Class Fee"
+                    android:maxLines="2"
+                    android:singleLine="false" />
+
+                <EditText
+                    android:id="@+id/branch_fee_weekly"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Weekly Class Fee"
+                    android:maxLines="2"
+                    android:singleLine="false" />
+                <EditText
+                    android:id="@+id/branch_pool_mem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Pool Membership"
+                    android:maxLines="2"
+                    android:singleLine="false" />
+                <EditText
+                    android:id="@+id/branch_sta_mem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Standard Membership"
+                    android:maxLines="2"
+                    android:singleLine="false" />
+                <EditText
+                    android:id="@+id/branch_gold_mem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Gold Membership"
+                    android:maxLines="2"
+                    android:singleLine="false" />
+                <EditText
+                    android:id="@+id/branch_platin_mem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Platin Membership"
+                    android:maxLines="2"
+                    android:singleLine="false" />
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/open_new_branch_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_weight="1">
-
-            <EditText
-                android:id="@+id/branch_name_M"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Branch Name"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/branch_quota_M"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Branch Quota"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/branch_phone_number_M"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Phone Number"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/branch_city_M"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="City"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/branch_district_M"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="District"
-                android:maxLines="1"
-                android:singleLine="true" />
-
-            <EditText
-                android:id="@+id/branch_address_M"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Address"
-                android:maxLines="2"
-                android:singleLine="false" />
-
-            <Button
-                android:id="@+id/open_new_branch_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:background="@color/colorPrimary"
-                android:text="Open New Branch" />
-        </LinearLayout>
-
+            android:layout_margin="5dp"
+            android:background="@color/colorPrimary"
+            android:text="Open New Branch" />
 
     </LinearLayout>
+
 
 </android.support.constraint.ConstraintLayout>

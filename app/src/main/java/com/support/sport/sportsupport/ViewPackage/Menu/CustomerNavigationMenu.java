@@ -22,6 +22,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.support.sport.sportsupport.Controller.Key;
+import com.support.sport.sportsupport.Controller.UserController;
 import com.support.sport.sportsupport.ViewPackage.R;
 import com.support.sport.sportsupport.ViewPackage.WelcomeScreen;
 
@@ -39,6 +41,9 @@ public class CustomerNavigationMenu extends AppCompatActivity
         setContentView(R.layout.activity_menu);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+  //      UserController uCon = new UserController();
+      //  uCon.getBranchId(Key.cMember.getId());
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

@@ -27,9 +27,7 @@ import org.greenrobot.eventbus.Subscribe;
 public class CourseManagementScreen extends AppCompatActivity {
 
     private FloatingActionButton fab;
-    private ImageButton courseDelete;
     private RecyclerView recyclerView;
-    private Course[] coursesm;
     private CourseAdapter courseAdapter;
 
     @Subscribe
@@ -38,6 +36,7 @@ public class CourseManagementScreen extends AppCompatActivity {
         if (event.pID==-1){
             if (event.isRetrofitCompleted){
                 courseAdapter.notifyDataSetChanged();
+                Toast.makeText(this,"Successfully deleted!",Toast.LENGTH_LONG).show();
             }else{
                 Toast.makeText(this,"Delete process failed",Toast.LENGTH_LONG).show();
             }
@@ -61,8 +60,6 @@ public class CourseManagementScreen extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "The course list is empty!",Toast.LENGTH_LONG).show();
             }
         }
-
-
     }
 
 
@@ -86,6 +83,18 @@ public class CourseManagementScreen extends AppCompatActivity {
     public void onStart() {
         super.onStart();
         EventBus.getDefault().register(this);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (Key.courseSetChanged){
+            courseAdapter.setList(Key.allClist);
+            courseAdapter.notifyDataSetChanged();
+            Key.courseSetChanged = false;
+        }
+
     }
 
 

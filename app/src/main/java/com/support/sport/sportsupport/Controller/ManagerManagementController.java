@@ -21,16 +21,19 @@ import retrofit2.Response;
 public class ManagerManagementController extends AppController{
 
 
-    public void createManager(String name, String surname, String username, String password, int branchId){
+    public void createManager(String name, String surname, String username, String password, int branchId, final String branchName){
         Call<Manager> regCall = apiService.registerManager(name,surname,username, password,branchId);
         regCall.enqueue(new Callback<Manager>() {
             @Override
             public void onResponse(Call<Manager> call, Response<Manager> response) {
                 Key.newManager = response.body();
+                Key.newManager.setBrancName(branchName);
+                EventBus.getDefault().post(new RetrofitEvent(true,1));
             }
             @Override
             public void onFailure(Call<Manager> call, Throwable t) {
                 Log.d("failure","Spring error MANAGERMANAGERGMANAGER");
+                EventBus.getDefault().post(new RetrofitEvent(false,1));
             }
         });
     }
@@ -42,10 +45,13 @@ public class ManagerManagementController extends AppController{
             @Override
             public void onResponse(Call<Manager> call, Response<Manager> response) {
                 Key.deletedManager = response.body();
+                EventBus.getDefault().post(new RetrofitEvent(true,1));
+
             }
             @Override
             public void onFailure(Call<Manager> call, Throwable t) {
                 Log.d("failure","Spring error Delete Manager Delete Manager");
+                EventBus.getDefault().post(new RetrofitEvent(true,1));
             }
         });
     }
@@ -64,6 +70,24 @@ public class ManagerManagementController extends AppController{
             public void onFailure(Call<List<Manager>> call, Throwable t) {
                 Log.d("failure","Spring error ALLL MANAGERSSS");
                 EventBus.getDefault().post(new RetrofitEvent(false));
+            }
+        });
+
+
+    }
+    public void allManagersWithBNames(){
+
+        Call<List<Manager>> managers = apiService.allManagersWithBranchNames();
+        managers.enqueue(new Callback<List<Manager>>() {
+            @Override
+            public void onResponse(Call<List<Manager>> call, Response<List<Manager>> response) {
+                Key.allManagers = response.body();
+                EventBus.getDefault().post(new RetrofitEvent(true,0));
+            }
+            @Override
+            public void onFailure(Call<List<Manager>> call, Throwable t) {
+                Log.d("failure","Spring error ALLL MANAGERSSS");
+                EventBus.getDefault().post(new RetrofitEvent(false,0));
             }
         });
 

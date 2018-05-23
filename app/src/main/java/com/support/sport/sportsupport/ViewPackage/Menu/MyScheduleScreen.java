@@ -1,6 +1,8 @@
 package com.support.sport.sportsupport.ViewPackage.Menu;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -61,7 +63,27 @@ public class MyScheduleScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (Key.cMember.getStatue().equals("banned") || Key.cMember.getStatue().equals("inactive")){
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MyScheduleScreen.this);
+            alertDialogBuilder.setTitle("Courses");
+            alertDialogBuilder
+                    .setMessage("You can't see a schedule assigned by a trainer since you are not a member. Please become a meember from profile page.")
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            finish();
+                        }
+                    });
+
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+            return;
+        }
+
         setContentView(R.layout.activity_my_schedule_screen);
+
 
         moveName = findViewById(R.id.move_name_1);
         moveSet = findViewById(R.id.move_set_1);
