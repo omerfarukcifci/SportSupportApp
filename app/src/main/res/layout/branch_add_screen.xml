@@ -39,6 +39,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Branch Quota"
                     android:maxLines="1"
+                    android:phoneNumber="true"
                     android:singleLine="true" />
 
                 <EditText
@@ -47,6 +48,7 @@
                     android:layout_height="wrap_content"
                     android:hint="Phone Number"
                     android:maxLines="1"
+                    android:phoneNumber="true"
                     android:singleLine="true" />
 
                 <EditText
@@ -87,6 +89,7 @@
                     android:layout_height="wrap_content"
                     android:hint="One Time Class Fee"
                     android:maxLines="2"
+                    android:phoneNumber="true"
                     android:singleLine="false" />
 
                 <EditText
@@ -95,45 +98,54 @@
                     android:layout_height="wrap_content"
                     android:hint="Weekly Class Fee"
                     android:maxLines="2"
+                    android:phoneNumber="true"
                     android:singleLine="false" />
+
                 <EditText
                     android:id="@+id/branch_pool_mem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Pool Membership"
                     android:maxLines="2"
+                    android:phoneNumber="true"
                     android:singleLine="false" />
+
                 <EditText
                     android:id="@+id/branch_sta_mem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Standard Membership"
                     android:maxLines="2"
+                    android:phoneNumber="true"
                     android:singleLine="false" />
+
                 <EditText
                     android:id="@+id/branch_gold_mem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Gold Membership"
                     android:maxLines="2"
+                    android:phoneNumber="true"
                     android:singleLine="false" />
+
                 <EditText
                     android:id="@+id/branch_platin_mem"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Platin Membership"
                     android:maxLines="2"
+                    android:phoneNumber="true"
                     android:singleLine="false" />
+
+                <Button
+                    android:id="@+id/open_new_branch_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@color/colorPrimary"
+                    android:text="Open New Branch" />
             </LinearLayout>
         </ScrollView>
-
-        <Button
-            android:id="@+id/open_new_branch_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@color/colorPrimary"
-            android:text="Open New Branch" />
 
     </LinearLayout>
 

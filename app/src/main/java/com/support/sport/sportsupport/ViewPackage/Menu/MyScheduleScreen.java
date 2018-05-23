@@ -40,7 +40,7 @@ public class MyScheduleScreen extends AppCompatActivity {
             List<ActivityPlan> a = Key.memberSchedule;
             moveName.setText(""+a.get(0).getName());
             moveSet.setText(""+a.get(0).getSets());
-            Toast.makeText(this, "valid",Toast.LENGTH_LONG).show();
+//            Toast.makeText(this, "valid",Toast.LENGTH_LONG).show();
 
         }else{
             Toast.makeText(this, "Invalid",Toast.LENGTH_LONG).show();

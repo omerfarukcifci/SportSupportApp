@@ -94,7 +94,7 @@ public class Key {
     public static List<Move> allMovements=null;
     public static List<Move> selectedMovements=null;
     public static Course oneCourse = null;
-    public static Branch addedBranch = null;
+   // public static Branch addedBranch = null;
     public static List<Branch> allBranches = null;
     public static List<ActivityPlan> memberSchedule=null;
     public static Member updatedMember=null;

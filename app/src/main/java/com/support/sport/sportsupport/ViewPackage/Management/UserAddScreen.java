@@ -10,6 +10,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.support.v4.app.DialogFragment;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.DatePicker;
+import android.widget.TextView;
 
 import com.support.sport.sportsupport.Controller.Key;
 import com.support.sport.sportsupport.Controller.UserController;
@@ -19,12 +28,33 @@ import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.Calendar;
+
 public class UserAddScreen extends AppCompatActivity {
-    private EditText name,surname,username,birtdate,mail,password;
+    private EditText name,surname,username,mail,password;
     private Button addNewUser;
     final Context context = this;
+    public static EditText birtdate;
+    public static class DatePickerFragment extends DialogFragment
+            implements DatePickerDialog.OnDateSetListener {
 
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
 
+            // Create a new instance of DatePickerDialog and return it
+            return new DatePickerDialog(getActivity(), this, year, month, day);
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day) {
+          //  birtdate.setText("Selected Date: " + (month + 1) + "-" + day + "-" + year);
+            birtdate.setText( year +"-"+(month + 1)+"-"+day);
+        }
+    }
     @Subscribe
     public void onEvent(RetrofitEvent event) {
 
@@ -37,6 +67,10 @@ public class UserAddScreen extends AppCompatActivity {
             Toast.makeText(this, "User is not created ! Try again.",Toast.LENGTH_LONG).show();
         }
 
+    }
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
     }
 
     @Override
