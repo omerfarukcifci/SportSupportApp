@@ -41,10 +41,7 @@ public class MyScheduleScreen extends AppCompatActivity {
     public void onEvent(RetrofitEvent event) {
 
         if(event.isRetrofitCompleted){
-            /*List<ActivityPlan> a = Key.memberSchedule;
-            moveName.setText(""+a.get(0).getName());
-            moveSet.setText(""+a.get(0).getSets());
-            */
+
             RecyclerView recyclerView = findViewById(R.id.my_schedule_list_trainee);
             memberName= (TextView) findViewById(R.id.my_plan_trainee_member_name);
 
@@ -87,7 +84,6 @@ public class MyScheduleScreen extends AppCompatActivity {
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
             }
-
 
         }else{
             Toast.makeText(this, "Invalid",Toast.LENGTH_LONG).show();

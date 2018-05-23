@@ -1,7 +1,20 @@
 package com.support.sport.sportsupport.ViewPackage.Management;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+//import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.support.v4.app.DialogFragment;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.DatePicker;
+import android.widget.TextView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -9,6 +22,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,11 +34,73 @@ import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.Calendar;
+
 public class SpecialOfferAddScreen extends AppCompatActivity {
 
-    EditText offerName,branchName,startDate,endDate,referenceNumberLimit,attendanceLimit,deleteOfferName;
-    Button createNewSpecialOffer,deleteSpecialOffer;
+    EditText offerName,branchName,referenceNumberLimit,attendanceLimit,deleteOfferName;
+    Button createNewSpecialOffer,deleteSpecialOffer,setStartDate,setEndDate;
+    public  static EditText startDate,endDate;
     final Context context = this;
+
+    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+
+        static final int START_DATE = 1;
+        static final int END_DATE = 2;
+
+        private int mChosenDate;
+
+        int cur = 0;
+
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+
+            Bundle bundle = this.getArguments();
+            if (bundle != null) {
+                mChosenDate = bundle.getInt("DATE", 1);
+            }
+
+
+            switch (mChosenDate) {
+
+                case START_DATE:
+                    cur = START_DATE;
+                    return new DatePickerDialog(getActivity(), this, year, month, day);
+
+                case END_DATE:
+                    cur = END_DATE;
+                    return new DatePickerDialog(getActivity(), this, year, month, day);
+
+            }
+            return null;
+        }
+
+
+        @Override
+        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+
+            if (cur == START_DATE) {
+                // set selected date into textview
+                startDate.setText( new StringBuilder().append(year)
+                        .append("-").append(month + 1).append("-").append(day)
+                        );
+            } else {
+                endDate.setText( new StringBuilder().append(year)
+                        .append("-").append(month + 1).append("-").append(day)
+                        );
+
+            }
+        }
+    }
+
 
 
     @Subscribe
@@ -46,7 +122,10 @@ public class SpecialOfferAddScreen extends AppCompatActivity {
         EventBus.getDefault().unregister(this);
         super.onDestroy();
     }
-
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +140,33 @@ public class SpecialOfferAddScreen extends AppCompatActivity {
         attendanceLimit = findViewById(R.id.soffer_attendance_limit);
         deleteOfferName = findViewById(R.id.delete_soffor_name_M);
 
+        setEndDate = findViewById(R.id.BTN_so_endDate);
+        setStartDate = findViewById(R.id.BTN_so_startDate);
+
+        setEndDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("DATE",2);
+
+                DialogFragment newFragment = new DatePickerFragment();
+                newFragment.setArguments(bundle);
+
+                newFragment.show(getSupportFragmentManager(), "datePicker");
+            }
+        });
+        setStartDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("DATE",1);
+
+                DialogFragment newFragment = new DatePickerFragment();
+                newFragment.setArguments(bundle);
+
+                newFragment.show(getSupportFragmentManager(), "datePicker");
+            }
+        });
 
         createNewSpecialOffer = findViewById(R.id.create_soffer_button);
         createNewSpecialOffer.setOnClickListener(new View.OnClickListener() {
