@@ -84,7 +84,8 @@ public interface ApiInterface {
     @GET("member/cancel")
     Call<Member> cancelMembership(@Query("username") String username, @Query("endDate") String endDate);
 
-
+    @GET("member/ban/{id}")
+    Call<Member> banMember(@Path("id") int id);
 
     @GET("manager/add")
     Call<Manager> registerManager(@Query("name") String name, @Query("surname") String surname, @Query("username") String username,

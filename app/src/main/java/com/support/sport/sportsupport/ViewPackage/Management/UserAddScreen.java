@@ -1,5 +1,8 @@
 package com.support.sport.sportsupport.ViewPackage.Management;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.support.v7.app.AlertDialog;
@@ -8,6 +11,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 import android.app.DatePickerDialog;
@@ -32,7 +36,8 @@ import java.util.Calendar;
 
 public class UserAddScreen extends AppCompatActivity {
     private EditText name,surname,username,mail,password;
-    private Button addNewUser;
+    private Button addNewUser,setBTBTN;
+    public static EditText birtdate;
     final Context context = this;
     public static EditText birtdate;
     public static class DatePickerFragment extends DialogFragment
@@ -50,11 +55,69 @@ public class UserAddScreen extends AppCompatActivity {
             return new DatePickerDialog(getActivity(), this, year, month, day);
         }
 
+    public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+
+        static final int START_DATE = 1;
+        static final int END_DATE = 2;
+
+        private int mChosenDate;
+
+        int cur = 0;
+
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState) {
+
+            // Use the current date as the default date in the picker
+            final Calendar c = Calendar.getInstance();
+            int year = c.get(Calendar.YEAR);
+            int month = c.get(Calendar.MONTH);
+            int day = c.get(Calendar.DAY_OF_MONTH);
+
+
+            Bundle bundle = this.getArguments();
+            if (bundle != null) {
+                mChosenDate = bundle.getInt("DATE", 1);
+            }
+
+
+            switch (mChosenDate) {
+
+                case START_DATE:
+                    cur = START_DATE;
+                    return new DatePickerDialog(getActivity(), this, year, month, day);
+
+                case END_DATE:
+                    cur = END_DATE;
+                    return new DatePickerDialog(getActivity(), this, year, month, day);
+
+            }
+            return null;
+        }
+
+
+        @Override
+        public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+
+            if (cur == START_DATE) {
+                // set selected date into textview
+
+                birtdate.setText(new StringBuilder().append(year)
+                        .append("-").append(month + 1).append("-").append(day)
+                );
+
+            }
+        }
+
+    }
+
+
         public void onDateSet(DatePicker view, int year, int month, int day) {
           //  birtdate.setText("Selected Date: " + (month + 1) + "-" + day + "-" + year);
             birtdate.setText( year +"-"+(month + 1)+"-"+day);
         }
     }
+
     @Subscribe
     public void onEvent(RetrofitEvent event) {
 
@@ -100,6 +163,19 @@ public class UserAddScreen extends AppCompatActivity {
         mail = findViewById(R.id.email_M);
         password = findViewById(R.id.password_MM);
         addNewUser = findViewById(R.id.add_new_user_button);
+        setBTBTN = findViewById(R.id.setBTBTN);
+        setBTBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("DATE",1);
+
+                DialogFragment newFragment = new UserAddScreen.DatePickerFragment();
+                newFragment.setArguments(bundle);
+
+                newFragment.show(getFragmentManager(), "datePicker");
+            }
+        });
 
 
         addNewUser.setOnClickListener(new View.OnClickListener() {

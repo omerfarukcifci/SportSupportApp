@@ -52,4 +52,21 @@ public class UserManagementController extends AppController{
     }
 
 
+    public void banMember(int memberId){
+        Call<Member> regCall = apiService.banMember(memberId);
+        regCall.enqueue(new Callback<Member>() {
+            @Override
+            public void onResponse(Call<Member> call, Response<Member> response) {
+                Key.bannedMember = response.body();
+                EventBus.getDefault().post(new RetrofitEvent(true,6));
+            }
+            @Override
+            public void onFailure(Call<Member> call, Throwable t) {
+                Log.d("failure","Spring error Ban user ");
+                EventBus.getDefault().post(new RetrofitEvent(false,6));
+            }
+        });
+    }
+
+
 }

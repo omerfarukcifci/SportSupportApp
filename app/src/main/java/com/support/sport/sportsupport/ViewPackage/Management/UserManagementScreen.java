@@ -46,13 +46,21 @@ public class UserManagementScreen extends AppCompatActivity {
             }else{
                 Toast.makeText(getApplicationContext(),"There isn't any members registered to your branch!",Toast.LENGTH_SHORT).show();
             }
-        }else{
+        }else if(event.pID!=6){
             if (event.isRetrofitCompleted) {
                 userAdapter.notifyDataSetChanged();
                 Toast.makeText(this, "Member Successfully Deleted!" , Toast.LENGTH_LONG).show();
             }else{
                 Toast.makeText(this, "Delete Process Failed!" , Toast.LENGTH_LONG).show();
             }
+        }else{
+            if (event.isRetrofitCompleted) {
+                userAdapter.notifyDataSetChanged();
+                Toast.makeText(this, "Member Successfully Banned!" , Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(this, "Ban Process Failed!" , Toast.LENGTH_LONG).show();
+            }
+
         }
     }
 

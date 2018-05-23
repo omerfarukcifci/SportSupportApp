@@ -99,6 +99,7 @@ public class Key {
     public static List<ActivityPlan> memberSchedule=null;
     public static Member updatedMember=null;
     public static Member addedMember=null;
+    public static Member bannedMember=null;
     public static Member cancelledMember=null;
     public static List<Course> allClist = null;
     public static List<Course> myClist = null;
@@ -108,6 +109,9 @@ public class Key {
     public static Boolean isEnrolled = false;
     public static boolean offerListChanged = false;
 
+    public static Member getBannedMember() {
+        return bannedMember;
+    }
 
     public static BranchStats selectedBranchStats = null;
 
