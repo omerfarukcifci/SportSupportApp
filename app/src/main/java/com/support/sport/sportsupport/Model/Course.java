@@ -36,36 +36,6 @@ public class Course implements Serializable{
     @SerializedName("availableQuota")
     private int availableQuota;
 
-    public String getDeleteDate() {
-        return deleteDate;
-    }
-
-    public void setDeleteDate(String deleteDate) {
-        this.deleteDate = deleteDate;
-    }
-
-    private String deleteDate;
-
-    public String getDeleteDay() {
-        return deleteDay;
-    }
-
-    public void setDeleteDay(String deleteDay) {
-        this.deleteDay = deleteDay;
-    }
-
-    private String deleteDay;
-
-    public String getDeleteTrainer() {
-        return deleteTrainer;
-    }
-
-    public void setDeleteTrainer(String deleteTrainer) {
-        this.deleteTrainer = deleteTrainer;
-    }
-
-    private String deleteTrainer;
-
     public String getName() {
         return name;
     }
@@ -131,16 +101,6 @@ public class Course implements Serializable{
     }
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Course(String name, int quota, int availableQuota, String day, String end, String trainer, String text){
-        this.name = name;
-        this.availableQuota = availableQuota;
-        this.deleteDay = day;
-        this.deleteDate = end;
-        this.quota = quota;
-        this.deleteTrainer = trainer;
-        this.description=text;
     }
 
     public Course(String name, int quota, int branchId, String startDate, String endDate, int trainerId, String species, String currentDate, String description, int availableQuota){

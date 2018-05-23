@@ -13,11 +13,16 @@ import com.support.sport.sportsupport.Controller.CourseController;
 import com.support.sport.sportsupport.Model.Course;
 import com.support.sport.sportsupport.ViewPackage.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class UserCourseAdapter extends RecyclerView.Adapter<UserCourseAdapter.ViewHolder> {
 
     private List<Course> courses;
+    Date timeStamp = Calendar.getInstance().getTime();
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -45,6 +50,10 @@ public class UserCourseAdapter extends RecyclerView.Adapter<UserCourseAdapter.Vi
         courses = myDataset;
     }
 
+    public void setList(List<Course> myDataset) {
+        courses = myDataset;
+    }
+
     // Create new views (invoked by the layout manager)
     @Override
     public UserCourseAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
@@ -66,10 +75,13 @@ public class UserCourseAdapter extends RecyclerView.Adapter<UserCourseAdapter.Vi
         holder.name.setText(c.getName()+" Class");
         holder.quota.setText("Quota: "+c.getAvailableQuota()+"/"+c.getQuota());
         holder.lecdayfreq.setText("Every Week");
-        holder.enddate.setText("Ends at: "+(c.getEndDate().split("T"))[0]);
-
-
-
+        try {
+            if(timeStamp.before(new SimpleDateFormat("yyyy-MM-dd").parse(c.getEndDate()))) {
+                holder.enddate.setText("Ends at: " + (c.getEndDate().split("T"))[0]);
+            }else holder.enddate.setText("Closed!");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
     // Return the size of your dataset (invoked by the layout manager)

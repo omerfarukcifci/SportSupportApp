@@ -44,7 +44,7 @@
         <activity android:name=".Menu.PaymentScreen" android:noHistory="true"/>
         <activity android:name=".Menu.CancelMembershipScreen" android:noHistory="true"/>
         <activity android:name=".Menu.MyCoursesScreen" />
-        <activity android:name=".Menu.FragmentCourse" />
+        <activity android:name=".Menu.FragmentCourse" android:noHistory="true"/>
         <activity android:name=".Management.FragmentManagementPanel" />
         <activity android:name=".Management.ManagerManagementScreen" />
         <activity android:name=".Management.UserManagementScreen" />

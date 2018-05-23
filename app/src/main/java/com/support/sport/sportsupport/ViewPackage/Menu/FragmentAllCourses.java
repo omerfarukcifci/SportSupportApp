@@ -28,6 +28,11 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Created by Merve on 25.04.2018.
  */
@@ -35,6 +40,9 @@ import org.greenrobot.eventbus.ThreadMode;
 public class FragmentAllCourses extends Fragment {
 
     View v;
+    Date timeStamp = Calendar.getInstance().getTime();
+    UserCourseAdapter mAdapter;
+    boolean enteredCreate = true;
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -67,18 +75,40 @@ public class FragmentAllCourses extends Fragment {
                     return;
                 }
                 RecyclerView recyclerView = v.findViewById(R.id.courses_list);
-                UserCourseAdapter mAdapter = new UserCourseAdapter(Key.allClist);
+                mAdapter = new UserCourseAdapter(Key.allClist);
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setAdapter(mAdapter);
 
                 recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
                     @Override
-                    public void onClick(View view, int position) {
-                        Intent intent = new Intent(getContext(),FragmentCourse.class);
-                        intent.putExtra("MyCourse",Key.allClist.get(position));
-                      ///  intent.putExtra("category",0);
-                        startActivity(intent);
+                    public void onClick(View view, int position){
+                        Course c = Key.allClist.get(position);
+                        try {
+                            if (timeStamp.after(new SimpleDateFormat("yyyy-MM-dd").parse(c.getEndDate()))){
+                                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
+                                alertDialogBuilder.setTitle("Closed Course");
+                                alertDialogBuilder
+                                        .setMessage("This course is closed.Please try other courses.")
+                                        .setCancelable(true)
+                                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.dismiss();
+                                            }
+                                        });
+                                AlertDialog alertDialog = alertDialogBuilder.create();
+                                alertDialog.show();
+                            }else{
+                                Intent intent = new Intent(getContext(),FragmentCourse.class);
+                                intent.putExtra("MyCourse",Key.allClist.get(position));
+                                startActivity(intent);
+                            }
+
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
                     }
                     @Override
                     public void onLongClick(View view, int position) {
@@ -87,7 +117,6 @@ public class FragmentAllCourses extends Fragment {
                 }));
 
             }else{
-                Toast.makeText(getContext(), "Invalid",Toast.LENGTH_LONG).show();
             }
         }
 
@@ -111,6 +140,7 @@ public class FragmentAllCourses extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_all_courses,container,false);
+        enteredCreate = true;
         if (Key.cMember.getStatue().equals("banned") || Key.cMember.getStatue().equals("inactive")){
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
             alertDialogBuilder.setTitle("Courses");
@@ -121,13 +151,6 @@ public class FragmentAllCourses extends Fragment {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             getActivity().onBackPressed();
-                            //startActivity(new Intent(getContext(),CustomerNavigationMenu.class));
-                            //new CustomerNavigationMenu().displayView(R.id.nav_my_profile);
-                            /*FragmentManager fm = getFragmentManager();
-                            FragmentTransaction ft = fm.beginTransaction();
-                            FragmentMyProfile llf = new FragmentMyProfile();
-                            ft.replace(R.id.layout_all_courses, llf);
-                            ft.commit();*/
                         }
                     });
 
@@ -141,13 +164,15 @@ public class FragmentAllCourses extends Fragment {
     }
 
     @Override
-    public void onResume(){
-        if (Key.courseUpdated){
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.detach(this).attach(this).commit();
-            Key.courseUpdated = false;
-        }
+    public void onResume() {
         super.onResume();
+        if (Key.userCourseListChanged && !enteredCreate){
+            mAdapter.setList(Key.allClist);
+            mAdapter.notifyDataSetChanged();
+            enteredCreate = false;
+            Key.userCourseListChanged = false;
+        }
+
     }
 
 

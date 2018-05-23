@@ -96,11 +96,11 @@ public class Key {
     public static Member updatedMember=null;
     public static Member addedMember=null;
     public static Member cancelledMember=null;
-    public static ClassMemberList enrolledClassMemberList =null;
     public static List<Course> allClist = null;
     public static List<Course> myClist = null;
     public static boolean updatedProfile = false;
-    public static boolean courseUpdated = false;
-    public static int isAv = 0;
+    public static boolean userCourseListChanged = false;
+    public static boolean userMyCListChanged = false;
+    public static Boolean isEnrolled = false;
 
 }

@@ -1,5 +1,6 @@
 package com.support.sport.sportsupport.ViewPackage.Adapter;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,10 @@ import com.support.sport.sportsupport.Controller.ManagerManagementController;
 import com.support.sport.sportsupport.Model.Course;
 import com.support.sport.sportsupport.ViewPackage.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,6 +28,7 @@ import java.util.List;
 public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder> {
 
     private List<Course> courses;
+    Date timeStamp = Calendar.getInstance().getTime();
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -67,6 +73,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
     }
 
     // Replace the contents of a view (invoked by the layout manager)
+    @SuppressLint("SimpleDateFormat")
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
@@ -75,7 +82,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.ViewHolder
         holder.name.setText(c.getName()+" Class");
         holder.quota.setText("Quota: "+c.getAvailableQuota()+"/"+c.getQuota());
         holder.lecdayfreq.setText("Every Week");
-        holder.enddate.setText("Ends at: "+(c.getEndDate().split("T"))[0]);
+        holder.enddate.setText("Ends at: " + (c.getEndDate().split("T"))[0]);
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

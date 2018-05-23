@@ -2,14 +2,20 @@ package com.support.sport.sportsupport.Controller;
 
 import android.util.Log;
 
+import com.google.gson.JsonObject;
+import com.support.sport.sportsupport.Model.Branch;
 import com.support.sport.sportsupport.Model.ClassMemberList;
 import com.support.sport.sportsupport.Model.Course;
 import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.ViewPackage.RetrofitEvent;
 
 import org.greenrobot.eventbus.EventBus;
+import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.List;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -56,6 +62,29 @@ public class CourseController extends AppController{
         return Key.myClist;
     }
 
+    public Boolean isEnrolledCheck(int memberId, final Course c){
+        Call<List<Course>> cCall = apiService.showMyCourses(memberId);
+        cCall.enqueue(new Callback<List<Course>>() {
+            @Override
+            public void onResponse(Call<List<Course>> call, Response<List<Course>> response) {
+                Key.myClist = response.body();
+                Key.isEnrolled = false;
+                for (Course c1 : Key.myClist){
+                    if (c1.getId()==c.getId()) Key.isEnrolled = true;
+                }
+                Log.d("success","Spring success cour");
+                EventBus.getDefault().post(new RetrofitEvent(true,0));
+            }
+            @Override
+            public void onFailure(Call<List<Course>> call, Throwable t) {
+                Key.isEnrolled = false;
+                Log.d("failure","Spring error");
+                EventBus.getDefault().post(new RetrofitEvent(false,0));
+            }
+        });
+        return Key.isEnrolled;
+    }
+
 
 
     public void getCourse(int courseId){
@@ -85,14 +114,13 @@ public class CourseController extends AppController{
         courseCall.enqueue(new Callback<ClassMemberList>() {
             @Override
             public void onResponse(Call<ClassMemberList> call, Response<ClassMemberList> response) {
-                Key.enrolledClassMemberList = response.body();
                 Log.d("success","Spring success");
-                EventBus.getDefault().post(new RetrofitEvent(true));
+                EventBus.getDefault().post(new RetrofitEvent(true,1));
             }
             @Override
             public void onFailure(Call<ClassMemberList> call, Throwable t) {
                 Log.d("failure","Spring error");
-                EventBus.getDefault().post(new RetrofitEvent(false));
+                EventBus.getDefault().post(new RetrofitEvent(false,1));
             }
         });
     }
@@ -105,14 +133,13 @@ public class CourseController extends AppController{
         courseCall.enqueue(new Callback<ClassMemberList>() {
             @Override
             public void onResponse(Call<ClassMemberList> call, Response<ClassMemberList> response) {
-                Key.enrolledClassMemberList = response.body();
                 Log.d("success","Spring success");
-                EventBus.getDefault().post(new RetrofitEvent(true));
+                EventBus.getDefault().post(new RetrofitEvent(true,1));
             }
             @Override
             public void onFailure(Call<ClassMemberList> call, Throwable t) {
                 Log.d("failure","Spring error");
-                EventBus.getDefault().post(new RetrofitEvent(false));
+                EventBus.getDefault().post(new RetrofitEvent(false,1));
             }
         });
     }

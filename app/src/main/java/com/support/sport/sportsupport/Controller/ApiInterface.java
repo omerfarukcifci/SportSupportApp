@@ -1,10 +1,12 @@
 package com.support.sport.sportsupport.Controller;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
+import com.google.gson.JsonObject;
 import com.support.sport.sportsupport.Model.ActivityPlan;
 import com.support.sport.sportsupport.Model.Branch;
 import com.support.sport.sportsupport.Model.ClassMemberList;
@@ -15,9 +17,9 @@ import com.support.sport.sportsupport.Model.Member;
 import com.support.sport.sportsupport.Model.MemberList;
 import com.support.sport.sportsupport.Model.SpecialOffer;
 import com.support.sport.sportsupport.Model.Trainer;
-import com.support.sport.sportsupport.ViewPackage.Menu.CancelMembershipScreen;
 
-import java.util.Date;
+import org.json.JSONObject;
+
 import java.util.List;
 
 public interface ApiInterface {
@@ -151,5 +153,7 @@ public interface ApiInterface {
     @GET("member/payment/membership")
     Call<Member> makePayment(@Query("id") int id, @Query("startDate") String startDate, @Query("branchId") int branchId, @Query("status") String status);
 
+    @GET("enrolledcourses/is/enrolled")
+    Call<ResponseBody> isEnrolled(@Query("memberId") int memberId, @Query("courseId") int courseId);
 
 }

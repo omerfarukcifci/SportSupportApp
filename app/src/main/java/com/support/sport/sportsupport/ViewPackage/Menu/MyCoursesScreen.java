@@ -31,24 +31,19 @@ import org.greenrobot.eventbus.Subscribe;
 public class MyCoursesScreen extends AppCompatActivity {
 
     TextView textView ;
+    UserCourseAdapter mAdapter;
+    boolean enteredCrate = false;
     @Subscribe
     public void onEvent(RetrofitEvent event) {
 
         if(event.isRetrofitCompleted){
-           // Toast.makeText(getApplicationContext(), Key.myClist.get(0).getName()+"",Toast.LENGTH_LONG).show();
             textView = findViewById(R.id.coursetext);
             RecyclerView recyclerView = findViewById(R.id.my_courses_list);
-            final Course[] courses = new Course[Key.myClist.size()];
-
-            for(int i = 0; i < Key.myClist.size();i++){
-                courses[i] = Key.myClist.get(i);
-            }
-
-            if (courses == null){
+            if (Key.myClist == null){
                 textView.setText("You have not enrolled to any courses yet.\nYou can see our open courses from Courses tab.");
             }else {
-                textView.setText("You have enrolled to "+courses.length+" courses so far.");
-                UserCourseAdapter mAdapter = new UserCourseAdapter(Key.myClist);
+                textView.setText("You have enrolled to "+Key.myClist.size()+" courses so far.");
+                mAdapter = new UserCourseAdapter(Key.myClist);
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                 recyclerView.setLayoutManager(mLayoutManager);
                 recyclerView.setAdapter(mAdapter);
@@ -56,12 +51,9 @@ public class MyCoursesScreen extends AppCompatActivity {
                     @Override
                     public void onClick(View view, int position) {
                         Intent intent = new Intent(MyCoursesScreen.this,FragmentCourse.class);
-                        intent.putExtra("MyCourse",courses[position]);
-                        intent.putExtra("category",1);
+                        intent.putExtra("MyCourse",Key.myClist.get(position));
                         startActivity(intent);
-
                     }
-
                     @Override
                     public void onLongClick(View view, int position) {
 
@@ -72,8 +64,7 @@ public class MyCoursesScreen extends AppCompatActivity {
         }else{
             setContentView(R.layout.activity_my_courses_screen);
             textView = findViewById(R.id.coursetext);
-       //     Toast.makeText(getApplicationContext(), "Invalid",Toast.LENGTH_LONG).show();
-            textView.setText("You have not enrolled to any courses yet.\nYou can see our open courses from Courses tab if you are a member.");
+            textView.setText("You have not enrolled to any courses yet.\nYou can see our open courses from Courses tab.");
         }
     }
 
@@ -88,7 +79,7 @@ public class MyCoursesScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        enteredCrate = true;
         if (Key.cMember.getStatue().equals("banned") || Key.cMember.getStatue().equals("inactive")){
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MyCoursesScreen.this);
             alertDialogBuilder.setTitle("Courses");
@@ -107,18 +98,24 @@ public class MyCoursesScreen extends AppCompatActivity {
             return;
         }
         setContentView(R.layout.activity_my_courses_screen);
-        CourseController courseC = new CourseController();
-
-        courseC.getMyCourses(Key.cMember.getId());
-        Log.d("onCreate","onCreateonCreateonCreateonCreateonCreateonCreate");
+        new CourseController().getMyCourses(Key.cMember.getId());
     }
 
     @Override
     public void onStart() {
         super.onStart();  // Always call the superclass method first
         EventBus.getDefault().register(this);
-        Log.d("onStart","startsatart");
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (Key.userMyCListChanged && !enteredCrate){
+            mAdapter.setList(Key.myClist);
+            mAdapter.notifyDataSetChanged();
+            Key.userMyCListChanged = false;
+            enteredCrate = false;
+        }
 
     }
 
