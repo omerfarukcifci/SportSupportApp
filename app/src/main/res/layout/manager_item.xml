@@ -55,13 +55,6 @@
         android:layout_gravity="center">
 
         <ImageButton
-            android:id="@+id/manager_upgrade_button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:src="@android:drawable/ic_menu_edit"
-            android:backgroundTint="@color/colorPrimary"/>
-        <ImageButton
             android:id="@+id/manager_delete_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

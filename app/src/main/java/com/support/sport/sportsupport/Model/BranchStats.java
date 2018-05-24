@@ -27,11 +27,11 @@ public class BranchStats {
     }
 
     public int getStandartMemberCount() {
-        return standartMemberCount;
+        return standardMemberCount;
     }
 
     public void setStandartMemberCount(int standartMemberCount) {
-        this.standartMemberCount = standartMemberCount;
+        this.standardMemberCount = standartMemberCount;
     }
 
     public int getGoldMemberCount() {
@@ -62,7 +62,7 @@ public class BranchStats {
         this.name = name;
         this.managerCount = managerCount;
         this.trainerCount = trainerCount;
-        this.standartMemberCount = standartMemberCount;
+        this.standardMemberCount = standartMemberCount;
         this.goldMemberCount = goldMemberCount;
         this.platinumMemberCount = platinumMemberCount;
         this.courseStudentCount = courseStudentCount;
@@ -74,8 +74,8 @@ public class BranchStats {
     private int managerCount;
     @SerializedName("trainerCount")
     private int trainerCount;
-    @SerializedName("standartMemberCount")
-    private int standartMemberCount;
+    @SerializedName("standardMemberCount")
+    private int standardMemberCount;
     @SerializedName("goldMemberCount")
     private int goldMemberCount;
     @SerializedName("platinumMemberCount")
