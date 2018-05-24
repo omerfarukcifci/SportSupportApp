@@ -50,16 +50,6 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/setBTBTN"
-                    android:layout_width="317dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/colorPrimary"
-                    android:text="Set BIrth Date" />
-
-                <EditText
-                    android:id="@+id/birthdate_M"
-                    android:layout_width="match_parent"
                     android:id="@+id/BTN_set_Birth_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
