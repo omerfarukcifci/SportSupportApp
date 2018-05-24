@@ -78,7 +78,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(UserAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(UserAdapter.ViewHolder holder, final int position) {
 
        final Member m = members.get(position);
 
@@ -151,6 +151,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
                     public void onClick(DialogInterface dialog, int which) {
                         Intent intent = new Intent(v.getContext(),UserUpdateScreen.class);
 
+                        intent.putExtra("position",position);
                         intent.putExtra("MemberName",m.getName() );
                         intent.putExtra("MemberId",m.getId() );
                         intent.putExtra("MemberSurname",m.getSurname() );

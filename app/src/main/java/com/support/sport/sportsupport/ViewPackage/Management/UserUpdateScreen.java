@@ -32,13 +32,7 @@ public class UserUpdateScreen extends AppCompatActivity {
     private Button updateUserBTN,setBirthdayBTN;
     final Context context = this;
     public static EditText birtdate;
-
-
-
-
-
-
-
+    int position;
 
     public static class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
@@ -102,7 +96,8 @@ public class UserUpdateScreen extends AppCompatActivity {
 
         if (event.isRetrofitCompleted) {
             Toast.makeText(UserUpdateScreen.this, "User Successfully Updated", Toast.LENGTH_LONG).show();
-
+            Key.memberSetChanged = true;
+            Key.allMembers.set(position,Key.cMember);
             finish();
         } else {
             Toast.makeText(this, "User is not updated ! Try again.", Toast.LENGTH_LONG).show();
@@ -151,22 +146,18 @@ public class UserUpdateScreen extends AppCompatActivity {
         });
 
 
-
-
-
         Bundle extras = getIntent().getExtras();
 
         name.setText(extras.getString("MemberName"));
+        position = extras.getInt("position");
         surname.setText(extras.getString("MemberSurname"));
-        username.setText(extras.getString("MemberUsername"));
+        final String oldUsername = extras.getString("MemberUsername");
+        username.setText(oldUsername);
         mail.setText(extras.getString("MemberMail"));
         birtdate.setText(extras.getString("MemberAge").substring(0,10));
-
-
-
         String pass = extras.getString("MemberPassword");
         String userN = extras.getString("MemberUsername");
-     final   int id = extras.getInt("MemberId");
+        final   int id = extras.getInt("MemberId");
 
 
         updateUserBTN.setOnClickListener(new View.OnClickListener() {
@@ -176,15 +167,18 @@ public class UserUpdateScreen extends AppCompatActivity {
 
                 final String nameStr = name.getText().toString();
                 final String surnameStr = surname.getText().toString();
-                final String usernameStr = username.getText().toString();
+                String usernameStr = null;
                 final String birtdateStr = birtdate.getText().toString();
                 final String mailStr = mail.getText().toString();
                 final String passwordStr = password.getText().toString();
 
+                if (!oldUsername.equals(username.getText().toString())) usernameStr = username.getText().toString();
+
                 MyProfile controller = new MyProfile();
                 controller.updateProfileInfo(id,name.getText().toString(),surname.getText().toString(),
-                        username.getText().toString(),password.getText().toString(),
+                        usernameStr,password.getText().toString(),
                         mail.getText().toString(),birtdate.getText().toString());
+
             }
         });
 
